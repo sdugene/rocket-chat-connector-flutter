@@ -31,7 +31,9 @@ void main() {
                 'active: true, '
                 'roles: [admin], '
                 'settings: {preferences: {}}, '
-                'avatarUrl: http://localhost:3000/avatar/test'
+                'avatarUrl: http://localhost:3000/avatar/test, '
+                'customFields: null, '
+                'success: null'
               '}'
             '}'
           '}',

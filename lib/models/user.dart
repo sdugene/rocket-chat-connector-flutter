@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
 import 'package:rocket_chat_connector_flutter/models/email.dart';
 import 'package:rocket_chat_connector_flutter/models/preferences.dart';
 
@@ -15,6 +16,8 @@ class User {
   List<String> roles;
   Map<String, Preferences> settings;
   String avatarUrl;
+  Map<String, String> customFields;
+  bool success;
 
   User.name({
     this.name,
@@ -27,6 +30,8 @@ class User {
     this.roles,
     this.settings,
     this.avatarUrl,
+    this.customFields,
+    this.success,
   });
 
   User.fromMap(Map<String, dynamic> json) {
@@ -67,6 +72,8 @@ class User {
       }
 
       avatarUrl = json['avatarUrl'];
+      customFields = json['customFields'];
+      success = json['success'];
     }
   }
 
@@ -82,29 +89,34 @@ class User {
         'roles': roles?.where((json) => json != null)?.toList() ?? [],
         'settings': settings['preferences'] != null ? {'preferences': settings['preferences'].toMap()} : {'preferences': {}},
         'avatarUrl': avatarUrl,
+        'customFields': customFields,
+        'success': success,
       };
 
   @override
   String toString() {
-    return 'User{_id: $_id, name: $name, emails: $emails, status: $status, statusConnection: $statusConnection, username: $username, utcOffset: $utcOffset, active: $active, roles: $roles, settings: $settings, avatarUrl: $avatarUrl}';
+    return 'User{_id: $_id, name: $name, emails: $emails, status: $status, statusConnection: $statusConnection, username: $username, utcOffset: $utcOffset, active: $active, roles: $roles, settings: $settings, avatarUrl: $avatarUrl, customFields: $customFields, success: $success}';
   }
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is User &&
-          runtimeType == other.runtimeType &&
-          _id == other._id &&
-          name == other.name &&
-          emails == other.emails &&
-          status == other.status &&
-          statusConnection == other.statusConnection &&
-          username == other.username &&
-          utcOffset == other.utcOffset &&
-          active == other.active &&
-          roles == other.roles &&
-          settings == other.settings &&
-          avatarUrl == other.avatarUrl;
+          other is User &&
+              runtimeType == other.runtimeType &&
+              _id == other._id &&
+              name == other.name &&
+              emails.first == other.emails.first &&
+              DeepCollectionEquality().equals(emails, other.emails) &&
+              status == other.status &&
+              statusConnection == other.statusConnection &&
+              username == other.username &&
+              utcOffset == other.utcOffset &&
+              active == other.active &&
+              DeepCollectionEquality().equals(roles, other.roles) &&
+              DeepCollectionEquality().equals(settings, other.settings) &&
+              avatarUrl == other.avatarUrl &&
+              customFields == other.customFields &&
+              success == other.success;
 
   @override
   int get hashCode =>
@@ -118,5 +130,7 @@ class User {
       active.hashCode ^
       roles.hashCode ^
       settings.hashCode ^
-      avatarUrl.hashCode;
+      avatarUrl.hashCode ^
+      customFields.hashCode ^
+      success.hashCode;
 }
