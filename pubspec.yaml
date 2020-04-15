@@ -12,10 +12,15 @@ dependencies:
     sdk: flutter
   #https://pub.dev/packages/collection#-changelog-tab-
   collection: ^1.14.11
+  #https://pub.dev/packages/http_middleware#-changelog-tab-
+  http_middleware: 1.0.0
+  #https://pub.dev/packages/http_logger#-changelog-tab-
+  http_logger: 1.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^4.1.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

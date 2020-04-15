@@ -56,13 +56,11 @@ class User {
         List<dynamic> jsonList = json['roles'].runtimeType == String //
             ? jsonDecode(json['roles'])
             : json['roles'];
-        roles = jsonList.where((json) => json != null).toList();
+        roles = jsonList.where((json) => json != null).map((value) => value.toString()).toList();
       }
 
-
-
       if (json['settings'] != null) {
-        Map<String, Map<dynamic, dynamic>> jsonSettings = json['settings'].runtimeType == String //
+        Map<String, dynamic> jsonSettings = json['settings'].runtimeType == String //
             ? jsonDecode(json['settings'])
             : json['settings'];
 
@@ -72,7 +70,9 @@ class User {
       }
 
       avatarUrl = json['avatarUrl'];
-      customFields = json['customFields'];
+      if (json['customFields'] != null) {
+        customFields = Map<String, String>.from(json['customFields']);
+      }
       success = json['success'];
     }
   }
@@ -105,7 +105,6 @@ class User {
               runtimeType == other.runtimeType &&
               _id == other._id &&
               name == other.name &&
-              emails.first == other.emails.first &&
               DeepCollectionEquality().equals(emails, other.emails) &&
               status == other.status &&
               statusConnection == other.statusConnection &&
@@ -115,7 +114,7 @@ class User {
               DeepCollectionEquality().equals(roles, other.roles) &&
               DeepCollectionEquality().equals(settings, other.settings) &&
               avatarUrl == other.avatarUrl &&
-              customFields == other.customFields &&
+              DeepCollectionEquality().equals(customFields, other.customFields) &&
               success == other.success;
 
   @override
