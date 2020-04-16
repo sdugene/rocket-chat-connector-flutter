@@ -44,6 +44,8 @@ class User {
             ? jsonDecode(json['emails'])
             : json['emails'];
         emails = jsonList.where((json) => json != null).map((json) => Email.fromMap(json)).toList();
+      } else {
+        emails = [];
       }
 
       status = json['status'];
@@ -57,6 +59,8 @@ class User {
             ? jsonDecode(json['roles'])
             : json['roles'];
         roles = jsonList.where((json) => json != null).map((value) => value.toString()).toList();
+      } else {
+        roles = [];
       }
 
       if (json['settings'] != null) {
@@ -87,7 +91,7 @@ class User {
         'utcOffset': utcOffset,
         'active': active,
         'roles': roles?.where((json) => json != null)?.toList() ?? [],
-        'settings': settings['preferences'] != null ? {'preferences': settings['preferences'].toMap()} : {'preferences': {}},
+        'settings': settings != null ? (settings['preferences'] != null ? {'preferences': settings['preferences'].toMap()} : {'preferences': {}}) : null,
         'avatarUrl': avatarUrl,
         'customFields': customFields,
         'success': success,

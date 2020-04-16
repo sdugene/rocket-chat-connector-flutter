@@ -36,6 +36,8 @@ class Message {
             ? jsonDecode(json['attachments'])
             : json['attachments'];
         attachments = jsonList.where((json) => json != null).map((json) => MessageAttachment.fromMap(json)).toList();
+      } else {
+        attachments = [];
       }
     }
   }

@@ -54,6 +54,8 @@ class MessageAttachment {
             ? jsonDecode(json['fields'])
             : json['fields'];
         fields = jsonList.where((json) => json != null).map((json) => MessageAttachmentField.fromMap(json)).toList();
+      } else {
+        fields = [];
       }
 
       imageUrl = json['image_url'];
@@ -83,7 +85,7 @@ class MessageAttachment {
         'title': title,
         'title_link': titleLink,
         'title_link_download': titleLinkDownload,
-        'ts': ts.toIso8601String(),
+        'ts': ts != null ? ts.toIso8601String() : null,
         'video_url': videoUrl,
       };
 
