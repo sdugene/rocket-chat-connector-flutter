@@ -66,7 +66,6 @@ void main() {
             '}',
           userJson.toString());
 
-      User userTest = User.fromMap(userJson);
       expect(User.fromMap(userJson), user);
     });
   });
