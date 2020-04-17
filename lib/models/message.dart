@@ -1,71 +1,59 @@
-import 'dart:convert';
-
-import 'package:collection/collection.dart';
-import 'package:rocket_chat_connector_flutter/models/message_attachment.dart';
+import 'package:rocket_chat_connector_flutter/models/user.dart';
 
 class Message {
+  String _id;
   String alias;
-  String avatar;
-  String channel;
-  String emoji;
-  String roomId;
-  String text;
-  List<MessageAttachment> attachments;
-
-  Message({
-    this.alias,
-    this.avatar,
-    this.channel,
-    this.emoji,
-    this.roomId,
-    this.text,
-    this.attachments,
-  });
+  String msg;
+  bool parseUrls;
+  bool groupable;
+  DateTime ts;
+  User user;
+  String rid;
+  DateTime _updatedAt;
 
   Message.fromMap(Map<String, dynamic> json) {
     if (json != null) {
       alias = json['alias'];
-      avatar = json['avatar'];
-      channel = json['channel'];
-      emoji = json['emoji'];
-      roomId = json['roomId'];
-      text = json['text'];
-
-      if (json['attachments'] != null) {
-        List<dynamic> jsonList = json['attachments'].runtimeType == String //
-            ? jsonDecode(json['attachments'])
-            : json['attachments'];
-        attachments = jsonList.where((json) => json != null).map((json) => MessageAttachment.fromMap(json)).toList();
-      } else {
-        attachments = [];
-      }
+      msg = json['msg'];
+      parseUrls = json['parseUrls'];
+      groupable = json['groupable'];
+      ts = DateTime.parse(json['ts']);
+      user = json['u'] != null ? User.fromMap(json['u']) : null;
+      rid = json['rid'];
+      _updatedAt = json['_updatedAt'] != null ? DateTime.parse(json['_updatedAt']) : null;
+      _id = json['_id'];
     }
   }
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {};
 
+    if (_id != null) {
+      map['_id'] = _id;
+    }
     if (alias != null) {
       map['alias'] = alias;
     }
-
-    if (avatar != null) {
-      map['avatar'] = avatar;
+    if (msg != null) {
+      map['msg'] = msg;
     }
-    if (channel != null) {
-      map['channel'] = channel;
+    if (parseUrls != null) {
+      map['parseUrls'] = parseUrls;
     }
-    if (emoji != null) {
-      map['emoji'] = emoji;
+    if (groupable != null) {
+      map['groupable'] = groupable;
     }
-    if (roomId != null) {
-      map['roomId'] = roomId;
+    if (ts != null) {
+      map['ts'] = ts.toIso8601String();
     }
-    if (text != null) {
-      map['text'] = text;
+    if (user != null) {
+      map['u'] = user != null ? user.toMap() : null;
     }
-    if (attachments != null) {
-      map['attachments'] = attachments?.where((json) => json != null)?.map((attachment) => attachment.toMap())?.toList() ?? [];
+    if (rid != null) {
+      map['rid'] = rid;
+    }
+    if (_updatedAt != null) {
+      map['_updatedAt'] = _updatedAt.toIso8601String();
     }
 
     return map;
@@ -73,7 +61,7 @@ class Message {
 
   @override
   String toString() {
-    return 'Message{alias: $alias, avatar: $avatar, channel: $channel, emoji: $emoji, roomId: $roomId, text: $text, attachments: $attachments}';
+    return 'Message{alias: $alias, msg: $msg, parseUrls: $parseUrls, groupable: $groupable, ts: $ts, user: $user, rid: $rid, _updatedAt: $_updatedAt, _id: $_id}';
   }
 
   @override
@@ -82,20 +70,24 @@ class Message {
           other is Message &&
               runtimeType == other.runtimeType &&
               alias == other.alias &&
-              avatar == other.avatar &&
-              channel == other.channel &&
-              emoji == other.emoji &&
-              roomId == other.roomId &&
-              text == other.text &&
-              DeepCollectionEquality().equals(attachments, other.attachments);
+              msg == other.msg &&
+              parseUrls == other.parseUrls &&
+              groupable == other.groupable &&
+              ts == other.ts &&
+              user == other.user &&
+              rid == other.rid &&
+              _updatedAt == other._updatedAt &&
+              _id == other._id;
 
   @override
   int get hashCode =>
       alias.hashCode ^
-      avatar.hashCode ^
-      channel.hashCode ^
-      emoji.hashCode ^
-      roomId.hashCode ^
-      text.hashCode ^
-      attachments.hashCode;
+      msg.hashCode ^
+      parseUrls.hashCode ^
+      groupable.hashCode ^
+      ts.hashCode ^
+      user.hashCode ^
+      rid.hashCode ^
+      _updatedAt.hashCode ^
+      _id.hashCode;
 }

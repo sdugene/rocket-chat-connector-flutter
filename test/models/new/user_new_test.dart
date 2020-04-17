@@ -6,15 +6,10 @@ import '../../scenarios/data/new/user_new_data.dart';
 void main() {
   group('userNewModel methods', () {
     test('toAndFromMapEmpty', () async {
-      UserNew userNew =
-          UserNewData.getById(1);
-
+      UserNew userNew = UserNewData.getById(1);
       Map<String, dynamic> userJson = userNew.toMap();
 
-      expect(
-          '{name: name, email: email@user.tld, password: anypassyouwant, username: uniqueusername}',
-          userJson.toString());
-
+      expect(UserNewData.getMapById(1), userJson);
       expect(UserNew.fromMap(userJson), userNew);
     });
   });

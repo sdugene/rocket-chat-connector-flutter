@@ -13,7 +13,7 @@ class UserNewData {
     return UserNew.fromMap(UserNewData.userNewList[userId]);
   }
 
-  static List<UserNew> getUserList() {
+  static List<UserNew> getUserNewList() {
     return UserNewData.userNewList.values.map((e) => UserNew.fromMap(e)).toList();
   }
 }

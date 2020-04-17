@@ -8,7 +8,7 @@ class MessageAttachment {
   String authorIcon;
   String authorLink;
   String authorName;
-  String collapsed;
+  bool collapsed;
   String color;
   List<MessageAttachmentField> fields;
   String imageUrl;
@@ -43,11 +43,11 @@ class MessageAttachment {
   MessageAttachment.fromMap(Map<String, dynamic> json) {
     if (json != null) {
       audioUrl = json['audio_url'];
-      authorIcon = json['author_icon;'];
-      authorLink = json['author_link;'];
-      authorName = json['author_name;'];
-      collapsed = json['collapsed;'];
-      color = json['color;'];
+      authorIcon = json['author_icon'];
+      authorLink = json['author_link'];
+      authorName = json['author_name'];
+      collapsed = json['collapsed'];
+      color = json['color'];
 
       if (json['fields'] != null) {
         List<dynamic> jsonList = json['fields'].runtimeType == String //

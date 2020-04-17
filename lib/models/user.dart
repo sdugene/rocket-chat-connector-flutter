@@ -84,10 +84,14 @@ class User {
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {};
 
+    if (_id != null) {
+      map['_id'] = _id;
+    }
+
     if (name != null) {
       map['name'] = name;
     }
-    if (emails != null) {
+    if (emails.isNotEmpty == true) {
       map['emails'] = emails?.where((json) => json != null)?.map((email) => email.toMap())?.toList() ?? [];
     }
     if (status != null) {
@@ -105,8 +109,8 @@ class User {
     if (active != null) {
       map['active'] = active;
     }
-    if (roles != null) {
-      map['roles'] = roles;
+    if (roles.isNotEmpty == true) {
+      map['roles'] = roles?.where((json) => json != null)?.toList() ?? [];
     }
     if (settings != null) {
       map['settings'] = settings != null ? (settings['preferences'] != null ? {'preferences': settings['preferences'].toMap()} : {'preferences': {}}) : null;
