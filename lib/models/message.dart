@@ -42,15 +42,34 @@ class Message {
     }
   }
 
-  Map<String, dynamic> toMap() => {
-        'alias': alias,
-        'avatar': avatar,
-        'channel': channel,
-        'emoji': emoji,
-        'roomId': roomId,
-        'text': text,
-        'attachments': attachments?.where((json) => json != null)?.map((attachment) => attachment.toMap())?.toList() ?? [],
-      };
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> map = {};
+
+    if (alias != null) {
+      map['alias'] = alias;
+    }
+
+    if (avatar != null) {
+      map['avatar'] = avatar;
+    }
+    if (channel != null) {
+      map['channel'] = channel;
+    }
+    if (emoji != null) {
+      map['emoji'] = emoji;
+    }
+    if (roomId != null) {
+      map['roomId'] = roomId;
+    }
+    if (text != null) {
+      map['text'] = text;
+    }
+    if (attachments != null) {
+      map['attachments'] = attachments?.where((json) => json != null)?.map((attachment) => attachment.toMap())?.toList() ?? [];
+    }
+
+    return map;
+  }
 
   @override
   String toString() {

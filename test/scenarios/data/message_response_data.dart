@@ -23,7 +23,7 @@ class MessageResponseData {
     },
   };
 
-  static Map<String, dynamic> getMapById(String messageResponseId) {
+  static Map<String, dynamic> getMapById(int messageResponseId) {
     return MessageResponseData.messageResponseList[messageResponseId];
   }
 
