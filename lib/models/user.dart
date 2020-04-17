@@ -19,7 +19,7 @@ class User {
   Map<String, String> customFields;
   bool success;
 
-  User.name({
+  User({
     this.name,
     this.emails,
     this.status,
@@ -81,21 +81,48 @@ class User {
     }
   }
 
-  Map<String, dynamic> toMap() => {
-        '_id': _id,
-        'name': name,
-        'emails': emails?.where((json) => json != null)?.map((email) => email.toMap())?.toList() ?? [],
-        'status': status,
-        'statusConnection': statusConnection,
-        'username': username,
-        'utcOffset': utcOffset,
-        'active': active,
-        'roles': roles?.where((json) => json != null)?.toList() ?? [],
-        'settings': settings != null ? (settings['preferences'] != null ? {'preferences': settings['preferences'].toMap()} : {'preferences': {}}) : null,
-        'avatarUrl': avatarUrl,
-        'customFields': customFields,
-        'success': success,
-      };
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> map = {};
+
+    if (name != null) {
+      map['name'] = name;
+    }
+    if (emails != null) {
+      map['emails'] = emails?.where((json) => json != null)?.map((email) => email.toMap())?.toList() ?? [];
+    }
+    if (status != null) {
+      map['status'] = status;
+    }
+    if (statusConnection != null) {
+      map['statusConnection'] = statusConnection;
+    }
+    if (username != null) {
+      map['username'] = username;
+    }
+    if (utcOffset != null) {
+      map['utcOffset'] = utcOffset;
+    }
+    if (active != null) {
+      map['active'] = active;
+    }
+    if (roles != null) {
+      map['roles'] = roles;
+    }
+    if (settings != null) {
+      map['settings'] = settings != null ? (settings['preferences'] != null ? {'preferences': settings['preferences'].toMap()} : {'preferences': {}}) : null;
+    }
+    if (avatarUrl != null) {
+      map['avatarUrl'] = avatarUrl;
+    }
+    if (customFields != null) {
+      map['customFields'] = customFields;
+    }
+    if (success != null) {
+      map['success'] = success;
+    }
+
+    return map;
+  }
 
   @override
   String toString() {
