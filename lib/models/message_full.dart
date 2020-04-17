@@ -37,7 +37,7 @@ class MessageFull {
             : json['attachments'];
         attachments = jsonList.where((json) => json != null).map((json) => MessageAttachment.fromMap(json)).toList();
       } else {
-        attachments = [];
+        attachments = null;
       }
     }
   }

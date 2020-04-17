@@ -45,7 +45,7 @@ class User {
             : json['emails'];
         emails = jsonList.where((json) => json != null).map((json) => Email.fromMap(json)).toList();
       } else {
-        emails = [];
+        emails = null;
       }
 
       status = json['status'];
@@ -60,7 +60,7 @@ class User {
             : json['roles'];
         roles = jsonList.where((json) => json != null).map((value) => value.toString()).toList();
       } else {
-        roles = [];
+        roles = null;
       }
 
       if (json['settings'] != null) {
@@ -87,11 +87,10 @@ class User {
     if (_id != null) {
       map['_id'] = _id;
     }
-
     if (name != null) {
       map['name'] = name;
     }
-    if (emails.isNotEmpty == true) {
+    if (emails != null) {
       map['emails'] = emails?.where((json) => json != null)?.map((email) => email.toMap())?.toList() ?? [];
     }
     if (status != null) {
@@ -109,7 +108,7 @@ class User {
     if (active != null) {
       map['active'] = active;
     }
-    if (roles.isNotEmpty == true) {
+    if (roles != null) {
       map['roles'] = roles?.where((json) => json != null)?.toList() ?? [];
     }
     if (settings != null) {

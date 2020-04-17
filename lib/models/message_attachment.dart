@@ -55,7 +55,7 @@ class MessageAttachment {
             : json['fields'];
         fields = jsonList.where((json) => json != null).map((json) => MessageAttachmentField.fromMap(json)).toList();
       } else {
-        fields = [];
+        fields = null;
       }
 
       imageUrl = json['image_url'];

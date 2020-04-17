@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:rocket_chat_connector_flutter/models/message_attachment.dart';
 import 'package:rocket_chat_connector_flutter/models/user.dart';
 
 class Message {
@@ -10,6 +13,18 @@ class Message {
   User user;
   String rid;
   DateTime _updatedAt;
+  List<MessageAttachment> attachments;
+
+  Message({
+    this.alias,
+    this.msg,
+    this.parseUrls,
+    this.groupable,
+    this.ts,
+    this.user,
+    this.rid,
+    this.attachments,
+  });
 
   Message.fromMap(Map<String, dynamic> json) {
     if (json != null) {
@@ -22,6 +37,15 @@ class Message {
       rid = json['rid'];
       _updatedAt = json['_updatedAt'] != null ? DateTime.parse(json['_updatedAt']) : null;
       _id = json['_id'];
+
+      if (json['attachments'] != null) {
+        List<dynamic> jsonList = json['attachments'].runtimeType == String //
+            ? jsonDecode(json['attachments'])
+            : json['attachments'];
+        attachments = jsonList.where((json) => json != null).map((json) => MessageAttachment.fromMap(json)).toList();
+      } else {
+        attachments = null;
+      }
     }
   }
 
@@ -55,29 +79,33 @@ class Message {
     if (_updatedAt != null) {
       map['_updatedAt'] = _updatedAt.toIso8601String();
     }
+    if (attachments != null) {
+      map['attachments'] = attachments?.where((json) => json != null)?.map((attachment) => attachment.toMap())?.toList() ?? [];
+    }
 
     return map;
   }
 
   @override
   String toString() {
-    return 'Message{alias: $alias, msg: $msg, parseUrls: $parseUrls, groupable: $groupable, ts: $ts, user: $user, rid: $rid, _updatedAt: $_updatedAt, _id: $_id}';
+    return 'Message{alias: $alias, msg: $msg, parseUrls: $parseUrls, groupable: $groupable, ts: $ts, user: $user, rid: $rid, _updatedAt: $_updatedAt, _id: $_id, attachments: $attachments}';
   }
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is Message &&
-              runtimeType == other.runtimeType &&
-              alias == other.alias &&
-              msg == other.msg &&
-              parseUrls == other.parseUrls &&
-              groupable == other.groupable &&
-              ts == other.ts &&
-              user == other.user &&
-              rid == other.rid &&
-              _updatedAt == other._updatedAt &&
-              _id == other._id;
+      other is Message &&
+          runtimeType == other.runtimeType &&
+          alias == other.alias &&
+          msg == other.msg &&
+          parseUrls == other.parseUrls &&
+          groupable == other.groupable &&
+          ts == other.ts &&
+          user == other.user &&
+          rid == other.rid &&
+          _updatedAt == other._updatedAt &&
+          _id == other._id &&
+          attachments == other.attachments;
 
   @override
   int get hashCode =>
@@ -89,5 +117,6 @@ class Message {
       user.hashCode ^
       rid.hashCode ^
       _updatedAt.hashCode ^
-      _id.hashCode;
+      _id.hashCode ^
+      attachments.hashCode;
 }
