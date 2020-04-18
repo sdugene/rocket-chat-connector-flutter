@@ -1,8 +1,8 @@
 name: rocket_chat_connector_flutter
 description: Flutter Rocket.chat connector
-version: 0.0.1
 author: Sebastien Dugene <sebastien.dugene@gmail.com>
 homepage: https://github.com/sdugene/rocket-chat-connector-flutter
+version: 0.0.2
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -13,9 +13,9 @@ dependencies:
   #https://pub.dev/packages/collection#-changelog-tab-
   collection: ^1.14.11
   #https://pub.dev/packages/http_middleware#-changelog-tab-
-  http_middleware: 1.0.0
+  http_middleware: ^1.0.0
   #https://pub.dev/packages/http_logger#-changelog-tab-
-  http_logger: 1.0.0
+  http_logger: ^1.0.0
 
 dev_dependencies:
   flutter_test:

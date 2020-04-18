@@ -1,13 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
+import 'package:mockito/mockito.dart';
 import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/user.dart';
 import 'package:rocket_chat_connector_flutter/services/authentication_service.dart';
 import 'package:rocket_chat_connector_flutter/services/http_service.dart';
-import 'package:mockito/mockito.dart';
-
-import 'package:http/http.dart';
 
 import '../scenarios/data/authentication_data.dart';
 import '../scenarios/data/user_data.dart';
@@ -31,7 +30,7 @@ void main() {
     Map<String, String> mappedBody = {'user': user, 'password': password};
 
     Response response = Response(jsonEncode(AuthenticationData.getMapById(1)), 200);
-    when(httpServiceMock.post("/api/v1/user/login", jsonEncode(mappedBody)))
+    when(httpServiceMock.post("/api/v1/login", jsonEncode(mappedBody)))
         .thenAnswer((_) => Future(() => response));
 
     Authentication authentication = await authenticationService.login(user, password);

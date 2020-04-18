@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:http/http.dart';
 import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/user.dart';
 import 'package:rocket_chat_connector_flutter/services/http_service.dart';
-import 'package:http/http.dart';
 
 class AuthenticationService {
   HttpService _httpService;
@@ -12,7 +12,7 @@ class AuthenticationService {
 
   Future<Authentication> login(String user, String password) async {
     Map<String, String> body = {'user': user, 'password': password};
-    Response response = await _httpService.post('/api/v1/user/login', jsonEncode(body));
+    Response response = await _httpService.post('/api/v1/login', jsonEncode(body));
 
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
       return Authentication.fromMap(jsonDecode(response.body));
