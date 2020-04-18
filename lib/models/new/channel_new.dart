@@ -23,7 +23,7 @@ class ChannelNew {
 
   @override
   String toString() {
-    return 'User{name: $name}';
+    return 'ChannelNew{name: $name}';
   }
 
   @override

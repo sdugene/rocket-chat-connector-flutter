@@ -7,7 +7,7 @@ import 'package:rocket_chat_connector_flutter/models/reaction.dart';
 import 'package:rocket_chat_connector_flutter/models/user.dart';
 
 class Message {
-  String _id;
+  String id;
   String alias;
   String msg;
   bool parseUrls;
@@ -16,7 +16,7 @@ class Message {
   DateTime ts;
   User user;
   String rid;
-  DateTime _updatedAt;
+  DateTime updatedAt;
   Map<String, Reaction> reactions;
   List<String> mentions;
   List<String> channels;
@@ -59,8 +59,8 @@ class Message {
       ts = DateTime.parse(json['ts']);
       user = json['u'] != null ? User.fromMap(json['u']) : null;
       rid = json['rid'];
-      _updatedAt = json['_updatedAt'] != null ? DateTime.parse(json['_updatedAt']) : null;
-      _id = json['_id'];
+      updatedAt = json['_updatedAt'] != null ? DateTime.parse(json['_updatedAt']) : null;
+      id = json['_id'];
 
       if (json['reactions'] != null) {
         Map<String, dynamic> reactionMap = Map<String, dynamic>.from(json['reactions']);
@@ -89,8 +89,8 @@ class Message {
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {};
 
-    if (_id != null) {
-      map['_id'] = _id;
+    if (id != null) {
+      map['_id'] = id;
     }
     if (alias != null) {
       map['alias'] = alias;
@@ -116,8 +116,8 @@ class Message {
     if (rid != null) {
       map['rid'] = rid;
     }
-    if (_updatedAt != null) {
-      map['_updatedAt'] = _updatedAt.toIso8601String();
+    if (updatedAt != null) {
+      map['_updatedAt'] = updatedAt.toIso8601String();
     }
     if (reactions != null) {
       map['reactions'] = reactions.map((a, b) => MapEntry(a, b.toMap()));
@@ -155,7 +155,7 @@ class Message {
 
   @override
   String toString() {
-    return 'Message{_id: $_id, alias: $alias, msg: $msg, parseUrls: $parseUrls, bot: $bot, groupable: $groupable, ts: $ts, user: $user, rid: $rid, _updatedAt: $_updatedAt, reactions: $reactions, mentions: $mentions, channels: $channels, starred: $starred, emoji: $emoji, avatar: $avatar, attachments: $attachments, editedBy: $editedBy, editedBy: $editedBy, urls: $urls}';
+    return 'Message{_id: $id, alias: $alias, msg: $msg, parseUrls: $parseUrls, bot: $bot, groupable: $groupable, ts: $ts, user: $user, rid: $rid, _updatedAt: $updatedAt, reactions: $reactions, mentions: $mentions, channels: $channels, starred: $starred, emoji: $emoji, avatar: $avatar, attachments: $attachments, editedBy: $editedBy, editedBy: $editedBy, urls: $urls}';
   }
 
   @override
@@ -163,7 +163,7 @@ class Message {
       identical(this, other) ||
           other is Message &&
               runtimeType == other.runtimeType &&
-              _id == other._id &&
+              id == other.id &&
               alias == other.alias &&
               msg == other.msg &&
               parseUrls == other.parseUrls &&
@@ -172,7 +172,7 @@ class Message {
               ts == other.ts &&
               user == other.user &&
               rid == other.rid &&
-              _updatedAt == other._updatedAt &&
+              updatedAt == other.updatedAt &&
               DeepCollectionEquality().equals(reactions != null  ? reactions.keys : null, other.reactions != null  ? other.reactions.keys : null) &&
               DeepCollectionEquality().equals(reactions != null  ? reactions.values : null, other.reactions != null  ? other.reactions.values : null) &&
               DeepCollectionEquality().equals(mentions, other.mentions) &&
@@ -187,7 +187,7 @@ class Message {
 
   @override
   int get hashCode =>
-      _id.hashCode ^
+      id.hashCode ^
       alias.hashCode ^
       msg.hashCode ^
       parseUrls.hashCode ^
@@ -196,7 +196,7 @@ class Message {
       ts.hashCode ^
       user.hashCode ^
       rid.hashCode ^
-      _updatedAt.hashCode ^
+      updatedAt.hashCode ^
       reactions.hashCode ^
       mentions.hashCode ^
       channels.hashCode ^
