@@ -7,22 +7,25 @@ void main() {
   group('messageModel methods', () {
     test('toAndFromMapEmpty', () async {
       Message message = MessageData.getById("7aDSXtjMA3KPLxLjt");
-
       Map<String, dynamic> messageJson = message.toMap();
 
-      expect(
-          '{'
-            '_id: 7aDSXtjMA3KPLxLjt, '
-            'msg: This is a test!, '
-            'ts: 2016-12-14T20:56:05.117Z, '
-            'u: {'
-              '_id: y65tAmHs93aDChMWu, '
-              'username: graywolf336'
-            '}, '
-            'rid: GENERAL'
-          '}',
-          messageJson.toString());
+      expect(MessageData.getMapById("7aDSXtjMA3KPLxLjt"), messageJson);
+      expect(Message.fromMap(messageJson), message);
+    });
 
+    test('toAndFromMapEmpty', () async {
+      Message message = MessageData.getById("xadufzmxzYQp4H9py");
+      Map<String, dynamic> messageJson = message.toMap();
+
+      expect(MessageData.getMapById("xadufzmxzYQp4H9py"), messageJson);
+      expect(Message.fromMap(messageJson), message);
+    });
+
+    test('toAndFromMapEmpty', () async {
+      Message message = MessageData.getById("id-1538701845987");
+      Map<String, dynamic> messageJson = message.toMap();
+
+      expect(MessageData.getMapById("id-1538701845987"), messageJson);
       expect(Message.fromMap(messageJson), message);
     });
   });

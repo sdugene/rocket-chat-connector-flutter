@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:rocket_chat_connector_flutter/models/channel.dart';
+import 'package:rocket_chat_connector_flutter/models/channel_messages.dart';
 import 'package:rocket_chat_connector_flutter/models/new/channel_new.dart';
 import 'package:rocket_chat_connector_flutter/models/response/channel_new_response.dart';
 import 'package:rocket_chat_connector_flutter/services/http_service.dart';
@@ -15,6 +17,15 @@ class ChannelService {
 
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
       return ChannelNewResponse.fromMap(jsonDecode(response.body));
+    }
+    return null;
+  }
+
+  Future<ChannelMessages> messages(Channel channel) async {
+    Response response = await _httpService.get('/api/v1/channels.messages?roomId=${channel.id}');
+
+    if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
+      return ChannelMessages.fromMap(jsonDecode(response.body));
     }
     return null;
   }

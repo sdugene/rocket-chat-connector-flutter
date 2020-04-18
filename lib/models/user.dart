@@ -5,7 +5,7 @@ import 'package:rocket_chat_connector_flutter/models/email.dart';
 import 'package:rocket_chat_connector_flutter/models/preferences.dart';
 
 class User {
-  String _id;
+  String id;
   String name;
   List<Email> emails;
   String status;
@@ -20,6 +20,7 @@ class User {
   bool success;
 
   User({
+    this.id,
     this.name,
     this.emails,
     this.status,
@@ -36,7 +37,7 @@ class User {
 
   User.fromMap(Map<String, dynamic> json) {
     if (json != null) {
-      _id = json['_id'];
+      id = json['_id'];
       name = json['name'];
 
       if (json['emails'] != null) {
@@ -84,8 +85,8 @@ class User {
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {};
 
-    if (_id != null) {
-      map['_id'] = _id;
+    if (id != null) {
+      map['_id'] = id;
     }
     if (name != null) {
       map['name'] = name;
@@ -129,7 +130,7 @@ class User {
 
   @override
   String toString() {
-    return 'User{_id: $_id, name: $name, emails: $emails, status: $status, statusConnection: $statusConnection, username: $username, utcOffset: $utcOffset, active: $active, roles: $roles, settings: $settings, avatarUrl: $avatarUrl, customFields: $customFields, success: $success}';
+    return 'User{_id: $id, name: $name, emails: $emails, status: $status, statusConnection: $statusConnection, username: $username, utcOffset: $utcOffset, active: $active, roles: $roles, settings: $settings, avatarUrl: $avatarUrl, customFields: $customFields, success: $success}';
   }
 
   @override
@@ -137,7 +138,7 @@ class User {
       identical(this, other) ||
           other is User &&
               runtimeType == other.runtimeType &&
-              _id == other._id &&
+              id == other.id &&
               name == other.name &&
               DeepCollectionEquality().equals(emails, other.emails) &&
               status == other.status &&
@@ -153,7 +154,7 @@ class User {
 
   @override
   int get hashCode =>
-      _id.hashCode ^
+      id.hashCode ^
       name.hashCode ^
       emails.hashCode ^
       status.hashCode ^

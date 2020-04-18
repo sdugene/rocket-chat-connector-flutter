@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:rocket_chat_connector_flutter/models/user.dart';
 
 class Channel {
-  String _id;
+  String id;
   String name;
   String t;
   List<String> usernames;
@@ -11,6 +11,7 @@ class Channel {
   DateTime ts;
 
   Channel({
+    this.id,
     this.name,
     this.t,
     this.usernames,
@@ -21,7 +22,7 @@ class Channel {
 
   Channel.fromMap(Map<String, dynamic> json) {
     if (json != null) {
-      _id = json['_id'];
+      id = json['_id'];
       name = json['name'];
       t = json['t'];
       usernames = List<String>.from(json['usernames']);
@@ -32,7 +33,7 @@ class Channel {
   }
 
   Map<String, dynamic> toMap() => {
-        '_id': _id,
+        '_id': id,
         'name': name,
         't': t,
         'usernames': usernames,
@@ -43,7 +44,7 @@ class Channel {
 
   @override
   String toString() {
-    return 'Channel{_id: $_id, name: $name, t: $t, usernames: $usernames, msgs: $msgs, user: $user, ts: $ts}';
+    return 'Channel{_id: $id, name: $name, t: $t, usernames: $usernames, msgs: $msgs, user: $user, ts: $ts}';
   }
 
   @override
@@ -51,7 +52,7 @@ class Channel {
       identical(this, other) ||
       other is Channel &&
           runtimeType == other.runtimeType &&
-          _id == other._id &&
+          id == other.id &&
           name == other.name &&
           t == other.t &&
           DeepCollectionEquality().equals(usernames, other.usernames) &&
@@ -61,5 +62,5 @@ class Channel {
 
   @override
   int get hashCode =>
-      _id.hashCode ^ name.hashCode ^ t.hashCode ^ usernames.hashCode ^ msgs.hashCode ^ user.hashCode ^ ts.hashCode;
+      id.hashCode ^ name.hashCode ^ t.hashCode ^ usernames.hashCode ^ msgs.hashCode ^ user.hashCode ^ ts.hashCode;
 }
