@@ -1,7 +1,7 @@
-import 'package:rocket_chat_connector_flutter/models/message_full.dart';
+import 'package:rocket_chat_connector_flutter/models/new/message_new.dart';
 
-class MessageFullData {
-  static final Map<int, Map<String, dynamic>> messageFullList = {
+class MessageNewData {
+  static final Map<int, Map<String, dynamic>> messageNewList = {
     1: {
       "alias": "Gruggy",
       "avatar": "http://res.guggy.com/logo_128.png",
@@ -43,15 +43,15 @@ class MessageFullData {
     },
   };
 
-  static Map<String, dynamic> getMapById(int messageFullId) {
-    return MessageFullData.messageFullList[messageFullId];
+  static Map<String, dynamic> getMapById(int messageNewId) {
+    return MessageNewData.messageNewList[messageNewId];
   }
 
-  static MessageFull getById(int messageFullId) {
-    return MessageFull.fromMap(MessageFullData.messageFullList[messageFullId]);
+  static MessageNew getById(int messageNewId) {
+    return MessageNew.fromMap(MessageNewData.messageNewList[messageNewId]);
   }
 
-  static List<MessageFull> getMessageFullList() {
-    return MessageFullData.messageFullList.values.map((e) => MessageFull.fromMap(e)).toList();
+  static List<MessageNew> getMessageNewList() {
+    return MessageNewData.messageNewList.values.map((e) => MessageNew.fromMap(e)).toList();
   }
 }

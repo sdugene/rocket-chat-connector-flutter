@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:rocket_chat_connector_flutter/models/message_attachment.dart';
 
-class MessageFull {
+class MessageNew {
   String alias;
   String avatar;
   String channel;
@@ -12,7 +12,7 @@ class MessageFull {
   String text;
   List<MessageAttachment> attachments;
 
-  MessageFull({
+  MessageNew({
     this.alias,
     this.avatar,
     this.channel,
@@ -22,7 +22,7 @@ class MessageFull {
     this.attachments,
   });
 
-  MessageFull.fromMap(Map<String, dynamic> json) {
+  MessageNew.fromMap(Map<String, dynamic> json) {
     if (json != null) {
       alias = json['alias'];
       avatar = json['avatar'];
@@ -73,13 +73,13 @@ class MessageFull {
 
   @override
   String toString() {
-    return 'Message{alias: $alias, avatar: $avatar, channel: $channel, emoji: $emoji, roomId: $roomId, text: $text, attachments: $attachments}';
+    return 'MessageNew{alias: $alias, avatar: $avatar, channel: $channel, emoji: $emoji, roomId: $roomId, text: $text, attachments: $attachments}';
   }
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is MessageFull &&
+          other is MessageNew &&
               runtimeType == other.runtimeType &&
               alias == other.alias &&
               avatar == other.avatar &&
