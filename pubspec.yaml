@@ -2,7 +2,7 @@ name: rocket_chat_connector_flutter
 description: Flutter Rocket.chat connector
 author: Sebastien Dugene <sebastien.dugene@gmail.com>
 homepage: https://github.com/sdugene/rocket-chat-connector-flutter
-version: 0.0.2
+version: 0.0.3
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

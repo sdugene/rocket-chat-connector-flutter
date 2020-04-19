@@ -13,6 +13,7 @@ class Message {
   bool parseUrls;
   Bot bot;
   bool groupable;
+  String t;
   DateTime ts;
   User user;
   String rid;
@@ -34,6 +35,7 @@ class Message {
     this.parseUrls,
     this.bot,
     this.groupable,
+    this.t,
     this.ts,
     this.user,
     this.rid,
@@ -56,6 +58,7 @@ class Message {
       parseUrls = json['parseUrls'];
       bot = json['bot'] != null ? Bot.fromMap(json['bot']) : null;
       groupable = json['groupable'];
+      t = json['t'];
       ts = DateTime.parse(json['ts']);
       user = json['u'] != null ? User.fromMap(json['u']) : null;
       rid = json['rid'];
@@ -107,6 +110,9 @@ class Message {
     if (groupable != null) {
       map['groupable'] = groupable;
     }
+    if (t != null) {
+      map['t'] = t;
+    }
     if (ts != null) {
       map['ts'] = ts.toIso8601String();
     }
@@ -155,7 +161,7 @@ class Message {
 
   @override
   String toString() {
-    return 'Message{_id: $id, alias: $alias, msg: $msg, parseUrls: $parseUrls, bot: $bot, groupable: $groupable, ts: $ts, user: $user, rid: $rid, _updatedAt: $updatedAt, reactions: $reactions, mentions: $mentions, channels: $channels, starred: $starred, emoji: $emoji, avatar: $avatar, attachments: $attachments, editedBy: $editedBy, editedBy: $editedBy, urls: $urls}';
+    return 'Message{_id: $id, alias: $alias, msg: $msg, parseUrls: $parseUrls, bot: $bot, groupable: $groupable, t: $t, ts: $ts, user: $user, rid: $rid, _updatedAt: $updatedAt, reactions: $reactions, mentions: $mentions, channels: $channels, starred: $starred, emoji: $emoji, avatar: $avatar, attachments: $attachments, editedBy: $editedBy, editedBy: $editedBy, urls: $urls}';
   }
 
   @override
@@ -169,6 +175,7 @@ class Message {
               parseUrls == other.parseUrls &&
               bot == other.bot &&
               groupable == other.groupable &&
+              t == other.t &&
               ts == other.ts &&
               user == other.user &&
               rid == other.rid &&
@@ -193,6 +200,7 @@ class Message {
       parseUrls.hashCode ^
       bot.hashCode ^
       groupable.hashCode ^
+      t.hashCode ^
       ts.hashCode ^
       user.hashCode ^
       rid.hashCode ^
