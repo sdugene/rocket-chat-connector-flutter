@@ -59,7 +59,7 @@ class Message {
       bot = json['bot'] != null ? Bot.fromMap(json['bot']) : null;
       groupable = json['groupable'];
       t = json['t'];
-      ts = DateTime.parse(json['ts']);
+      ts = json['ts'] != null ? DateTime.parse(json['ts']) : null;
       user = json['u'] != null ? User.fromMap(json['u']) : null;
       rid = json['rid'];
       updatedAt = json['_updatedAt'] != null ? DateTime.parse(json['_updatedAt']) : null;

@@ -6,13 +6,18 @@ import 'package:mockito/mockito.dart';
 import 'package:rocket_chat_connector_flutter/models/new/room_new.dart';
 import 'package:rocket_chat_connector_flutter/models/response/room_new_response.dart';
 import 'package:rocket_chat_connector_flutter/models/room.dart';
+import 'package:rocket_chat_connector_flutter/models/room_counters.dart';
 import 'package:rocket_chat_connector_flutter/models/room_messages.dart';
+import 'package:rocket_chat_connector_flutter/models/user.dart';
 import 'package:rocket_chat_connector_flutter/services/http_service.dart';
 import 'package:rocket_chat_connector_flutter/services/room_service.dart';
 
 import '../scenarios/data/new/room_new_data.dart';
 import '../scenarios/data/response/room_new_response_data.dart';
+import '../scenarios/data/room_counters_data.dart';
+import '../scenarios/data/room_data.dart';
 import '../scenarios/data/room_messages_data.dart';
+import '../scenarios/data/user_data.dart';
 
 class HttpServiceMock extends Mock implements HttpService {}
 
@@ -37,11 +42,36 @@ void main() {
   });
 
   test ('room messages', () async {
+    Room room = RoomData.getById("ByehQjC44FwMeiLbX");
+
     Response response = Response(jsonEncode(RoomMessagesData.getMapById(1)), 200);
-    when(httpServiceMock.get("/api/v1/im.messages?roomId=ByehQjC44FwMeiLbX"))
+    when(httpServiceMock.get("/api/v1/im.messages?roomId=${room.id}"))
         .thenAnswer((_) => Future(() => response));
 
-    RoomMessages roomMessages = await roomService.messages(Room(rid: "ByehQjC44FwMeiLbX"));
+    RoomMessages roomMessages = await roomService.messages(room);
     expect(roomMessages.success, true);
+  });
+
+  test ('channel counters without user', () async {
+    Room room = RoomData.getById("ByehQjC44FwMeiLbX");
+
+    Response response = Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
+    when(httpServiceMock.get("/api/v1/im.counters?roomId=${room.id}"))
+        .thenAnswer((_) => Future(() => response));
+
+    RoomCounters roomCounters = await roomService.counters(room);
+    expect(roomCounters.success, true);
+  });
+
+  test ('channel counters with user', () async {
+    User user = UserData.getById("aobEdbYhXfu5hkeqG");
+    Room room = RoomData.getById("ByehQjC44FwMeiLbX");
+
+    Response response = Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
+    when(httpServiceMock.get("/api/v1/im.counters?roomId=${room.id}&userId=${user.id}"))
+        .thenAnswer((_) => Future(() => response));
+
+    RoomCounters roomCounters = await roomService.counters(room, user);
+    expect(roomCounters.success, true);
   });
 }
