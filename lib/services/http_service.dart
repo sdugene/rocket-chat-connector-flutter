@@ -2,6 +2,7 @@ import 'package:http/http.dart';
 import 'package:http_logger/http_logger.dart';
 import 'package:http_middleware/http_with_middleware.dart';
 import 'package:rocket_chat_connector_flutter/models/authentication.dart';
+import 'package:rocket_chat_connector_flutter/models/filters/filter.dart';
 
 class HttpService {
   String _apiUrl;
@@ -13,6 +14,10 @@ class HttpService {
     _apiUrl = apiUrl;
     _httpClient = _getHttpClient();
   }
+
+  Future<Response> getWithFilter(String uri, Filter filter) async =>
+      await _httpClient.get(_apiUrl + uri + '?' + _urlEncode(filter.toMap()), headers: await _getHeaders());
+
 
   Future<Response> get(String uri) async =>
       await _httpClient.get(_apiUrl + uri, headers: await _getHeaders());
@@ -38,6 +43,24 @@ class HttpService {
 
     return header;
   }
+}
+
+String _urlEncode(Map object) {
+  int index = 0;
+  String url = object.keys.map((key) {
+    if (object[key]
+        ?.toString()
+        ?.isNotEmpty == true) {
+      String value = "";
+      if (index != 0) {
+        value = "&";
+      }
+      index++;
+      return "$value${Uri.encodeComponent(key)}=${Uri.encodeComponent(object[key].toString())}";
+    }
+    return "";
+  }).join();
+  return url;
 }
 
 HttpWithMiddleware _getHttpClient() {

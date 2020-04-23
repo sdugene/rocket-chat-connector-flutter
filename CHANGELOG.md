@@ -1,3 +1,9 @@
+## 0.0.5
+
+* Add channel history method
+* Add channel mark as read
+* Add filters on channel methods
+
 ## 0.0.4
 
 * Add channel and room counters
