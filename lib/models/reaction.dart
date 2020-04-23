@@ -3,7 +3,9 @@ import 'package:collection/collection.dart';
 class Reaction {
   List<String> usernames;
 
-  Reaction({this.usernames,});
+  Reaction({
+    this.usernames,
+  });
 
   Reaction.fromMap(Map<String, dynamic> json) {
     if (json != null) {
@@ -29,9 +31,9 @@ class Reaction {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is Reaction &&
-              runtimeType == other.runtimeType &&
-              DeepCollectionEquality().equals(usernames, other.usernames);
+      other is Reaction &&
+          runtimeType == other.runtimeType &&
+          DeepCollectionEquality().equals(usernames, other.usernames);
 
   @override
   int get hashCode => usernames.hashCode;

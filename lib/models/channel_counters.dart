@@ -24,7 +24,9 @@ class ChannelCounters {
       joined = json['joined'];
       members = json['members'];
       unreads = json['unreads'];
-      unreadsFrom = json['unreadsFrom'] != null ? DateTime.parse(json['unreadsFrom']) : null;
+      unreadsFrom = json['unreadsFrom'] != null
+          ? DateTime.parse(json['unreadsFrom'])
+          : null;
       msgs = json['msgs'];
       latest = json['latest'] != null ? DateTime.parse(json['latest']) : null;
       userMentions = json['userMentions'];
@@ -78,16 +80,16 @@ class ChannelCounters {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is ChannelCounters &&
-              runtimeType == other.runtimeType &&
-              joined == other.joined &&
-              members == other.members &&
-              unreads == other.unreads &&
-              unreadsFrom == other.unreadsFrom &&
-              msgs == other.msgs &&
-              latest == other.latest &&
-              userMentions == other.userMentions &&
-              success == other.success;
+      other is ChannelCounters &&
+          runtimeType == other.runtimeType &&
+          joined == other.joined &&
+          members == other.members &&
+          unreads == other.unreads &&
+          unreadsFrom == other.unreadsFrom &&
+          msgs == other.msgs &&
+          latest == other.latest &&
+          userMentions == other.userMentions &&
+          success == other.success;
 
   @override
   int get hashCode =>

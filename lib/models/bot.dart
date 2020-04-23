@@ -29,9 +29,7 @@ class Bot {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is Bot &&
-              runtimeType == other.runtimeType &&
-              i == other.i;
+      other is Bot && runtimeType == other.runtimeType && i == other.i;
 
   @override
   int get hashCode => i.hashCode;

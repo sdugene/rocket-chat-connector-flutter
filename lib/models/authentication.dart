@@ -25,7 +25,10 @@ class Authentication {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || other is Authentication && runtimeType == other.runtimeType && status == other.status;
+      identical(this, other) ||
+      other is Authentication &&
+          runtimeType == other.runtimeType &&
+          status == other.status;
 
   @override
   int get hashCode => status.hashCode;
@@ -64,15 +67,12 @@ class _Data {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is _Data &&
-              runtimeType == other.runtimeType &&
-              authToken == other.authToken &&
-              userId == other.userId &&
-              me == other.me;
+      other is _Data &&
+          runtimeType == other.runtimeType &&
+          authToken == other.authToken &&
+          userId == other.userId &&
+          me == other.me;
 
   @override
-  int get hashCode =>
-      authToken.hashCode ^
-      userId.hashCode ^
-      me.hashCode;
+  int get hashCode => authToken.hashCode ^ userId.hashCode ^ me.hashCode;
 }

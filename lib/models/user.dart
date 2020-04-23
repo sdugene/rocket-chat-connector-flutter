@@ -44,7 +44,10 @@ class User {
         List<dynamic> jsonList = json['emails'].runtimeType == String //
             ? jsonDecode(json['emails'])
             : json['emails'];
-        emails = jsonList.where((json) => json != null).map((json) => Email.fromMap(json)).toList();
+        emails = jsonList
+            .where((json) => json != null)
+            .map((json) => Email.fromMap(json))
+            .toList();
       } else {
         emails = null;
       }
@@ -59,18 +62,24 @@ class User {
         List<dynamic> jsonList = json['roles'].runtimeType == String //
             ? jsonDecode(json['roles'])
             : json['roles'];
-        roles = jsonList.where((json) => json != null).map((value) => value.toString()).toList();
+        roles = jsonList
+            .where((json) => json != null)
+            .map((value) => value.toString())
+            .toList();
       } else {
         roles = null;
       }
 
       if (json['settings'] != null) {
-        Map<String, dynamic> jsonSettings = json['settings'].runtimeType == String //
-            ? jsonDecode(json['settings'])
-            : json['settings'];
+        Map<String, dynamic> jsonSettings =
+            json['settings'].runtimeType == String //
+                ? jsonDecode(json['settings'])
+                : json['settings'];
 
         if (jsonSettings['preferences'] != null) {
-          settings = {'preferences': Preferences.fromMap(jsonSettings['preferences'])};
+          settings = {
+            'preferences': Preferences.fromMap(jsonSettings['preferences'])
+          };
         }
       }
 
@@ -92,7 +101,11 @@ class User {
       map['name'] = name;
     }
     if (emails != null) {
-      map['emails'] = emails?.where((json) => json != null)?.map((email) => email.toMap())?.toList() ?? [];
+      map['emails'] = emails
+              ?.where((json) => json != null)
+              ?.map((email) => email.toMap())
+              ?.toList() ??
+          [];
     }
     if (status != null) {
       map['status'] = status;
@@ -113,7 +126,11 @@ class User {
       map['roles'] = roles?.where((json) => json != null)?.toList() ?? [];
     }
     if (settings != null) {
-      map['settings'] = settings != null ? (settings['preferences'] != null ? {'preferences': settings['preferences'].toMap()} : {'preferences': {}}) : null;
+      map['settings'] = settings != null
+          ? (settings['preferences'] != null
+              ? {'preferences': settings['preferences'].toMap()}
+              : {'preferences': {}})
+          : null;
     }
     if (avatarUrl != null) {
       map['avatarUrl'] = avatarUrl;
@@ -136,21 +153,21 @@ class User {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is User &&
-              runtimeType == other.runtimeType &&
-              id == other.id &&
-              name == other.name &&
-              DeepCollectionEquality().equals(emails, other.emails) &&
-              status == other.status &&
-              statusConnection == other.statusConnection &&
-              username == other.username &&
-              utcOffset == other.utcOffset &&
-              active == other.active &&
-              DeepCollectionEquality().equals(roles, other.roles) &&
-              DeepCollectionEquality().equals(settings, other.settings) &&
-              avatarUrl == other.avatarUrl &&
-              DeepCollectionEquality().equals(customFields, other.customFields) &&
-              success == other.success;
+      other is User &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          DeepCollectionEquality().equals(emails, other.emails) &&
+          status == other.status &&
+          statusConnection == other.statusConnection &&
+          username == other.username &&
+          utcOffset == other.utcOffset &&
+          active == other.active &&
+          DeepCollectionEquality().equals(roles, other.roles) &&
+          DeepCollectionEquality().equals(settings, other.settings) &&
+          avatarUrl == other.avatarUrl &&
+          DeepCollectionEquality().equals(customFields, other.customFields) &&
+          success == other.success;
 
   @override
   int get hashCode =>

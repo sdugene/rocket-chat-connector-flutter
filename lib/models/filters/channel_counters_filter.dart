@@ -10,9 +10,8 @@ class ChannelCountersFilter extends ChannelFilter {
 
   Map<String, dynamic> toMap() => {
         'roomId': channel.id,
-        'userId': user.id,
+        'userId': user != null ? user.id : null,
       };
-
 
   @override
   String toString() {
@@ -22,16 +21,11 @@ class ChannelCountersFilter extends ChannelFilter {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          super == other &&
-              other is ChannelCountersFilter &&
-              runtimeType == other.runtimeType &&
-              user == other.user;
+      super == other &&
+          other is ChannelCountersFilter &&
+          runtimeType == other.runtimeType &&
+          user == other.user;
 
   @override
-  int get hashCode =>
-      super.hashCode ^
-      user.hashCode;
-
-
-
+  int get hashCode => super.hashCode ^ user.hashCode;
 }

@@ -26,7 +26,8 @@ class MessageNewData {
             {
               "short": true,
               "title": "Another Test",
-              "value": "[Link](https://google.com/) something and this and that."
+              "value":
+                  "[Link](https://google.com/) something and this and that."
             }
           ],
           "image_url": "http://res.guggy.com/logo_128.png",
@@ -52,6 +53,8 @@ class MessageNewData {
   }
 
   static List<MessageNew> getMessageNewList() {
-    return MessageNewData.messageNewList.values.map((e) => MessageNew.fromMap(e)).toList();
+    return MessageNewData.messageNewList.values
+        .map((e) => MessageNew.fromMap(e))
+        .toList();
   }
 }

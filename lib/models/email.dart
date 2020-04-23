@@ -22,7 +22,10 @@ class Email {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is Email && runtimeType == other.runtimeType && address == other.address && verified == other.verified;
+      other is Email &&
+          runtimeType == other.runtimeType &&
+          address == other.address &&
+          verified == other.verified;
 
   @override
   int get hashCode => address.hashCode ^ verified.hashCode;

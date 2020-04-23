@@ -29,27 +29,32 @@ void main() {
   test('authentication success', () async {
     Map<String, String> mappedBody = {'user': user, 'password': password};
 
-    Response response = Response(jsonEncode(AuthenticationData.getMapById(1)), 200);
+    Response response =
+        Response(jsonEncode(AuthenticationData.getMapById(1)), 200);
     when(httpServiceMock.post("/api/v1/login", jsonEncode(mappedBody)))
         .thenAnswer((_) => Future(() => response));
 
-    Authentication authentication = await authenticationService.login(user, password);
+    Authentication authentication =
+        await authenticationService.login(user, password);
     expect(authentication.status, AuthenticationData.getById(1).status);
   });
 
   test('authentication failed', () async {
     Map<String, String> mappedBody = {'user': user, 'password': password};
 
-    Response response = Response(jsonEncode(AuthenticationData.getMapById(1)), 200);
+    Response response =
+        Response(jsonEncode(AuthenticationData.getMapById(1)), 200);
     when(httpServiceMock.post("/api/v1/user/login", jsonEncode(mappedBody)))
         .thenAnswer((_) => Future(() => response));
 
-    Authentication authentication = await authenticationService.login(user, password2);
+    Authentication authentication =
+        await authenticationService.login(user, password2);
     expect(authentication, null);
   });
 
-  test ('me', () async {
-    Response response = Response(jsonEncode(UserData.getMapById("aobEdbYhXfu5hkeqG")), 200);
+  test('me', () async {
+    Response response =
+        Response(jsonEncode(UserData.getMapById("aobEdbYhXfu5hkeqG")), 200);
     when(httpServiceMock.get("/api/v1/me"))
         .thenAnswer((_) => Future(() => response));
 

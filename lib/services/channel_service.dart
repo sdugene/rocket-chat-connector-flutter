@@ -18,7 +18,8 @@ class ChannelService {
   ChannelService(this._httpService);
 
   Future<ChannelNewResponse> create(ChannelNew channelNew) async {
-    http.Response response = await _httpService.post('/api/v1/channels.create', jsonEncode(channelNew.toMap()));
+    http.Response response = await _httpService.post(
+        '/api/v1/channels.create', jsonEncode(channelNew.toMap()));
 
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
       return ChannelNewResponse.fromMap(jsonDecode(response.body));
@@ -27,7 +28,8 @@ class ChannelService {
   }
 
   Future<ChannelMessages> messages(Channel channel) async {
-    http.Response response = await _httpService.getWithFilter('/api/v1/channels.messages', ChannelFilter(channel));
+    http.Response response = await _httpService.getWithFilter(
+        '/api/v1/channels.messages', ChannelFilter(channel));
 
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
       return ChannelMessages.fromMap(jsonDecode(response.body));
@@ -38,7 +40,8 @@ class ChannelService {
   Future<bool> markAsRead(Channel channel) async {
     Map<String, String> body = {"rid": channel.id};
 
-    http.Response response = await _httpService.post('/api/v1/subscriptions.read', jsonEncode(body));
+    http.Response response =
+        await _httpService.post('/api/v1/subscriptions.read', jsonEncode(body));
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
       return Response.fromMap(jsonDecode(response.body)).success == true;
     }
@@ -46,7 +49,8 @@ class ChannelService {
   }
 
   Future<ChannelMessages> history(ChannelHistoryFilter filter) async {
-    http.Response response = await _httpService.getWithFilter('/api/v1/channels.history', filter);
+    http.Response response =
+        await _httpService.getWithFilter('/api/v1/channels.history', filter);
 
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
       return ChannelMessages.fromMap(jsonDecode(response.body));
@@ -55,7 +59,8 @@ class ChannelService {
   }
 
   Future<ChannelCounters> counters(ChannelCountersFilter filter) async {
-    http.Response response = await _httpService.getWithFilter('/api/v1/channels.counters', filter);
+    http.Response response =
+        await _httpService.getWithFilter('/api/v1/channels.counters', filter);
 
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
       return ChannelCounters.fromMap(jsonDecode(response.body));

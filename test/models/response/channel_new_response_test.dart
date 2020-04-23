@@ -10,7 +10,8 @@ void main() {
       Map<String, dynamic> channelNewResponseJson = channelNewResponse.toMap();
 
       expect(ChannelNewResponseData.getMapById(1), channelNewResponseJson);
-      expect(ChannelNewResponse.fromMap(channelNewResponseJson), channelNewResponse);
+      expect(ChannelNewResponse.fromMap(channelNewResponseJson),
+          channelNewResponse);
     });
   });
 }

@@ -23,12 +23,15 @@ void main() {
     messageService = MessageService(httpServiceMock);
   });
 
-  test ('post message', () async {
-    Response response = Response(jsonEncode(MessageNewResponseData.getMapById(1)), 200);
-    when(httpServiceMock.post("/api/v1/chat.postMessage", jsonEncode(message.toMap())))
+  test('post message', () async {
+    Response response =
+        Response(jsonEncode(MessageNewResponseData.getMapById(1)), 200);
+    when(httpServiceMock.post(
+            "/api/v1/chat.postMessage", jsonEncode(message.toMap())))
         .thenAnswer((_) => Future(() => response));
 
-    MessageNewResponse messageResponse = await messageService.postMessage(message);
+    MessageNewResponse messageResponse =
+        await messageService.postMessage(message);
     expect(messageResponse.success, true);
   });
 }

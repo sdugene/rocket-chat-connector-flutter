@@ -12,7 +12,8 @@ class AuthenticationService {
 
   Future<Authentication> login(String user, String password) async {
     Map<String, String> body = {'user': user, 'password': password};
-    http.Response response = await _httpService.post('/api/v1/login', jsonEncode(body));
+    http.Response response =
+        await _httpService.post('/api/v1/login', jsonEncode(body));
 
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
       return Authentication.fromMap(jsonDecode(response.body));

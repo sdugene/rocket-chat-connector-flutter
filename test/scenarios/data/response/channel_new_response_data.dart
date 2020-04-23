@@ -21,10 +21,13 @@ class ChannelNewResponseData {
   }
 
   static ChannelNewResponse getById(int channelNewResponseId) {
-    return ChannelNewResponse.fromMap(ChannelNewResponseData.channelNewResponseList[channelNewResponseId]);
+    return ChannelNewResponse.fromMap(
+        ChannelNewResponseData.channelNewResponseList[channelNewResponseId]);
   }
 
   static List<ChannelNewResponse> getMessageList() {
-    return ChannelNewResponseData.channelNewResponseList.values.map((e) => ChannelNewResponse.fromMap(e)).toList();
+    return ChannelNewResponseData.channelNewResponseList.values
+        .map((e) => ChannelNewResponse.fromMap(e))
+        .toList();
   }
 }

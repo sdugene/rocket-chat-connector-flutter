@@ -23,9 +23,9 @@ class Response {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is Response &&
-              runtimeType == other.runtimeType &&
-              success == other.success;
+      other is Response &&
+          runtimeType == other.runtimeType &&
+          success == other.success;
 
   @override
   int get hashCode => success.hashCode;

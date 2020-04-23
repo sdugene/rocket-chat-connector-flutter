@@ -4,9 +4,7 @@ import 'package:rocket_chat_connector_flutter/models/filters/filter.dart';
 class ChannelFilter extends Filter {
   Channel channel;
 
-  ChannelFilter(
-    this.channel
-  );
+  ChannelFilter(this.channel);
 
   Map<String, dynamic> toMap() => {
         'roomId': channel.id,
@@ -20,9 +18,9 @@ class ChannelFilter extends Filter {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is ChannelFilter &&
-              runtimeType == other.runtimeType &&
-              channel == other.channel;
+      other is ChannelFilter &&
+          runtimeType == other.runtimeType &&
+          channel == other.channel;
 
   @override
   int get hashCode => channel.hashCode;

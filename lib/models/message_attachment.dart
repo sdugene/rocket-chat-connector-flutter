@@ -53,7 +53,10 @@ class MessageAttachment {
         List<dynamic> jsonList = json['fields'].runtimeType == String //
             ? jsonDecode(json['fields'])
             : json['fields'];
-        fields = jsonList.where((json) => json != null).map((json) => MessageAttachmentField.fromMap(json)).toList();
+        fields = jsonList
+            .where((json) => json != null)
+            .map((json) => MessageAttachmentField.fromMap(json))
+            .toList();
       } else {
         fields = null;
       }
@@ -77,7 +80,11 @@ class MessageAttachment {
         'author_name': authorName,
         'collapsed': collapsed,
         'color': color,
-        'fields': fields?.where((json) => json != null)?.map((field) => field.toMap())?.toList() ?? [],
+        'fields': fields
+                ?.where((json) => json != null)
+                ?.map((field) => field.toMap())
+                ?.toList() ??
+            [],
         'image_url': imageUrl,
         'message_link': messageLink,
         'text': text,
@@ -97,24 +104,24 @@ class MessageAttachment {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is MessageAttachment &&
-              runtimeType == other.runtimeType &&
-              audioUrl == other.audioUrl &&
-              authorIcon == other.authorIcon &&
-              authorLink == other.authorLink &&
-              authorName == other.authorName &&
-              collapsed == other.collapsed &&
-              color == other.color &&
-              DeepCollectionEquality().equals(fields, other.fields) &&
-              imageUrl == other.imageUrl &&
-              messageLink == other.messageLink &&
-              text == other.text &&
-              thumbUrl == other.thumbUrl &&
-              title == other.title &&
-              titleLink == other.titleLink &&
-              titleLinkDownload == other.titleLinkDownload &&
-              ts == other.ts &&
-              videoUrl == other.videoUrl;
+      other is MessageAttachment &&
+          runtimeType == other.runtimeType &&
+          audioUrl == other.audioUrl &&
+          authorIcon == other.authorIcon &&
+          authorLink == other.authorLink &&
+          authorName == other.authorName &&
+          collapsed == other.collapsed &&
+          color == other.color &&
+          DeepCollectionEquality().equals(fields, other.fields) &&
+          imageUrl == other.imageUrl &&
+          messageLink == other.messageLink &&
+          text == other.text &&
+          thumbUrl == other.thumbUrl &&
+          title == other.title &&
+          titleLink == other.titleLink &&
+          titleLinkDownload == other.titleLinkDownload &&
+          ts == other.ts &&
+          videoUrl == other.videoUrl;
 
   @override
   int get hashCode =>
@@ -134,7 +141,4 @@ class MessageAttachment {
       titleLinkDownload.hashCode ^
       ts.hashCode ^
       videoUrl.hashCode;
-
-
-
 }

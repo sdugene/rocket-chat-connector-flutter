@@ -11,10 +11,7 @@ class MessageNewResponseData {
         "parseUrls": true,
         "groupable": false,
         "ts": "2016-12-14T20:56:05.117Z",
-        "u": {
-          "_id": "y65tAmHs93aDChMWu",
-          "username": "graywolf336"
-        },
+        "u": {"_id": "y65tAmHs93aDChMWu", "username": "graywolf336"},
         "rid": "GENERAL",
         "_updatedAt": "2016-12-14T20:56:05.119Z",
         "_id": "jC9chsFddTvsbFQG7"
@@ -28,10 +25,13 @@ class MessageNewResponseData {
   }
 
   static MessageNewResponse getById(int messageNewResponseId) {
-    return MessageNewResponse.fromMap(MessageNewResponseData.messageNewResponseList[messageNewResponseId]);
+    return MessageNewResponse.fromMap(
+        MessageNewResponseData.messageNewResponseList[messageNewResponseId]);
   }
 
   static List<MessageNewResponse> getMessageList() {
-    return MessageNewResponseData.messageNewResponseList.values.map((e) => MessageNewResponse.fromMap(e)).toList();
+    return MessageNewResponseData.messageNewResponseList.values
+        .map((e) => MessageNewResponse.fromMap(e))
+        .toList();
   }
 }

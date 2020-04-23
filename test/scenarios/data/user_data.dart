@@ -6,20 +6,14 @@ class UserData {
       "_id": "aobEdbYhXfu5hkeqG",
       "name": "Example User",
       "emails": [
-        {
-          "address": "example@example.com",
-          "verified": true
-        }
+        {"address": "example@example.com", "verified": true}
       ],
       "status": "offline",
       "statusConnection": "offline",
       "username": "example",
       "utcOffset": 0,
       "active": true,
-      "roles": [
-        "user",
-        "admin"
-      ],
+      "roles": ["user", "admin"],
       "settings": {
         "preferences": {
           "enableAutoAway": false,
@@ -53,13 +47,9 @@ class UserData {
           "notificationsSoundVolume": 100
         }
       },
-      "customFields": {
-        "twitter": "@userstwi"
-      },
+      "customFields": {"twitter": "@userstwi"},
       "avatarUrl": "http://localhost:3000/avatar/test",
-      "customFields": {
-        "twitter": "@userstwi"
-      },
+      "customFields": {"twitter": "@userstwi"},
       "success": true
     },
     "BsNr28znDkG8aeo7W": {
@@ -68,22 +58,18 @@ class UserData {
         "createdAt": "2016-09-13T14:57:56.037Z",
         "services": {
           "password": {
-            "bcrypt": "\$2a\$10\$5I5nUzqNEs8jKhi7BFS55uFYRf5TE4ErSUH8HymMNAbpMAvsOcl2C"
+            "bcrypt":
+                "\$2a\$10\$5I5nUzqNEs8jKhi7BFS55uFYRf5TE4ErSUH8HymMNAbpMAvsOcl2C"
           }
         },
         "username": "uniqueusername",
         "emails": [
-          {
-            "address": "email@user.tld",
-            "verified": false
-          }
+          {"address": "email@user.tld", "verified": false}
         ],
         "type": "user",
         "status": "offline",
         "active": true,
-        "roles": [
-          "user"
-        ],
+        "roles": ["user"],
         "_updatedAt": "2016-09-13T14:57:56.175Z",
         "name": "name",
         "settings": {}

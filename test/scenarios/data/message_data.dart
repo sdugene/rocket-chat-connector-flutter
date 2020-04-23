@@ -7,19 +7,14 @@ class MessageData {
       "rid": "GENERAL",
       "msg": "This is a test!",
       "ts": "2016-12-14T20:56:05.117Z",
-      "u": {
-        "_id": "y65tAmHs93aDChMWu",
-        "username": "graywolf336"
-      }
+      "u": {"_id": "y65tAmHs93aDChMWu", "username": "graywolf336"}
     },
     "xadufzmxzYQp4H9py": {
       "_id": "xadufzmxzYQp4H9py",
       "alias": "test",
       "msg": "Example message",
       "parseUrls": true,
-      "bot": {
-        "i": "MnQyfhWt5LqZotyfc"
-      },
+      "bot": {"i": "MnQyfhWt5LqZotyfc"},
       "groupable": false,
       "ts": "2018-10-05T01:10:47.524Z",
       "u": {
@@ -31,16 +26,12 @@ class MessageData {
       "_updatedAt": "2018-10-05T13:42:51.163Z",
       "reactions": {
         ":grin:": {
-          "usernames": [
-            "marcos.defendi"
-          ]
+          "usernames": ["marcos.defendi"]
         }
       },
       "mentions": [],
       "channels": [],
-      "starred": {
-        "_id": "KPkEYwKKBKZnEEPpt"
-      },
+      "starred": {"_id": "KPkEYwKKBKZnEEPpt"},
       "attachments": []
     },
     "id-1538701845987": {
@@ -57,24 +48,16 @@ class MessageData {
       "_updatedAt": "2018-10-05T01:10:47.064Z",
       "reactions": {
         ":smile:": {
-          "usernames": [
-            "rocketchat.internal.admin.test"
-          ]
+          "usernames": ["rocketchat.internal.admin.test"]
         },
         ":squid:": {
-          "usernames": [
-            "rocketchat.internal.admin.test"
-          ]
+          "usernames": ["rocketchat.internal.admin.test"]
         },
         ":bee:": {
-          "usernames": [
-            "rocketchat.internal.admin.test"
-          ]
+          "usernames": ["rocketchat.internal.admin.test"]
         },
         ":ant:": {
-          "usernames": [
-            "rocketchat.internal.admin.test"
-          ]
+          "usernames": ["rocketchat.internal.admin.test"]
         }
       },
       "mentions": [],
@@ -107,7 +90,8 @@ class MessageData {
             {
               "short": true,
               "title": "Another Test",
-              "value": "[Link](https://google.com/) something and this and that."
+              "value":
+                  "[Link](https://google.com/) something and this and that."
             }
           ]
         }
@@ -130,6 +114,8 @@ class MessageData {
   }
 
   static List<Message> getMessageList() {
-    return MessageData.messageList.values.map((e) => Message.fromMap(e)).toList();
+    return MessageData.messageList.values
+        .map((e) => Message.fromMap(e))
+        .toList();
   }
 }

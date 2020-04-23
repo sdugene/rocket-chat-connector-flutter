@@ -1,3 +1,7 @@
+## 0.0.6
+
+* Fix NPE on filter
+
 ## 0.0.5
 
 * Add channel history method

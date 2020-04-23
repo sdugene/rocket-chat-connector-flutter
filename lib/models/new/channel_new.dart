@@ -29,11 +29,10 @@ class ChannelNew {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is ChannelNew &&
-              runtimeType == other.runtimeType &&
-              name == other.name;
+      other is ChannelNew &&
+          runtimeType == other.runtimeType &&
+          name == other.name;
 
   @override
-  int get hashCode =>
-      name.hashCode;
+  int get hashCode => name.hashCode;
 }

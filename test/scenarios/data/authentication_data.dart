@@ -31,10 +31,13 @@ class AuthenticationData {
   }
 
   static Authentication getById(int authenticationId) {
-    return Authentication.fromMap(AuthenticationData.authenticationList[authenticationId]);
+    return Authentication.fromMap(
+        AuthenticationData.authenticationList[authenticationId]);
   }
 
   static List<Authentication> getAuthenticationList() {
-    return AuthenticationData.authenticationList.values.map((e) => Authentication.fromMap(e)).toList();
+    return AuthenticationData.authenticationList.values
+        .map((e) => Authentication.fromMap(e))
+        .toList();
   }
 }

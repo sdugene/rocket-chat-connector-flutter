@@ -9,9 +9,7 @@ class ChannelMessagesData {
           "alias": "test",
           "msg": "Example message",
           "parseUrls": true,
-          "bot": {
-            "i": "MnQyfhWt5LqZotyfc"
-          },
+          "bot": {"i": "MnQyfhWt5LqZotyfc"},
           "groupable": false,
           "ts": "2018-10-05T01:10:47.524Z",
           "u": {
@@ -23,16 +21,12 @@ class ChannelMessagesData {
           "_updatedAt": "2018-10-05T13:42:51.163Z",
           "reactions": {
             ":grin:": {
-              "usernames": [
-                "marcos.defendi"
-              ]
+              "usernames": ["marcos.defendi"]
             }
           },
           "mentions": [],
           "channels": [],
-          "starred": {
-            "_id": "KPkEYwKKBKZnEEPpt"
-          },
+          "starred": {"_id": "KPkEYwKKBKZnEEPpt"},
           "attachments": []
         },
         {
@@ -49,24 +43,16 @@ class ChannelMessagesData {
           "_updatedAt": "2018-10-05T01:10:47.064Z",
           "reactions": {
             ":smile:": {
-              "usernames": [
-                "rocketchat.internal.admin.test"
-              ]
+              "usernames": ["rocketchat.internal.admin.test"]
             },
             ":squid:": {
-              "usernames": [
-                "rocketchat.internal.admin.test"
-              ]
+              "usernames": ["rocketchat.internal.admin.test"]
             },
             ":bee:": {
-              "usernames": [
-                "rocketchat.internal.admin.test"
-              ]
+              "usernames": ["rocketchat.internal.admin.test"]
             },
             ":ant:": {
-              "usernames": [
-                "rocketchat.internal.admin.test"
-              ]
+              "usernames": ["rocketchat.internal.admin.test"]
             }
           },
           "mentions": [],
@@ -83,7 +69,8 @@ class ChannelMessagesData {
               "thumb_url": "http://res.guggy.com/logo_128.png",
               "author_name": "Bradley Hilton",
               "author_link": "https://rocket.chat/",
-              "author_icon": "https://avatars.githubusercontent.com/u/850391?v=3",
+              "author_icon":
+                  "https://avatars.githubusercontent.com/u/850391?v=3",
               "title": "Attachment Example",
               "title_link": "https://youtube.com",
               "title_link_download": true,
@@ -99,7 +86,8 @@ class ChannelMessagesData {
                 {
                   "short": true,
                   "title": "Another Test",
-                  "value": "[Link](https://google.com/) something and this and that."
+                  "value":
+                      "[Link](https://google.com/) something and this and that."
                 }
               ]
             }
@@ -124,10 +112,13 @@ class ChannelMessagesData {
   }
 
   static ChannelMessages getById(int channelMessagesId) {
-    return ChannelMessages.fromMap(ChannelMessagesData.channelMessagesList[channelMessagesId]);
+    return ChannelMessages.fromMap(
+        ChannelMessagesData.channelMessagesList[channelMessagesId]);
   }
 
   static List<ChannelMessages> getChannelMessagesList() {
-    return ChannelMessagesData.channelMessagesList.values.map((e) => ChannelMessages.fromMap(e)).toList();
+    return ChannelMessagesData.channelMessagesList.values
+        .map((e) => ChannelMessages.fromMap(e))
+        .toList();
   }
 }

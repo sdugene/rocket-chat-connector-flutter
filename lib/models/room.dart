@@ -27,13 +27,16 @@ class Room {
     if (json != null) {
       id = json['_id'];
       rid = json['rid'];
-      updatedAt = json['_updatedAt'] != null ? DateTime.parse(json['_updatedAt']) : null;
+      updatedAt = json['_updatedAt'] != null
+          ? DateTime.parse(json['_updatedAt'])
+          : null;
       t = json['t'];
       msgs = json['msgs'];
       ts = DateTime.parse(json['ts']);
       lm = DateTime.parse(json['lm']);
       topic = json['topic'];
-      usernames = usernames != null ? List<String>.from(json['usernames']) : null;
+      usernames =
+          usernames != null ? List<String>.from(json['usernames']) : null;
     }
   }
 
@@ -76,17 +79,17 @@ class Room {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is Room &&
-              runtimeType == other.runtimeType &&
-              id == other.id &&
-              updatedAt == other.updatedAt &&
-              t == other.t &&
-              msgs == other.msgs &&
-              ts == other.ts &&
-              lm == other.lm &&
-              topic == other.topic &&
-              rid == other.rid &&
-              DeepCollectionEquality().equals(usernames, other.usernames);
+      other is Room &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          updatedAt == other.updatedAt &&
+          t == other.t &&
+          msgs == other.msgs &&
+          ts == other.ts &&
+          lm == other.lm &&
+          topic == other.topic &&
+          rid == other.rid &&
+          DeepCollectionEquality().equals(usernames, other.usernames);
 
   @override
   int get hashCode =>
@@ -99,9 +102,4 @@ class Room {
       topic.hashCode ^
       rid.hashCode ^
       usernames.hashCode;
-
-
-
-
-
 }

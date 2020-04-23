@@ -16,7 +16,8 @@ class MessageNewResponse {
     if (json != null) {
       ts = json['ts'];
       channel = json['channel'];
-      message = json['message'] != null ? Message.fromMap(json['message']) : null;
+      message =
+          json['message'] != null ? Message.fromMap(json['message']) : null;
       success = json['success'];
     }
   }
@@ -36,17 +37,14 @@ class MessageNewResponse {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is MessageNewResponse &&
-              runtimeType == other.runtimeType &&
-              ts == other.ts &&
-              channel == other.channel &&
-              message == other.message &&
-              success == other.success;
+      other is MessageNewResponse &&
+          runtimeType == other.runtimeType &&
+          ts == other.ts &&
+          channel == other.channel &&
+          message == other.message &&
+          success == other.success;
 
   @override
   int get hashCode =>
-      ts.hashCode ^
-      channel.hashCode ^
-      message.hashCode ^
-      success.hashCode;
+      ts.hashCode ^ channel.hashCode ^ message.hashCode ^ success.hashCode;
 }

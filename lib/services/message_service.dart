@@ -11,7 +11,8 @@ class MessageService {
   MessageService(this._httpService);
 
   Future<MessageNewResponse> postMessage(MessageNew message) async {
-    http.Response response = await _httpService.post('/api/v1/chat.postMessage', jsonEncode(message.toMap()));
+    http.Response response = await _httpService.post(
+        '/api/v1/chat.postMessage', jsonEncode(message.toMap()));
 
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
       return MessageNewResponse.fromMap(jsonDecode(response.body));

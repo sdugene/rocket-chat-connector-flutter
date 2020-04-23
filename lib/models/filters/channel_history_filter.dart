@@ -21,8 +21,8 @@ class ChannelHistoryFilter extends ChannelFilter {
 
   Map<String, dynamic> toMap() => {
         'roomId': channel.id,
-        'latest': latest.toIso8601String(),
-        'oldest': oldest.toIso8601String(),
+        'latest': latest != null ? latest.toIso8601String() : null,
+        'oldest': oldest != null ? oldest.toIso8601String() : null,
         'inclusive': inclusive,
         'offsetint': offsetint,
         'count': count,
@@ -37,15 +37,15 @@ class ChannelHistoryFilter extends ChannelFilter {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          super == other &&
-              other is ChannelHistoryFilter &&
-              runtimeType == other.runtimeType &&
-              latest == other.latest &&
-              oldest == other.oldest &&
-              inclusive == other.inclusive &&
-              offsetint == other.offsetint &&
-              count == other.count &&
-              unreads == other.unreads;
+      super == other &&
+          other is ChannelHistoryFilter &&
+          runtimeType == other.runtimeType &&
+          latest == other.latest &&
+          oldest == other.oldest &&
+          inclusive == other.inclusive &&
+          offsetint == other.offsetint &&
+          count == other.count &&
+          unreads == other.unreads;
 
   @override
   int get hashCode =>

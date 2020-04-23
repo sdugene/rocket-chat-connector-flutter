@@ -16,8 +16,8 @@ class HttpService {
   }
 
   Future<Response> getWithFilter(String uri, Filter filter) async =>
-      await _httpClient.get(_apiUrl + uri + '?' + _urlEncode(filter.toMap()), headers: await _getHeaders());
-
+      await _httpClient.get(_apiUrl + uri + '?' + _urlEncode(filter.toMap()),
+          headers: await _getHeaders());
 
   Future<Response> get(String uri) async =>
       await _httpClient.get(_apiUrl + uri, headers: await _getHeaders());
@@ -48,9 +48,7 @@ class HttpService {
 String _urlEncode(Map object) {
   int index = 0;
   String url = object.keys.map((key) {
-    if (object[key]
-        ?.toString()
-        ?.isNotEmpty == true) {
+    if (object[key]?.toString()?.isNotEmpty == true) {
       String value = "";
       if (index != 0) {
         value = "&";

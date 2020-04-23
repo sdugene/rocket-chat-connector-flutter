@@ -62,5 +62,11 @@ class Channel {
 
   @override
   int get hashCode =>
-      id.hashCode ^ name.hashCode ^ t.hashCode ^ usernames.hashCode ^ msgs.hashCode ^ user.hashCode ^ ts.hashCode;
+      id.hashCode ^
+      name.hashCode ^
+      t.hashCode ^
+      usernames.hashCode ^
+      msgs.hashCode ^
+      user.hashCode ^
+      ts.hashCode;
 }

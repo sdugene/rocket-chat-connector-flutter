@@ -11,7 +11,8 @@ class ChannelNewResponse {
 
   ChannelNewResponse.fromMap(Map<String, dynamic> json) {
     if (json != null) {
-      channel = json['channel'] != null ? Channel.fromMap(json['channel']) : null;
+      channel =
+          json['channel'] != null ? Channel.fromMap(json['channel']) : null;
       success = json['success'];
     }
   }
@@ -29,13 +30,11 @@ class ChannelNewResponse {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is ChannelNewResponse &&
-              runtimeType == other.runtimeType &&
-              channel == other.channel &&
-              success == other.success;
+      other is ChannelNewResponse &&
+          runtimeType == other.runtimeType &&
+          channel == other.channel &&
+          success == other.success;
 
   @override
-  int get hashCode =>
-      channel.hashCode ^
-      success.hashCode;
+  int get hashCode => channel.hashCode ^ success.hashCode;
 }

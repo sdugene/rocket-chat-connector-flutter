@@ -24,9 +24,11 @@ void main() {
     userService = UserService(httpServiceMock);
   });
 
-  test ('create user', () async {
-    Response response = Response(jsonEncode(UserData.getMapById("BsNr28znDkG8aeo7W")), 200);
-    when(httpServiceMock.post("/api/v1/users.create", jsonEncode(userNew.toMap())))
+  test('create user', () async {
+    Response response =
+        Response(jsonEncode(UserData.getMapById("BsNr28znDkG8aeo7W")), 200);
+    when(httpServiceMock.post(
+            "/api/v1/users.create", jsonEncode(userNew.toMap())))
         .thenAnswer((_) => Future(() => response));
 
     User user = await userService.create(userNew);

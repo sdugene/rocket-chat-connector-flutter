@@ -6,10 +6,7 @@ class RoomNewResponseData {
       "room": {
         "t": "d",
         "rid": "PMrDaS4axRqkjY7errocket.cat",
-        "usernames": [
-          "g1",
-          "rocket.cat"
-        ]
+        "usernames": ["g1", "rocket.cat"]
       },
       "success": true
     },
@@ -20,10 +17,13 @@ class RoomNewResponseData {
   }
 
   static RoomNewResponse getById(int roomNewResponseId) {
-    return RoomNewResponse.fromMap(RoomNewResponseData.roomNewResponseList[roomNewResponseId]);
+    return RoomNewResponse.fromMap(
+        RoomNewResponseData.roomNewResponseList[roomNewResponseId]);
   }
 
   static List<RoomNewResponse> getMessageList() {
-    return RoomNewResponseData.roomNewResponseList.values.map((e) => RoomNewResponse.fromMap(e)).toList();
+    return RoomNewResponseData.roomNewResponseList.values
+        .map((e) => RoomNewResponse.fromMap(e))
+        .toList();
   }
 }

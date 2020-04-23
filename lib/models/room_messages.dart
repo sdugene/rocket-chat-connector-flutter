@@ -20,12 +20,14 @@ class RoomMessages {
 
   RoomMessages.fromMap(Map<String, dynamic> json) {
     if (json != null) {
-
       if (json['messages'] != null) {
         List<dynamic> jsonList = json['messages'].runtimeType == String //
             ? jsonDecode(json['messages'])
             : json['messages'];
-        messages = jsonList.where((json) => json != null).map((json) => Message.fromMap(json)).toList();
+        messages = jsonList
+            .where((json) => json != null)
+            .map((json) => Message.fromMap(json))
+            .toList();
       } else {
         messages = null;
       }
@@ -41,7 +43,11 @@ class RoomMessages {
     Map<String, dynamic> map = {};
 
     if (messages != null) {
-      map['messages'] = messages?.where((json) => json != null)?.map((message) => message.toMap())?.toList() ?? [];
+      map['messages'] = messages
+              ?.where((json) => json != null)
+              ?.map((message) => message.toMap())
+              ?.toList() ??
+          [];
     }
 
     if (count != null) {
@@ -71,13 +77,13 @@ class RoomMessages {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is RoomMessages &&
-              runtimeType == other.runtimeType &&
-              DeepCollectionEquality().equals(messages, other.messages) &&
-              count == other.count &&
-              offset == other.offset &&
-              total == other.total &&
-              success == other.success;
+      other is RoomMessages &&
+          runtimeType == other.runtimeType &&
+          DeepCollectionEquality().equals(messages, other.messages) &&
+          count == other.count &&
+          offset == other.offset &&
+          total == other.total &&
+          success == other.success;
 
   @override
   int get hashCode =>
@@ -86,7 +92,4 @@ class RoomMessages {
       offset.hashCode ^
       total.hashCode ^
       success.hashCode;
-
-
-
 }

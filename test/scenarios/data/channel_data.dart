@@ -22,6 +22,8 @@ class ChannelData {
   }
 
   static List<Channel> getChannelList() {
-    return ChannelData.channelList.values.map((e) => Channel.fromMap(e)).toList();
+    return ChannelData.channelList.values
+        .map((e) => Channel.fromMap(e))
+        .toList();
   }
 }

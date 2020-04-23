@@ -32,8 +32,9 @@ void main() {
     roomService = RoomService(httpServiceMock);
   });
 
-  test ('create room', () async {
-    Response response = Response(jsonEncode(RoomNewResponseData.getMapById(1)), 200);
+  test('create room', () async {
+    Response response =
+        Response(jsonEncode(RoomNewResponseData.getMapById(1)), 200);
     when(httpServiceMock.post("/api/v1/im.create", jsonEncode(roomNew.toMap())))
         .thenAnswer((_) => Future(() => response));
 
@@ -41,10 +42,11 @@ void main() {
     expect(roomNewResponse.success, true);
   });
 
-  test ('room messages', () async {
+  test('room messages', () async {
     Room room = RoomData.getById("ByehQjC44FwMeiLbX");
 
-    Response response = Response(jsonEncode(RoomMessagesData.getMapById(1)), 200);
+    Response response =
+        Response(jsonEncode(RoomMessagesData.getMapById(1)), 200);
     when(httpServiceMock.get("/api/v1/im.messages?roomId=${room.id}"))
         .thenAnswer((_) => Future(() => response));
 
@@ -52,10 +54,11 @@ void main() {
     expect(roomMessages.success, true);
   });
 
-  test ('channel counters without user', () async {
+  test('channel counters without user', () async {
     Room room = RoomData.getById("ByehQjC44FwMeiLbX");
 
-    Response response = Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
+    Response response =
+        Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
     when(httpServiceMock.get("/api/v1/im.counters?roomId=${room.id}"))
         .thenAnswer((_) => Future(() => response));
 
@@ -63,12 +66,14 @@ void main() {
     expect(roomCounters.success, true);
   });
 
-  test ('channel counters with user', () async {
+  test('channel counters with user', () async {
     User user = UserData.getById("aobEdbYhXfu5hkeqG");
     Room room = RoomData.getById("ByehQjC44FwMeiLbX");
 
-    Response response = Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
-    when(httpServiceMock.get("/api/v1/im.counters?roomId=${room.id}&userId=${user.id}"))
+    Response response =
+        Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
+    when(httpServiceMock
+            .get("/api/v1/im.counters?roomId=${room.id}&userId=${user.id}"))
         .thenAnswer((_) => Future(() => response));
 
     RoomCounters roomCounters = await roomService.counters(room, user);

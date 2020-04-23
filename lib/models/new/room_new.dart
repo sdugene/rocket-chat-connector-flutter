@@ -29,11 +29,10 @@ class RoomNew {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is RoomNew &&
-              runtimeType == other.runtimeType &&
-              username == other.username;
+      other is RoomNew &&
+          runtimeType == other.runtimeType &&
+          username == other.username;
 
   @override
-  int get hashCode =>
-      username.hashCode;
+  int get hashCode => username.hashCode;
 }

@@ -1,5 +1,3 @@
-abstract class Filter{
-
+abstract class Filter {
   Map<String, dynamic> toMap();
-
 }

@@ -35,7 +35,10 @@ class MessageNew {
         List<dynamic> jsonList = json['attachments'].runtimeType == String //
             ? jsonDecode(json['attachments'])
             : json['attachments'];
-        attachments = jsonList.where((json) => json != null).map((json) => MessageAttachment.fromMap(json)).toList();
+        attachments = jsonList
+            .where((json) => json != null)
+            .map((json) => MessageAttachment.fromMap(json))
+            .toList();
       } else {
         attachments = null;
       }
@@ -65,7 +68,11 @@ class MessageNew {
       map['text'] = text;
     }
     if (attachments != null) {
-      map['attachments'] = attachments?.where((json) => json != null)?.map((attachment) => attachment.toMap())?.toList() ?? [];
+      map['attachments'] = attachments
+              ?.where((json) => json != null)
+              ?.map((attachment) => attachment.toMap())
+              ?.toList() ??
+          [];
     }
 
     return map;
@@ -79,15 +86,15 @@ class MessageNew {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is MessageNew &&
-              runtimeType == other.runtimeType &&
-              alias == other.alias &&
-              avatar == other.avatar &&
-              channel == other.channel &&
-              emoji == other.emoji &&
-              roomId == other.roomId &&
-              text == other.text &&
-              DeepCollectionEquality().equals(attachments, other.attachments);
+      other is MessageNew &&
+          runtimeType == other.runtimeType &&
+          alias == other.alias &&
+          avatar == other.avatar &&
+          channel == other.channel &&
+          emoji == other.emoji &&
+          roomId == other.roomId &&
+          text == other.text &&
+          DeepCollectionEquality().equals(attachments, other.attachments);
 
   @override
   int get hashCode =>

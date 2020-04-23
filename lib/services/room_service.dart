@@ -15,7 +15,8 @@ class RoomService {
   RoomService(this._httpService);
 
   Future<RoomNewResponse> create(RoomNew roomNew) async {
-    http.Response response = await _httpService.post('/api/v1/im.create', jsonEncode(roomNew.toMap()));
+    http.Response response = await _httpService.post(
+        '/api/v1/im.create', jsonEncode(roomNew.toMap()));
 
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
       return RoomNewResponse.fromMap(jsonDecode(response.body));
@@ -24,7 +25,8 @@ class RoomService {
   }
 
   Future<RoomMessages> messages(Room room) async {
-    http.Response response = await _httpService.get('/api/v1/im.messages?roomId=${room.rid}');
+    http.Response response =
+        await _httpService.get('/api/v1/im.messages?roomId=${room.rid}');
 
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
       return RoomMessages.fromMap(jsonDecode(response.body));
@@ -35,9 +37,11 @@ class RoomService {
   Future<RoomCounters> counters(Room room, [User user]) async {
     http.Response response;
     if (user != null) {
-      response = await _httpService.get('/api/v1/im.counters?roomId=${room.id}&userId=${user.id}');
+      response = await _httpService
+          .get('/api/v1/im.counters?roomId=${room.id}&userId=${user.id}');
     } else {
-      response = await _httpService.get('/api/v1/im.counters?roomId=${room.id}');
+      response =
+          await _httpService.get('/api/v1/im.counters?roomId=${room.id}');
     }
 
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {

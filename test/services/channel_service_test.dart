@@ -36,20 +36,24 @@ void main() {
     channelService = ChannelService(httpServiceMock);
   });
 
-  test ('create channel', () async {
-    http.Response response = http.Response(jsonEncode(ChannelNewResponseData.getMapById(1)), 200);
-    when(httpServiceMock.post("/api/v1/channels.create", jsonEncode(channelNew.toMap())))
+  test('create channel', () async {
+    http.Response response =
+        http.Response(jsonEncode(ChannelNewResponseData.getMapById(1)), 200);
+    when(httpServiceMock.post(
+            "/api/v1/channels.create", jsonEncode(channelNew.toMap())))
         .thenAnswer((_) => Future(() => response));
 
-    ChannelNewResponse channelNewResponse = await channelService.create(channelNew);
+    ChannelNewResponse channelNewResponse =
+        await channelService.create(channelNew);
     expect(channelNewResponse.success, true);
   });
 
-  test ('channel messages', () async {
+  test('channel messages', () async {
     Channel channel = ChannelData.getById("ByehQjC44FwMeiLbX");
     ChannelFilter filter = ChannelFilter(channel);
 
-    http.Response response = http.Response(jsonEncode(ChannelMessagesData.getMapById(1)), 200);
+    http.Response response =
+        http.Response(jsonEncode(ChannelMessagesData.getMapById(1)), 200);
     when(httpServiceMock.getWithFilter("/api/v1/channels.messages", filter))
         .thenAnswer((_) => Future(() => response));
 
@@ -57,11 +61,12 @@ void main() {
     expect(channelMessages.success, true);
   });
 
-  test ('channel markAsRead', () async {
+  test('channel markAsRead', () async {
     Channel channel = ChannelData.getById("ByehQjC44FwMeiLbX");
     Map<String, String> body = {"rid": channel.id};
 
-    http.Response response = http.Response(jsonEncode(Response(success: true).toMap()), 200);
+    http.Response response =
+        http.Response(jsonEncode(Response(success: true).toMap()), 200);
     when(httpServiceMock.post("/api/v1/subscriptions.read", jsonEncode(body)))
         .thenAnswer((_) => Future(() => response));
 
@@ -69,11 +74,12 @@ void main() {
     expect(success, true);
   });
 
-  test ('channel counters without user', () async {
+  test('channel counters without user', () async {
     Channel channel = ChannelData.getById("ByehQjC44FwMeiLbX");
     ChannelCountersFilter filter = ChannelCountersFilter(channel);
 
-    http.Response response = http.Response(jsonEncode(ChannelCountersData.getMapById(1)), 200);
+    http.Response response =
+        http.Response(jsonEncode(ChannelCountersData.getMapById(1)), 200);
     when(httpServiceMock.getWithFilter("/api/v1/channels.counters", filter))
         .thenAnswer((_) => Future(() => response));
 
@@ -81,12 +87,13 @@ void main() {
     expect(channelCounters.success, true);
   });
 
-  test ('channel counters with user', () async {
+  test('channel counters with user', () async {
     User user = UserData.getById("aobEdbYhXfu5hkeqG");
     Channel channel = ChannelData.getById("ByehQjC44FwMeiLbX");
     ChannelCountersFilter filter = ChannelCountersFilter(channel, user: user);
 
-    http.Response response = http.Response(jsonEncode(ChannelCountersData.getMapById(1)), 200);
+    http.Response response =
+        http.Response(jsonEncode(ChannelCountersData.getMapById(1)), 200);
     when(httpServiceMock.getWithFilter("/api/v1/channels.counters", filter))
         .thenAnswer((_) => Future(() => response));
 
@@ -94,11 +101,12 @@ void main() {
     expect(channelCounters.success, true);
   });
 
-  test ('channel history', () async {
+  test('channel history', () async {
     Channel channel = ChannelData.getById("ByehQjC44FwMeiLbX");
     ChannelHistoryFilter filter = ChannelHistoryFilter(channel);
 
-    http.Response response = http.Response(jsonEncode(ChannelCountersData.getMapById(1)), 200);
+    http.Response response =
+        http.Response(jsonEncode(ChannelCountersData.getMapById(1)), 200);
     when(httpServiceMock.getWithFilter("/api/v1/channels.history", filter))
         .thenAnswer((_) => Future(() => response));
 
@@ -106,11 +114,13 @@ void main() {
     expect(channelMessages.success, true);
   });
 
-  test ('channel history with date', () async {
+  test('channel history with date', () async {
     Channel channel = ChannelData.getById("ByehQjC44FwMeiLbX");
-    ChannelHistoryFilter filter = ChannelHistoryFilter(channel, latest: DateTime.now());
+    ChannelHistoryFilter filter =
+        ChannelHistoryFilter(channel, latest: DateTime.now());
 
-    http.Response response = http.Response(jsonEncode(ChannelCountersData.getMapById(1)), 200);
+    http.Response response =
+        http.Response(jsonEncode(ChannelCountersData.getMapById(1)), 200);
     when(httpServiceMock.getWithFilter("/api/v1/channels.history", filter))
         .thenAnswer((_) => Future(() => response));
 
