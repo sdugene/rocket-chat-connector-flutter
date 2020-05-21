@@ -1,9 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:rocket_chat_connector_flutter/models/filters/room_counters_filter.dart';
+import 'package:rocket_chat_connector_flutter/models/filters/room_filter.dart';
+import 'package:rocket_chat_connector_flutter/models/filters/room_history_filter.dart';
 import 'package:rocket_chat_connector_flutter/models/new/room_new.dart';
+import 'package:rocket_chat_connector_flutter/models/response/response.dart';
 import 'package:rocket_chat_connector_flutter/models/response/room_new_response.dart';
 import 'package:rocket_chat_connector_flutter/models/room.dart';
 import 'package:rocket_chat_connector_flutter/models/room_counters.dart';
@@ -33,8 +37,8 @@ void main() {
   });
 
   test('create room', () async {
-    Response response =
-        Response(jsonEncode(RoomNewResponseData.getMapById(1)), 200);
+    http.Response response =
+        http.Response(jsonEncode(RoomNewResponseData.getMapById(1)), 200);
     when(httpServiceMock.post("/api/v1/im.create", jsonEncode(roomNew.toMap())))
         .thenAnswer((_) => Future(() => response));
 
@@ -44,39 +48,81 @@ void main() {
 
   test('room messages', () async {
     Room room = RoomData.getById("ByehQjC44FwMeiLbX");
+    RoomFilter filter = RoomFilter(room);
 
-    Response response =
-        Response(jsonEncode(RoomMessagesData.getMapById(1)), 200);
-    when(httpServiceMock.get("/api/v1/im.messages?roomId=${room.id}"))
+    http.Response response =
+    http.Response(jsonEncode(RoomMessagesData.getMapById(1)), 200);
+    when(httpServiceMock.getWithFilter("/api/v1/im.messages", filter))
         .thenAnswer((_) => Future(() => response));
 
     RoomMessages roomMessages = await roomService.messages(room);
     expect(roomMessages.success, true);
   });
 
-  test('channel counters without user', () async {
+  test('room markAsRead', () async {
     Room room = RoomData.getById("ByehQjC44FwMeiLbX");
+    Map<String, String> body = {"rid": room.id};
 
-    Response response =
-        Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
-    when(httpServiceMock.get("/api/v1/im.counters?roomId=${room.id}"))
+    http.Response response =
+    http.Response(jsonEncode(Response(success: true).toMap()), 200);
+    when(httpServiceMock.post("/api/v1/subscriptions.read", jsonEncode(body)))
         .thenAnswer((_) => Future(() => response));
 
-    RoomCounters roomCounters = await roomService.counters(room);
+    bool success = await roomService.markAsRead(room);
+    expect(success, true);
+  });
+
+  test('room counters without user', () async {
+    Room room = RoomData.getById("ByehQjC44FwMeiLbX");
+    RoomCountersFilter filter = RoomCountersFilter(room);
+
+    http.Response response =
+    http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
+    when(httpServiceMock.getWithFilter("/api/v1/im.counters", filter))
+        .thenAnswer((_) => Future(() => response));
+
+    RoomCounters roomCounters = await roomService.counters(filter);
     expect(roomCounters.success, true);
   });
 
-  test('channel counters with user', () async {
+  test('room counters with user', () async {
     User user = UserData.getById("aobEdbYhXfu5hkeqG");
     Room room = RoomData.getById("ByehQjC44FwMeiLbX");
+    RoomCountersFilter filter = RoomCountersFilter(room, user: user);
 
-    Response response =
-        Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
-    when(httpServiceMock
-            .get("/api/v1/im.counters?roomId=${room.id}&userId=${user.id}"))
+    http.Response response =
+    http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
+    when(httpServiceMock.getWithFilter("/api/v1/im.counters", filter))
         .thenAnswer((_) => Future(() => response));
 
-    RoomCounters roomCounters = await roomService.counters(room, user);
+    RoomCounters roomCounters = await roomService.counters(filter);
     expect(roomCounters.success, true);
+  });
+
+  test('room history', () async {
+    Room room = RoomData.getById("ByehQjC44FwMeiLbX");
+    RoomHistoryFilter filter = RoomHistoryFilter(room);
+
+    http.Response response =
+    http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
+    when(httpServiceMock.getWithFilter("/api/v1/im.history", filter))
+        .thenAnswer((_) => Future(() => response));
+
+    RoomMessages roomMessages = await roomService.history(filter);
+    expect(roomMessages.success, true);
+  });
+
+  test('room history with date', () async {
+    Room room = RoomData.getById("ByehQjC44FwMeiLbX");
+    RoomHistoryFilter filter =
+    RoomHistoryFilter(room, latest: DateTime.now());
+
+    http.Response response =
+    http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
+    when(httpServiceMock.getWithFilter("/api/v1/im.history", filter))
+        .thenAnswer((_) => Future(() => response));
+
+    RoomMessages roomMessages = await roomService.history(filter);
+    expect(roomMessages.success, true);
   });
 }

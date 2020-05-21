@@ -1,7 +1,7 @@
-import 'package:rocket_chat_connector_flutter/models/channel.dart';
-import 'package:rocket_chat_connector_flutter/models/filters/channel_filter.dart';
+import 'package:rocket_chat_connector_flutter/models/filters/room_filter.dart';
+import 'package:rocket_chat_connector_flutter/models/room.dart';
 
-class ChannelHistoryFilter extends ChannelFilter {
+class RoomHistoryFilter extends RoomFilter {
   DateTime latest;
   DateTime oldest;
   bool inclusive;
@@ -9,18 +9,18 @@ class ChannelHistoryFilter extends ChannelFilter {
   int count;
   bool unreads;
 
-  ChannelHistoryFilter(
-    Channel channel, {
+  RoomHistoryFilter(
+    Room room, {
     this.latest,
     this.oldest,
     this.inclusive,
     this.offset,
     this.count,
     this.unreads,
-  }) : super(channel);
+  }) : super(room);
 
   Map<String, dynamic> toMap() => {
-        'roomId': channel.id,
+        'roomId': room.id,
         'latest': latest != null ? latest.toIso8601String() : null,
         'oldest': oldest != null ? oldest.toIso8601String() : null,
         'inclusive': inclusive,
@@ -31,14 +31,14 @@ class ChannelHistoryFilter extends ChannelFilter {
 
   @override
   String toString() {
-    return 'ChannelHistoryFilter{latest: $latest, oldest: $oldest, inclusive: $inclusive, offset: $offset, count: $count, unreads: $unreads}';
+    return 'RoomHistoryFilter{latest: $latest, oldest: $oldest, inclusive: $inclusive, offset: $offset, count: $count, unreads: $unreads}';
   }
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
-          other is ChannelHistoryFilter &&
+          other is RoomHistoryFilter &&
           runtimeType == other.runtimeType &&
           latest == other.latest &&
           oldest == other.oldest &&

@@ -1,3 +1,7 @@
+## 0.0.7
+
+* Fix wording and add room service methods counters, history
+
 ## 0.0.6
 
 * Fix NPE on filter
