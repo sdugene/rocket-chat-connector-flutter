@@ -23,7 +23,7 @@ class RoomCounters {
     if (json != null) {
       joined = json['joined'];
       members = json['members'];
-      unreads = json['unreads'];
+      unreads = json['unreads'] != null ? json['unreads'] : 0;
       unreadsFrom = json['unreadsFrom'] != null
           ? DateTime.parse(json['unreadsFrom'])
           : null;

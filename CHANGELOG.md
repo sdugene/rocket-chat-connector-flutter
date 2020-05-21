@@ -1,6 +1,11 @@
+## 0.0.8
+
+* Force 0 on message counter null
+
 ## 0.0.7
 
-* Fix wording and add room service methods counters, history
+* Fix wording
+* Add room service methods counters, history
 
 ## 0.0.6
 
