@@ -1,3 +1,11 @@
+## 0.0.9
+
+* Fix http dependency again
+
+## 0.0.9
+
+* Fix http dependency
+
 ## 0.0.8
 
 * Force 0 on message counter null
