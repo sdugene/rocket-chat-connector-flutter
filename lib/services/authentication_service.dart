@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:rocket_chat_connector_flutter/exceptions/login_exception.dart';
 import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/user.dart';
 import 'package:rocket_chat_connector_flutter/services/http_service.dart';
@@ -18,7 +19,7 @@ class AuthenticationService {
     if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
       return Authentication.fromMap(jsonDecode(response.body));
     }
-    return null;
+    throw LoginException("Rocket chat authentication failed");
   }
 
   Future<User> me() async {

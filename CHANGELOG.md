@@ -1,4 +1,9 @@
-## 0.0.9
+## 0.0.11
+
+* Add login exception on authentication failed
+* Add example
+
+## 0.0.10
 
 * Fix http dependency again
 
