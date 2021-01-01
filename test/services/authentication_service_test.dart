@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
+import 'package:rocket_chat_connector_flutter/exceptions/exception.dart';
 import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/user.dart';
 import 'package:rocket_chat_connector_flutter/services/authentication_service.dart';
@@ -47,9 +48,7 @@ void main() {
     when(httpServiceMock.post("/api/v1/user/login", jsonEncode(mappedBody)))
         .thenAnswer((_) => Future(() => response));
 
-    Authentication authentication =
-        await authenticationService.login(user, password2);
-    expect(authentication, null);
+    expect(() => authenticationService.login(user, password2), throwsA(isInstanceOf<RocketChatException>()));
   });
 
   test('me', () async {

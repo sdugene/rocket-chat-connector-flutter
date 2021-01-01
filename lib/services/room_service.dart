@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:rocket_chat_connector_flutter/exceptions/exception.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/room_counters_filter.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/room_filter.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/room_history_filter.dart';
@@ -21,20 +22,28 @@ class RoomService {
     http.Response response = await _httpService.post(
         '/api/v1/im.create', jsonEncode(roomNew.toMap()));
 
-    if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
-      return RoomNewResponse.fromMap(jsonDecode(response.body));
+    if (response?.statusCode == 200) {
+      if (response?.body?.isNotEmpty == true) {
+        return RoomNewResponse.fromMap(jsonDecode(response.body));
+      } else {
+        return RoomNewResponse();
+      }
     }
-    return null;
+    throw RocketChatException(response?.body);
   }
 
   Future<RoomMessages> messages(Room room) async {
     http.Response response = await _httpService.getWithFilter(
         '/api/v1/im.messages', RoomFilter(room));
 
-    if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
-      return RoomMessages.fromMap(jsonDecode(response.body));
+    if (response?.statusCode == 200) {
+      if (response?.body?.isNotEmpty == true) {
+        return RoomMessages.fromMap(jsonDecode(response.body));
+      } else {
+        return RoomMessages();
+      }
     }
-    return null;
+    throw RocketChatException(response?.body);
   }
 
   Future<bool> markAsRead(Room room) async {
@@ -42,29 +51,42 @@ class RoomService {
 
     http.Response response =
     await _httpService.post('/api/v1/subscriptions.read', jsonEncode(body));
-    if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
-      return Response.fromMap(jsonDecode(response.body)).success == true;
+
+    if (response?.statusCode == 200) {
+      if (response?.body?.isNotEmpty == true) {
+        return Response.fromMap(jsonDecode(response.body)).success == true;
+      } else {
+        return false;
+      }
     }
-    return false;
+    throw RocketChatException(response?.body);
   }
 
   Future<RoomMessages> history(RoomHistoryFilter filter) async {
     http.Response response =
     await _httpService.getWithFilter('/api/v1/im.history', filter);
 
-    if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
-      return RoomMessages.fromMap(jsonDecode(response.body));
+    if (response?.statusCode == 200) {
+      if (response?.body?.isNotEmpty == true) {
+        return RoomMessages.fromMap(jsonDecode(response.body));
+      } else {
+        return RoomMessages();
+      }
     }
-    return null;
+    throw RocketChatException(response?.body);
   }
 
   Future<RoomCounters> counters(RoomCountersFilter filter) async {
     http.Response response =
     await _httpService.getWithFilter('/api/v1/im.counters', filter);
 
-    if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
-      return RoomCounters.fromMap(jsonDecode(response.body));
+    if (response?.statusCode == 200) {
+      if (response?.body?.isNotEmpty == true) {
+        return RoomCounters.fromMap(jsonDecode(response.body));
+      } else {
+        return RoomCounters();
+      }
     }
-    return null;
+    throw RocketChatException(response?.body);
   }
 }

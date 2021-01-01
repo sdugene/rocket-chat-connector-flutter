@@ -10,6 +10,7 @@ class MessageNewResponse {
     this.ts,
     this.channel,
     this.message,
+    this.success = false,
   });
 
   MessageNewResponse.fromMap(Map<String, dynamic> json) {

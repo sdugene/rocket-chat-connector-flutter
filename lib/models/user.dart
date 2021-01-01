@@ -32,7 +32,7 @@ class User {
     this.settings,
     this.avatarUrl,
     this.customFields,
-    this.success,
+    this.success = false,
   });
 
   User.fromMap(Map<String, dynamic> json) {

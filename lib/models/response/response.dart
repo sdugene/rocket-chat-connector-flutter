@@ -2,7 +2,7 @@ class Response {
   bool success;
 
   Response({
-    this.success,
+    this.success = false,
   });
 
   Response.fromMap(Map<String, dynamic> json) {

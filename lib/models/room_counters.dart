@@ -16,7 +16,7 @@ class RoomCounters {
     this.msgs,
     this.latest,
     this.userMentions,
-    this.success,
+    this.success = false,
   });
 
   RoomCounters.fromMap(Map<String, dynamic> json) {

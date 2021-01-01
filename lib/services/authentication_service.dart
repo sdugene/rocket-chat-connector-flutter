@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:rocket_chat_connector_flutter/exceptions/login_exception.dart';
+import 'package:rocket_chat_connector_flutter/exceptions/exception.dart';
 import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/user.dart';
 import 'package:rocket_chat_connector_flutter/services/http_service.dart';
@@ -16,18 +16,23 @@ class AuthenticationService {
     http.Response response =
         await _httpService.post('/api/v1/login', jsonEncode(body));
 
-    if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
+    if (response?.statusCode == 200
+        && response?.body?.isNotEmpty == true) {
       return Authentication.fromMap(jsonDecode(response.body));
     }
-    throw LoginException("Rocket chat authentication failed");
+    throw RocketChatException(response?.body);
   }
 
   Future<User> me() async {
     http.Response response = await _httpService.get('/api/v1/me');
 
-    if (response?.statusCode == 200 && response.body?.isNotEmpty == true) {
-      return User.fromMap(jsonDecode(response.body));
+    if (response?.statusCode == 200) {
+      if (response?.body?.isNotEmpty == true) {
+        return User.fromMap(jsonDecode(response.body));
+      } else {
+        return User();
+      }
     }
-    return null;
+    throw RocketChatException(response?.body);
   }
 }

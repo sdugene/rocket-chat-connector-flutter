@@ -15,7 +15,7 @@ class RoomMessages {
     this.count,
     this.offset,
     this.total,
-    this.success,
+    this.success = false,
   });
 
   RoomMessages.fromMap(Map<String, dynamic> json) {

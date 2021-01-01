@@ -6,7 +6,7 @@ class RoomNewResponse {
 
   RoomNewResponse({
     this.room,
-    this.success,
+    this.success = false,
   });
 
   RoomNewResponse.fromMap(Map<String, dynamic> json) {

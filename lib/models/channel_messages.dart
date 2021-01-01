@@ -15,7 +15,7 @@ class ChannelMessages {
     this.count,
     this.offset,
     this.total,
-    this.success,
+    this.success = false,
   });
 
   ChannelMessages.fromMap(Map<String, dynamic> json) {

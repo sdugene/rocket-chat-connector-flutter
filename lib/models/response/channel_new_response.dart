@@ -6,7 +6,7 @@ class ChannelNewResponse {
 
   ChannelNewResponse({
     this.channel,
-    this.success,
+    this.success = false,
   });
 
   ChannelNewResponse.fromMap(Map<String, dynamic> json) {

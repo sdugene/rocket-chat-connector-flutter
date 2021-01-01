@@ -16,7 +16,7 @@ class ChannelCounters {
     this.msgs,
     this.latest,
     this.userMentions,
-    this.success,
+    this.success = false,
   });
 
   ChannelCounters.fromMap(Map<String, dynamic> json) {
