@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
+import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/new/message_new.dart';
 import 'package:rocket_chat_connector_flutter/models/response/message_new_response.dart';
 import 'package:rocket_chat_connector_flutter/services/http_service.dart';
@@ -15,6 +16,7 @@ class HttpServiceMock extends Mock implements HttpService {}
 void main() {
   HttpService httpServiceMock;
   MessageService messageService;
+  Authentication authenticationMock = new Authentication();
 
   MessageNew message = MessageNew(channel: "#general", text: "This is a test!");
 
@@ -27,11 +29,13 @@ void main() {
     Response response =
         Response(jsonEncode(MessageNewResponseData.getMapById(1)), 200);
     when(httpServiceMock.post(
-            "/api/v1/chat.postMessage", jsonEncode(message.toMap())))
-        .thenAnswer((_) => Future(() => response));
+      "/api/v1/chat.postMessage",
+      jsonEncode(message.toMap()),
+      authenticationMock,
+    )).thenAnswer((_) => Future(() => response));
 
     MessageNewResponse messageResponse =
-        await messageService.postMessage(message);
+        await messageService.postMessage(message, authenticationMock);
     expect(messageResponse.success, true);
   });
 }

@@ -17,6 +17,7 @@ class HttpServiceMock extends Mock implements HttpService {}
 void main() {
   HttpService httpServiceMock;
   AuthenticationService authenticationService;
+  Authentication authenticationMock = new Authentication();
 
   String user = 'user';
   String password = 'password';
@@ -32,7 +33,7 @@ void main() {
 
     Response response =
         Response(jsonEncode(AuthenticationData.getMapById(1)), 200);
-    when(httpServiceMock.post("/api/v1/login", jsonEncode(mappedBody)))
+    when(httpServiceMock.post("/api/v1/login", jsonEncode(mappedBody), null))
         .thenAnswer((_) => Future(() => response));
 
     Authentication authentication =
@@ -45,19 +46,21 @@ void main() {
 
     Response response =
         Response(jsonEncode(AuthenticationData.getMapById(1)), 200);
-    when(httpServiceMock.post("/api/v1/user/login", jsonEncode(mappedBody)))
+    when(httpServiceMock.post(
+            "/api/v1/user/login", jsonEncode(mappedBody), authenticationMock))
         .thenAnswer((_) => Future(() => response));
 
-    expect(() => authenticationService.login(user, password2), throwsA(isInstanceOf<RocketChatException>()));
+    expect(() => authenticationService.login(user, password2),
+        throwsA(isInstanceOf<RocketChatException>()));
   });
 
   test('me', () async {
     Response response =
         Response(jsonEncode(UserData.getMapById("aobEdbYhXfu5hkeqG")), 200);
-    when(httpServiceMock.get("/api/v1/me"))
+    when(httpServiceMock.get("/api/v1/me", authenticationMock))
         .thenAnswer((_) => Future(() => response));
 
-    User me = await authenticationService.me();
+    User me = await authenticationService.me(authenticationMock);
     expect(me.username, UserData.getById("aobEdbYhXfu5hkeqG").username);
   });
 }

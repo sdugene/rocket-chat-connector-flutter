@@ -5,29 +5,34 @@ import 'package:rocket_chat_connector_flutter/models/filters/filter.dart';
 class HttpService {
   String _apiUrl;
 
-  static Authentication authentication;
-
   HttpService(String apiUrl) {
     _apiUrl = apiUrl;
   }
 
-  Future<http.Response> getWithFilter(String uri, Filter filter) async =>
+  Future<http.Response> getWithFilter(
+          String uri, Filter filter, Authentication authentication) async =>
       await http.get(_apiUrl + uri + '?' + _urlEncode(filter.toMap()),
-          headers: await _getHeaders());
+          headers: await _getHeaders(authentication));
 
-  Future<http.Response> get(String uri) async =>
-      await http.get(_apiUrl + uri, headers: await _getHeaders());
+  Future<http.Response> get(String uri, Authentication authentication) async =>
+      await http.get(_apiUrl + uri, headers: await _getHeaders(authentication));
 
-  Future<http.Response> post(String uri, String body) async => await http
-      .post(_apiUrl + uri, headers: await _getHeaders(), body: body);
+  Future<http.Response> post(
+          String uri, String body, Authentication authentication) async =>
+      await http.post(_apiUrl + uri,
+          headers: await _getHeaders(authentication), body: body);
 
-  Future<http.Response> put(String uri, String body) async => await http
-      .put(_apiUrl + uri, headers: await _getHeaders(), body: body);
+  Future<http.Response> put(
+          String uri, String body, Authentication authentication) async =>
+      await http.put(_apiUrl + uri,
+          headers: await _getHeaders(authentication), body: body);
 
-  Future<http.Response> delete(String uri) async =>
-      await http.delete(_apiUrl + uri, headers: await _getHeaders());
+  Future<http.Response> delete(
+          String uri, Authentication authentication) async =>
+      await http.delete(_apiUrl + uri,
+          headers: await _getHeaders(authentication));
 
-  Future<Map<String, String>> _getHeaders() async {
+  Future<Map<String, String>> _getHeaders(Authentication authentication) async {
     Map<String, String> header = {
       'Content-type': 'application/json',
     };

@@ -13,18 +13,23 @@ class AuthenticationService {
 
   Future<Authentication> login(String user, String password) async {
     Map<String, String> body = {'user': user, 'password': password};
-    http.Response response =
-        await _httpService.post('/api/v1/login', jsonEncode(body));
+    http.Response response = await _httpService.post(
+      '/api/v1/login',
+      jsonEncode(body),
+      null,
+    );
 
-    if (response?.statusCode == 200
-        && response?.body?.isNotEmpty == true) {
+    if (response?.statusCode == 200 && response?.body?.isNotEmpty == true) {
       return Authentication.fromMap(jsonDecode(response.body));
     }
     throw RocketChatException(response?.body);
   }
 
-  Future<User> me() async {
-    http.Response response = await _httpService.get('/api/v1/me');
+  Future<User> me(Authentication authentication) async {
+    http.Response response = await _httpService.get(
+      '/api/v1/me',
+      authentication,
+    );
 
     if (response?.statusCode == 200) {
       if (response?.body?.isNotEmpty == true) {

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:rocket_chat_connector_flutter/exceptions/exception.dart';
+import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/room_counters_filter.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/room_filter.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/room_history_filter.dart';
@@ -18,9 +19,15 @@ class RoomService {
 
   RoomService(this._httpService);
 
-  Future<RoomNewResponse> create(RoomNew roomNew) async {
+  Future<RoomNewResponse> create(
+    RoomNew roomNew,
+    Authentication authentication,
+  ) async {
     http.Response response = await _httpService.post(
-        '/api/v1/im.create', jsonEncode(roomNew.toMap()));
+      '/api/v1/im.create',
+      jsonEncode(roomNew.toMap()),
+      authentication,
+    );
 
     if (response?.statusCode == 200) {
       if (response?.body?.isNotEmpty == true) {
@@ -32,9 +39,13 @@ class RoomService {
     throw RocketChatException(response?.body);
   }
 
-  Future<RoomMessages> messages(Room room) async {
+  Future<RoomMessages> messages(
+      Room room, Authentication authentication) async {
     http.Response response = await _httpService.getWithFilter(
-        '/api/v1/im.messages', RoomFilter(room));
+      '/api/v1/im.messages',
+      RoomFilter(room),
+      authentication,
+    );
 
     if (response?.statusCode == 200) {
       if (response?.body?.isNotEmpty == true) {
@@ -46,11 +57,14 @@ class RoomService {
     throw RocketChatException(response?.body);
   }
 
-  Future<bool> markAsRead(Room room) async {
+  Future<bool> markAsRead(Room room, Authentication authentication) async {
     Map<String, String> body = {"rid": room.id};
 
-    http.Response response =
-    await _httpService.post('/api/v1/subscriptions.read', jsonEncode(body));
+    http.Response response = await _httpService.post(
+      '/api/v1/subscriptions.read',
+      jsonEncode(body),
+      authentication,
+    );
 
     if (response?.statusCode == 200) {
       if (response?.body?.isNotEmpty == true) {
@@ -62,9 +76,13 @@ class RoomService {
     throw RocketChatException(response?.body);
   }
 
-  Future<RoomMessages> history(RoomHistoryFilter filter) async {
-    http.Response response =
-    await _httpService.getWithFilter('/api/v1/im.history', filter);
+  Future<RoomMessages> history(
+      RoomHistoryFilter filter, Authentication authentication) async {
+    http.Response response = await _httpService.getWithFilter(
+      '/api/v1/im.history',
+      filter,
+      authentication,
+    );
 
     if (response?.statusCode == 200) {
       if (response?.body?.isNotEmpty == true) {
@@ -76,9 +94,13 @@ class RoomService {
     throw RocketChatException(response?.body);
   }
 
-  Future<RoomCounters> counters(RoomCountersFilter filter) async {
-    http.Response response =
-    await _httpService.getWithFilter('/api/v1/im.counters', filter);
+  Future<RoomCounters> counters(
+      RoomCountersFilter filter, Authentication authentication) async {
+    http.Response response = await _httpService.getWithFilter(
+      '/api/v1/im.counters',
+      filter,
+      authentication,
+    );
 
     if (response?.statusCode == 200) {
       if (response?.body?.isNotEmpty == true) {

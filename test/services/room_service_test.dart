@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/room_counters_filter.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/room_filter.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/room_history_filter.dart';
@@ -28,6 +29,7 @@ class HttpServiceMock extends Mock implements HttpService {}
 void main() {
   HttpService httpServiceMock;
   RoomService roomService;
+  Authentication authenticationMock = new Authentication();
 
   RoomNew roomNew = RoomNewData.getById(1);
 
@@ -39,10 +41,14 @@ void main() {
   test('create room', () async {
     http.Response response =
         http.Response(jsonEncode(RoomNewResponseData.getMapById(1)), 200);
-    when(httpServiceMock.post("/api/v1/im.create", jsonEncode(roomNew.toMap())))
-        .thenAnswer((_) => Future(() => response));
+    when(httpServiceMock.post(
+      "/api/v1/im.create",
+      jsonEncode(roomNew.toMap()),
+      authenticationMock,
+    )).thenAnswer((_) => Future(() => response));
 
-    RoomNewResponse roomNewResponse = await roomService.create(roomNew);
+    RoomNewResponse roomNewResponse =
+        await roomService.create(roomNew, authenticationMock);
     expect(roomNewResponse.success, true);
   });
 
@@ -51,11 +57,15 @@ void main() {
     RoomFilter filter = RoomFilter(room);
 
     http.Response response =
-    http.Response(jsonEncode(RoomMessagesData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter("/api/v1/im.messages", filter))
-        .thenAnswer((_) => Future(() => response));
+        http.Response(jsonEncode(RoomMessagesData.getMapById(1)), 200);
+    when(httpServiceMock.getWithFilter(
+      "/api/v1/im.messages",
+      filter,
+      authenticationMock,
+    )).thenAnswer((_) => Future(() => response));
 
-    RoomMessages roomMessages = await roomService.messages(room);
+    RoomMessages roomMessages =
+        await roomService.messages(room, authenticationMock);
     expect(roomMessages.success, true);
   });
 
@@ -64,11 +74,14 @@ void main() {
     Map<String, String> body = {"rid": room.id};
 
     http.Response response =
-    http.Response(jsonEncode(Response(success: true).toMap()), 200);
-    when(httpServiceMock.post("/api/v1/subscriptions.read", jsonEncode(body)))
-        .thenAnswer((_) => Future(() => response));
+        http.Response(jsonEncode(Response(success: true).toMap()), 200);
+    when(httpServiceMock.post(
+      "/api/v1/subscriptions.read",
+      jsonEncode(body),
+      authenticationMock,
+    )).thenAnswer((_) => Future(() => response));
 
-    bool success = await roomService.markAsRead(room);
+    bool success = await roomService.markAsRead(room, authenticationMock);
     expect(success, true);
   });
 
@@ -77,11 +90,15 @@ void main() {
     RoomCountersFilter filter = RoomCountersFilter(room);
 
     http.Response response =
-    http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter("/api/v1/im.counters", filter))
-        .thenAnswer((_) => Future(() => response));
+        http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
+    when(httpServiceMock.getWithFilter(
+      "/api/v1/im.counters",
+      filter,
+      authenticationMock,
+    )).thenAnswer((_) => Future(() => response));
 
-    RoomCounters roomCounters = await roomService.counters(filter);
+    RoomCounters roomCounters =
+        await roomService.counters(filter, authenticationMock);
     expect(roomCounters.success, true);
   });
 
@@ -91,11 +108,15 @@ void main() {
     RoomCountersFilter filter = RoomCountersFilter(room, user: user);
 
     http.Response response =
-    http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter("/api/v1/im.counters", filter))
-        .thenAnswer((_) => Future(() => response));
+        http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
+    when(httpServiceMock.getWithFilter(
+      "/api/v1/im.counters",
+      filter,
+      authenticationMock,
+    )).thenAnswer((_) => Future(() => response));
 
-    RoomCounters roomCounters = await roomService.counters(filter);
+    RoomCounters roomCounters =
+        await roomService.counters(filter, authenticationMock);
     expect(roomCounters.success, true);
   });
 
@@ -104,25 +125,32 @@ void main() {
     RoomHistoryFilter filter = RoomHistoryFilter(room);
 
     http.Response response =
-    http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter("/api/v1/im.history", filter))
-        .thenAnswer((_) => Future(() => response));
+        http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
+    when(httpServiceMock.getWithFilter(
+      "/api/v1/im.history",
+      filter,
+      authenticationMock,
+    )).thenAnswer((_) => Future(() => response));
 
-    RoomMessages roomMessages = await roomService.history(filter);
+    RoomMessages roomMessages =
+        await roomService.history(filter, authenticationMock);
     expect(roomMessages.success, true);
   });
 
   test('room history with date', () async {
     Room room = RoomData.getById("ByehQjC44FwMeiLbX");
-    RoomHistoryFilter filter =
-    RoomHistoryFilter(room, latest: DateTime.now());
+    RoomHistoryFilter filter = RoomHistoryFilter(room, latest: DateTime.now());
 
     http.Response response =
-    http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter("/api/v1/im.history", filter))
-        .thenAnswer((_) => Future(() => response));
+        http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
+    when(httpServiceMock.getWithFilter(
+      "/api/v1/im.history",
+      filter,
+      authenticationMock,
+    )).thenAnswer((_) => Future(() => response));
 
-    RoomMessages roomMessages = await roomService.history(filter);
+    RoomMessages roomMessages =
+        await roomService.history(filter, authenticationMock);
     expect(roomMessages.success, true);
   });
 }

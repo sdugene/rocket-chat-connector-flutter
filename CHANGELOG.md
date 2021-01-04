@@ -1,3 +1,11 @@
+## 0.0.13
+
+* Remove authentication stored in httpService
+
+## 0.0.12
+
+* Update http call with specific exception returned
+
 ## 0.0.11
 
 * Add login exception on authentication failed
