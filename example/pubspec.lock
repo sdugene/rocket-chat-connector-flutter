@@ -37,7 +37,7 @@ packages:
     source: hosted
     version: "1.1.0-nullsafety.1"
   collection:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: collection
       url: "https://pub.dartlang.org"
@@ -56,7 +56,14 @@ packages:
       name: crypto
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.3"
+    version: "2.1.5"
+  cupertino_icons:
+    dependency: "direct main"
+    description:
+      name: cupertino_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.3"
   fake_async:
     dependency: transitive
     description:
@@ -75,12 +82,12 @@ packages:
     source: sdk
     version: "0.0.0"
   http:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.1"
+    version: "0.12.2"
   http_parser:
     dependency: transitive
     description:
@@ -102,13 +109,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0-nullsafety.3"
-  mockito:
-    dependency: "direct dev"
-    description:
-      name: mockito
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.1.1"
   path:
     dependency: transitive
     description:
@@ -122,7 +122,14 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0+1"
+    version: "1.9.2"
+  rocket_chat_connector_flutter:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.0.13"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -185,7 +192,7 @@ packages:
     source: hosted
     version: "2.1.0-nullsafety.3"
   web_socket_channel:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: web_socket_channel
       url: "https://pub.dartlang.org"

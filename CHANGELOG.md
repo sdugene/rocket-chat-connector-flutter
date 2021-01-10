@@ -1,3 +1,7 @@
+## 0.0.14
+
+* Add webSocket connection, notification and message
+
 ## 0.0.13
 
 * Remove authentication stored in httpService

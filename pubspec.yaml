@@ -1,7 +1,7 @@
 name: rocket_chat_connector_flutter
 description: Flutter Rocket.chat connector. This library is developed to allow the use of a Rocket.chat server as a messaging system.
 homepage: https://github.com/sdugene/rocket-chat-connector-flutter
-version: 0.0.13
+version: 0.0.14
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -13,6 +13,8 @@ dependencies:
   collection: ^1.14.11
   #https://pub.dev/packages/http#-changelog-tab-
   http: ^0.12.1
+  #https://pub.dev/packages/web_socket_channel/changelog-tab-
+  web_socket_channel: ^1.1.0
 
 dev_dependencies:
   flutter_test:
