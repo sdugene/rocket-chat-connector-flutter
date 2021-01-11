@@ -1,3 +1,7 @@
+## 0.0.15
+
+* Standardization webSocket message
+
 ## 0.0.14
 
 * Add webSocket connection, notification and message

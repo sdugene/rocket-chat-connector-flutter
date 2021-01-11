@@ -3,6 +3,7 @@ import 'package:rocket_chat_connector_flutter/web_socket/notification_payload.da
 class NotificationArgs {
   String title;
   String text;
+  DateTime ts;
   NotificationPayload payload;
 
   NotificationArgs({
@@ -15,6 +16,7 @@ class NotificationArgs {
     if (json != null) {
       title = json['title'];
       text = json['text'];
+      ts = DateTime.now();
       payload = json['payload'] != null
           ? NotificationPayload.fromMap(json['payload'])
           : null;
@@ -23,6 +25,6 @@ class NotificationArgs {
 
   @override
   String toString() {
-    return 'WebSocketMessageArgs{title: $title, text: $text, payload: $payload}';
+    return 'NotificationArgs{title: $title, text: $text, ts: $ts, payload: $payload}';
   }
 }

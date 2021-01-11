@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:rocket_chat_connector_flutter/web_socket/notification_fields.dart';
 import 'package:rocket_chat_connector_flutter/web_socket/notification_result.dart';
+import 'package:rocket_chat_connector_flutter/web_socket/notification_type.dart';
 
 class Notification {
-  String msg;
+  NotificationType msg;
   String collection;
   String serverId;
   List<String> subs;
@@ -24,7 +26,7 @@ class Notification {
 
   Notification.fromMap(Map<String, dynamic> json) {
     if (json != null) {
-      msg = json['msg'];
+      msg = notificationTypeFromString(json['msg']);
       collection = json['collection'];
       serverId = json['server_id'];
       subs = json['subs'] != null ? List<String>.from(json['subs']) : null;
@@ -42,6 +44,6 @@ class Notification {
 
   @override
   String toString() {
-    return 'Notification{msg: $msg, collection: $collection, serverId: $serverId, subs: $subs, methods: $methods, id: $id, fields: $fields, result: $result}';
+    return 'Notification{msg: ${describeEnum(msg)}, collection: $collection, serverId: $serverId, subs: $subs, methods: $methods, id: $id, fields: $fields, result: $result}';
   }
 }
