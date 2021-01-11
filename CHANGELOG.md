@@ -1,3 +1,7 @@
+## 0.0.16
+
+* Clean code
+
 ## 0.0.15
 
 * Standardization webSocket message
