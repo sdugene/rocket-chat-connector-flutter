@@ -31,7 +31,8 @@ class NotificationResult {
     if (json != null) {
       id = json['_id'] != null ? json['_id'] : json['id'];
       token = json['token'];
-      tokenExpires = json['tokenExpires'] != null && json['tokenExpires']['\$date'] != null
+      tokenExpires = json['tokenExpires'] != null &&
+              json['tokenExpires']['\$date'] != null
           ? DateTime.fromMillisecondsSinceEpoch(json['tokenExpires']['\$date'])
           : DateTime.now();
       type = json['type'];
@@ -41,11 +42,14 @@ class NotificationResult {
           ? DateTime.fromMillisecondsSinceEpoch(json['ts']['\$date'])
           : DateTime.now();
       user = json['u'] != null ? NotificationUser.fromMap(json['u']) : null;
-      updatedAt = json['_updatedAt'] != null && json['_updatedAt']['\$date'] != null
+      updatedAt = json['_updatedAt'] != null &&
+              json['_updatedAt']['\$date'] != null
           ? DateTime.fromMillisecondsSinceEpoch(json['_updatedAt']['\$date'])
           : DateTime.now();
-      mentions = json['mentions'] != null ? List<String>.from(json['mentions']) : null;
-      channels = json['channels'] != null ? List<String>.from(json['channels']) : null;
+      mentions =
+          json['mentions'] != null ? List<String>.from(json['mentions']) : null;
+      channels =
+          json['channels'] != null ? List<String>.from(json['channels']) : null;
     }
   }
 

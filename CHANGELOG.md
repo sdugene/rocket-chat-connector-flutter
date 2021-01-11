@@ -1,3 +1,7 @@
+## 0.0.17
+
+* Add http call for all subscription update list
+
 ## 0.0.16
 
 * Clean code
