@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:rocket_chat_connector_flutter/models/bot.dart';
+import 'package:rocket_chat_connector_flutter/models/mention.dart';
 import 'package:rocket_chat_connector_flutter/models/message_attachment.dart';
 import 'package:rocket_chat_connector_flutter/models/reaction.dart';
 import 'package:rocket_chat_connector_flutter/models/user.dart';
@@ -19,7 +20,7 @@ class Message {
   String rid;
   DateTime updatedAt;
   Map<String, Reaction> reactions;
-  List<String> mentions;
+  List<Mention> mentions;
   List<String> channels;
   Map<String, String> starred;
   String emoji;
@@ -73,8 +74,15 @@ class Message {
         reactions = reactionMap.map((a, b) => MapEntry(a, Reaction.fromMap(b)));
       }
 
-      mentions =
-          json['mentions'] != null ? List<String>.from(json['mentions']) : null;
+      if (json['mentions'] != null) {
+        List<dynamic> jsonList = json['mentions'].runtimeType == String //
+            ? jsonDecode(json['mentions'])
+            : json['mentions'];
+        mentions = jsonList
+            .where((json) => json != null)
+            .map((json) => Mention.fromMap(json))
+            .toList();
+      }
       channels =
           json['channels'] != null ? List<String>.from(json['channels']) : null;
       starred = json['starred'] != null
@@ -141,7 +149,11 @@ class Message {
       map['reactions'] = reactions.map((a, b) => MapEntry(a, b.toMap()));
     }
     if (mentions != null) {
-      map['mentions'] = mentions;
+      map['mentions'] = mentions
+          ?.where((json) => json != null)
+          ?.map((mention) => mention.toMap())
+          ?.toList() ??
+          [];
     }
     if (channels != null) {
       map['channels'] = channels;
