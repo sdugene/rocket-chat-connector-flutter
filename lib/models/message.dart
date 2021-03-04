@@ -150,9 +150,9 @@ class Message {
     }
     if (mentions != null) {
       map['mentions'] = mentions
-          ?.where((json) => json != null)
-          ?.map((mention) => mention.toMap())
-          ?.toList() ??
+              ?.where((json) => json != null)
+              ?.map((mention) => mention.toMap())
+              ?.toList() ??
           [];
     }
     if (channels != null) {

@@ -4,9 +4,10 @@ class Mention {
   String username;
 
   Mention({
-      this.id, 
-      this.name, 
-      this.username});
+    this.id,
+    this.name,
+    this.username,
+  });
 
   Mention.fromMap(dynamic json) {
     id = json["_id"];
@@ -30,11 +31,10 @@ class Mention {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is Mention &&
-              runtimeType == other.runtimeType &&
-              username == other.username;
+      other is Mention &&
+          runtimeType == other.runtimeType &&
+          username == other.username;
 
   @override
   int get hashCode => username.hashCode;
-
 }

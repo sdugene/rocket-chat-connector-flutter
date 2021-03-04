@@ -1,3 +1,8 @@
+## 0.0.18
+
+* Mention class for channel messages
+
+
 ## 0.0.17
 
 * Add http call for all subscription update list
