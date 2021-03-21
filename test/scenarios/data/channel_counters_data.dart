@@ -14,7 +14,7 @@ class ChannelCountersData {
     }
   };
 
-  static Map<String, dynamic> getMapById(int channelCountersId) {
+  static Map<String, dynamic>? getMapById(int channelCountersId) {
     return ChannelCountersData.channelCountersList[channelCountersId];
   }
 

@@ -21,76 +21,76 @@ class ChannelService {
 
   Future<ChannelNewResponse> create(
       ChannelNew channelNew, Authentication authentication) async {
-    http.Response response = await _httpService.post(
+    http.Response response = await _httpService!.post(
       '/api/v1/channels.create',
       jsonEncode(channelNew.toMap()),
       authentication,
     );
 
-    if (response?.statusCode == 200) {
-      if (response?.body?.isNotEmpty == true) {
+    if (response.statusCode == 200) {
+      if (response.body.isNotEmpty == true) {
         return ChannelNewResponse.fromMap(jsonDecode(response.body));
       } else {
         return ChannelNewResponse();
       }
     }
-    throw RocketChatException(response?.body);
+    throw RocketChatException(response.body);
   }
 
   Future<ChannelMessages> messages(
       Channel channel, Authentication authentication) async {
-    http.Response response = await _httpService.getWithFilter(
+    http.Response response = await _httpService!.getWithFilter(
       '/api/v1/channels.messages',
       ChannelFilter(channel),
       authentication,
     );
 
-    if (response?.statusCode == 200) {
-      if (response?.body?.isNotEmpty == true) {
+    if (response.statusCode == 200) {
+      if (response.body.isNotEmpty == true) {
         return ChannelMessages.fromMap(jsonDecode(response.body));
       } else {
         return ChannelMessages();
       }
     }
-    throw RocketChatException(response?.body);
+    throw RocketChatException(response.body);
   }
 
   Future<bool> markAsRead(
       Channel channel, Authentication authentication) async {
-    Map<String, String> body = {"rid": channel.id};
+    Map<String, String?> body = {"rid": channel.id};
 
-    http.Response response = await _httpService.post(
+    http.Response response = await _httpService!.post(
       '/api/v1/subscriptions.read',
       jsonEncode(body),
       authentication,
     );
 
-    if (response?.statusCode == 200) {
-      if (response?.body?.isNotEmpty == true) {
+    if (response.statusCode == 200) {
+      if (response.body.isNotEmpty == true) {
         return Response.fromMap(jsonDecode(response.body)).success == true;
       } else {
         return false;
       }
     }
-    throw RocketChatException(response?.body);
+    throw RocketChatException(response.body);
   }
 
   Future<ChannelMessages> history(
       ChannelHistoryFilter filter, Authentication authentication) async {
-    http.Response response = await _httpService.getWithFilter(
+    http.Response response = await _httpService!.getWithFilter(
       '/api/v1/channels.history',
       filter,
       authentication,
     );
 
-    if (response?.statusCode == 200) {
-      if (response?.body?.isNotEmpty == true) {
+    if (response.statusCode == 200) {
+      if (response.body.isNotEmpty == true) {
         return ChannelMessages.fromMap(jsonDecode(response.body));
       } else {
         return ChannelMessages();
       }
     }
-    throw RocketChatException(response?.body);
+    throw RocketChatException(response.body);
   }
 
   Future<ChannelCounters> counters(
@@ -103,13 +103,13 @@ class ChannelService {
       authentication,
     );
 
-    if (response?.statusCode == 200) {
-      if (response?.body?.isNotEmpty == true) {
+    if (response.statusCode == 200) {
+      if (response.body.isNotEmpty == true) {
         return ChannelCounters.fromMap(jsonDecode(response.body));
       } else {
         return ChannelCounters();
       }
     }
-    throw RocketChatException(response?.body);
+    throw RocketChatException(response.body);
   }
 }

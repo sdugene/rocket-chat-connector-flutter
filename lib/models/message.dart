@@ -8,27 +8,27 @@ import 'package:rocket_chat_connector_flutter/models/reaction.dart';
 import 'package:rocket_chat_connector_flutter/models/user.dart';
 
 class Message {
-  String id;
-  String alias;
-  String msg;
-  bool parseUrls;
-  Bot bot;
-  bool groupable;
-  String t;
-  DateTime ts;
-  User user;
-  String rid;
-  DateTime updatedAt;
-  Map<String, Reaction> reactions;
-  List<Mention> mentions;
-  List<String> channels;
-  Map<String, String> starred;
-  String emoji;
-  String avatar;
-  List<MessageAttachment> attachments;
-  User editedBy;
-  DateTime editedAt;
-  List<String> urls;
+  String? id;
+  String? alias;
+  String? msg;
+  bool? parseUrls;
+  Bot? bot;
+  bool? groupable;
+  String? t;
+  DateTime? ts;
+  User? user;
+  String? rid;
+  DateTime? updatedAt;
+  Map<String, Reaction>? reactions;
+  List<Mention>? mentions;
+  List<String>? channels;
+  Map<String, String>? starred;
+  String? emoji;
+  String? avatar;
+  List<MessageAttachment>? attachments;
+  User? editedBy;
+  DateTime? editedAt;
+  List<String>? urls;
 
   Message({
     this.alias,
@@ -52,7 +52,7 @@ class Message {
     this.urls,
   });
 
-  Message.fromMap(Map<String, dynamic> json) {
+  Message.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       alias = json['alias'];
       msg = json['msg'];
@@ -125,7 +125,7 @@ class Message {
       map['parseUrls'] = parseUrls;
     }
     if (bot != null) {
-      map['bot'] = bot != null ? bot.toMap() : null;
+      map['bot'] = bot != null ? bot!.toMap() : null;
     }
     if (groupable != null) {
       map['groupable'] = groupable;
@@ -134,19 +134,19 @@ class Message {
       map['t'] = t;
     }
     if (ts != null) {
-      map['ts'] = ts.toIso8601String();
+      map['ts'] = ts!.toIso8601String();
     }
     if (user != null) {
-      map['u'] = user != null ? user.toMap() : null;
+      map['u'] = user != null ? user!.toMap() : null;
     }
     if (rid != null) {
       map['rid'] = rid;
     }
     if (updatedAt != null) {
-      map['_updatedAt'] = updatedAt.toIso8601String();
+      map['_updatedAt'] = updatedAt!.toIso8601String();
     }
     if (reactions != null) {
-      map['reactions'] = reactions.map((a, b) => MapEntry(a, b.toMap()));
+      map['reactions'] = reactions!.map((a, b) => MapEntry(a, b.toMap()));
     }
     if (mentions != null) {
       map['mentions'] = mentions
@@ -175,10 +175,10 @@ class Message {
           [];
     }
     if (editedBy != null) {
-      map['editedBy'] = editedBy != null ? editedBy.toMap() : null;
+      map['editedBy'] = editedBy != null ? editedBy!.toMap() : null;
     }
     if (editedAt != null) {
-      map['editedAt'] = editedAt.toIso8601String();
+      map['editedAt'] = editedAt!.toIso8601String();
     }
     if (urls != null) {
       map['urls'] = urls;
@@ -209,11 +209,11 @@ class Message {
           rid == other.rid &&
           updatedAt == other.updatedAt &&
           DeepCollectionEquality().equals(
-              reactions != null ? reactions.keys : null,
-              other.reactions != null ? other.reactions.keys : null) &&
+              reactions != null ? reactions!.keys : null,
+              other.reactions != null ? other.reactions!.keys : null) &&
           DeepCollectionEquality().equals(
-              reactions != null ? reactions.values : null,
-              other.reactions != null ? other.reactions.values : null) &&
+              reactions != null ? reactions!.values : null,
+              other.reactions != null ? other.reactions!.values : null) &&
           DeepCollectionEquality().equals(mentions, other.mentions) &&
           DeepCollectionEquality().equals(channels, other.channels) &&
           DeepCollectionEquality().equals(starred, other.starred) &&

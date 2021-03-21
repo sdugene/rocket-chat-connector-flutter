@@ -105,7 +105,7 @@ class MessageData {
     }
   };
 
-  static Map<String, dynamic> getMapById(String messageId) {
+  static Map<String, dynamic>? getMapById(String messageId) {
     return MessageData.messageList[messageId];
   }
 

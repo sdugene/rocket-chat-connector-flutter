@@ -6,7 +6,7 @@ class ResponseData {
     2: {"success": false},
   };
 
-  static Map<String, dynamic> getMapById(int responseId) {
+  static Map<String, dynamic>? getMapById(int responseId) {
     return ResponseData.responseList[responseId];
   }
 

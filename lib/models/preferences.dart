@@ -1,33 +1,33 @@
 class Preferences {
-  bool enableAutoAway;
-  int idleTimeoutLimit;
-  int desktopNotificationDuration;
-  String audioNotifications;
-  String desktopNotifications;
-  String mobileNotifications;
-  bool unreadAlert;
-  bool useEmojis;
-  bool convertAsciiEmoji;
-  bool autoImageLoad;
-  bool saveMobileBandwidth;
-  bool collapseMediaByDefault;
-  bool hideUsernames;
-  bool hideRoles;
-  bool hideFlexTab;
-  bool hideAvatars;
-  String roomsListExhibitionMode;
-  String sidebarViewMode;
-  bool sidebarHideAvatar;
-  bool sidebarShowUnread;
-  bool sidebarShowFavorites;
-  String sendOnEnter;
-  int messageViewMode;
-  String emailNotificationMode;
-  bool roomCounterSidebar;
-  String newRoomNotification;
-  String newMessageNotification;
-  bool muteFocusedConversations;
-  int notificationsSoundVolume;
+  bool? enableAutoAway;
+  int? idleTimeoutLimit;
+  int? desktopNotificationDuration;
+  String? audioNotifications;
+  String? desktopNotifications;
+  String? mobileNotifications;
+  bool? unreadAlert;
+  bool? useEmojis;
+  bool? convertAsciiEmoji;
+  bool? autoImageLoad;
+  bool? saveMobileBandwidth;
+  bool? collapseMediaByDefault;
+  bool? hideUsernames;
+  bool? hideRoles;
+  bool? hideFlexTab;
+  bool? hideAvatars;
+  String? roomsListExhibitionMode;
+  String? sidebarViewMode;
+  bool? sidebarHideAvatar;
+  bool? sidebarShowUnread;
+  bool? sidebarShowFavorites;
+  String? sendOnEnter;
+  int? messageViewMode;
+  String? emailNotificationMode;
+  bool? roomCounterSidebar;
+  String? newRoomNotification;
+  String? newMessageNotification;
+  bool? muteFocusedConversations;
+  int? notificationsSoundVolume;
 
   Preferences({
     this.enableAutoAway,
@@ -61,7 +61,7 @@ class Preferences {
     this.notificationsSoundVolume,
   });
 
-  Preferences.fromMap(Map<dynamic, dynamic> json) {
+  Preferences.fromMap(Map<dynamic, dynamic>? json) {
     if (json != null) {
       enableAutoAway = json['enableAutoAway'];
       idleTimeoutLimit = json['idleTimeoutLimit'];

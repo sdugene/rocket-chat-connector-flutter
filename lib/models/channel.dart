@@ -2,13 +2,13 @@ import 'package:collection/collection.dart';
 import 'package:rocket_chat_connector_flutter/models/user.dart';
 
 class Channel {
-  String id;
-  String name;
-  String t;
-  List<String> usernames;
-  int msgs;
-  User user;
-  DateTime ts;
+  String? id;
+  String? name;
+  String? t;
+  List<String>? usernames;
+  int? msgs;
+  User? user;
+  DateTime? ts;
 
   Channel({
     this.id,
@@ -20,7 +20,7 @@ class Channel {
     this.ts,
   });
 
-  Channel.fromMap(Map<String, dynamic> json) {
+  Channel.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       id = json['_id'];
       name = json['name'];
@@ -38,8 +38,8 @@ class Channel {
         't': t,
         'usernames': usernames,
         'msgs': msgs,
-        'u': user != null ? user.toMap() : null,
-        'ts': ts != null ? ts.toIso8601String() : null,
+        'u': user != null ? user!.toMap() : null,
+        'ts': ts != null ? ts!.toIso8601String() : null,
       };
 
   @override

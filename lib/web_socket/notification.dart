@@ -4,14 +4,14 @@ import 'package:rocket_chat_connector_flutter/web_socket/notification_result.dar
 import 'package:rocket_chat_connector_flutter/web_socket/notification_type.dart';
 
 class Notification {
-  NotificationType msg;
-  String collection;
-  String serverId;
-  List<String> subs;
-  List<String> methods;
-  String id;
-  NotificationFields fields;
-  NotificationResult result;
+  NotificationType? msg;
+  String? collection;
+  String? serverId;
+  List<String>? subs;
+  List<String>? methods;
+  String? id;
+  NotificationFields? fields;
+  NotificationResult? result;
 
   Notification({
     this.msg,
@@ -44,6 +44,6 @@ class Notification {
 
   @override
   String toString() {
-    return 'Notification{msg: ${describeEnum(msg)}, collection: $collection, serverId: $serverId, subs: $subs, methods: $methods, id: $id, fields: $fields, result: $result}';
+    return 'Notification{msg: ${describeEnum(msg!)}, collection: $collection, serverId: $serverId, subs: $subs, methods: $methods, id: $id, fields: $fields, result: $result}';
   }
 }

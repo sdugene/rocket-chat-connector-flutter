@@ -19,10 +19,10 @@ class AuthenticationService {
       null,
     );
 
-    if (response?.statusCode == 200 && response?.body?.isNotEmpty == true) {
+    if (response.statusCode == 200 && response.body.isNotEmpty == true) {
       return Authentication.fromMap(jsonDecode(response.body));
     }
-    throw RocketChatException(response?.body);
+    throw RocketChatException(response.body);
   }
 
   Future<User> me(Authentication authentication) async {
@@ -31,13 +31,13 @@ class AuthenticationService {
       authentication,
     );
 
-    if (response?.statusCode == 200) {
-      if (response?.body?.isNotEmpty == true) {
+    if (response.statusCode == 200) {
+      if (response.body.isNotEmpty == true) {
         return User.fromMap(jsonDecode(response.body));
       } else {
         return User();
       }
     }
-    throw RocketChatException(response?.body);
+    throw RocketChatException(response.body);
   }
 }

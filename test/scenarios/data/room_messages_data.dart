@@ -107,7 +107,7 @@ class RoomMessagesData {
     }
   };
 
-  static Map<String, dynamic> getMapById(int roomMessagesId) {
+  static Map<String, dynamic>? getMapById(int roomMessagesId) {
     return RoomMessagesData.roomMessagesList[roomMessagesId];
   }
 

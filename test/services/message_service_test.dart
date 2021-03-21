@@ -14,21 +14,21 @@ import '../scenarios/data/response/message_new_response_data.dart';
 class HttpServiceMock extends Mock implements HttpService {}
 
 void main() {
-  HttpService httpServiceMock;
-  MessageService messageService;
+  HttpService? httpServiceMock;
+  late MessageService messageService;
   Authentication authenticationMock = new Authentication();
 
   MessageNew message = MessageNew(channel: "#general", text: "This is a test!");
 
   setUp(() async {
     httpServiceMock = HttpServiceMock();
-    messageService = MessageService(httpServiceMock);
+    messageService = MessageService(httpServiceMock!);
   });
 
   test('post message', () async {
     Response response =
         Response(jsonEncode(MessageNewResponseData.getMapById(1)), 200);
-    when(httpServiceMock.post(
+    when(httpServiceMock!.post(
       "/api/v1/chat.postMessage",
       jsonEncode(message.toMap()),
       authenticationMock,

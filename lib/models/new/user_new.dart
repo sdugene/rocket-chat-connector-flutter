@@ -1,8 +1,8 @@
 class UserNew {
-  String name;
-  String email;
-  String password;
-  String username;
+  String? name;
+  String? email;
+  String? password;
+  String? username;
 
   UserNew({
     this.name,
@@ -11,7 +11,7 @@ class UserNew {
     this.username,
   });
 
-  UserNew.fromMap(Map<String, dynamic> json) {
+  UserNew.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       name = json['name'];
       email = json['email'];

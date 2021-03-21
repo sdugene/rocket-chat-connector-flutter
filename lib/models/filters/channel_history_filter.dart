@@ -2,12 +2,12 @@ import 'package:rocket_chat_connector_flutter/models/channel.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/channel_filter.dart';
 
 class ChannelHistoryFilter extends ChannelFilter {
-  DateTime latest;
-  DateTime oldest;
-  bool inclusive;
-  int offset;
-  int count;
-  bool unreads;
+  DateTime? latest;
+  DateTime? oldest;
+  bool? inclusive;
+  int? offset;
+  int? count;
+  bool? unreads;
 
   ChannelHistoryFilter(
     Channel channel, {
@@ -21,8 +21,8 @@ class ChannelHistoryFilter extends ChannelFilter {
 
   Map<String, dynamic> toMap() => {
         'roomId': channel.id,
-        'latest': latest != null ? latest.toIso8601String() : null,
-        'oldest': oldest != null ? oldest.toIso8601String() : null,
+        'latest': latest != null ? latest!.toIso8601String() : null,
+        'oldest': oldest != null ? oldest!.toIso8601String() : null,
         'inclusive': inclusive,
         'offset': offset,
         'count': count,

@@ -1,12 +1,12 @@
 class ChannelCounters {
-  bool joined;
-  int members;
-  int unreads;
-  DateTime unreadsFrom;
-  int msgs;
-  DateTime latest;
-  int userMentions;
-  bool success;
+  bool? joined;
+  int? members;
+  int? unreads;
+  DateTime? unreadsFrom;
+  int? msgs;
+  DateTime? latest;
+  int? userMentions;
+  bool? success;
 
   ChannelCounters({
     this.joined,
@@ -19,7 +19,7 @@ class ChannelCounters {
     this.success = false,
   });
 
-  ChannelCounters.fromMap(Map<String, dynamic> json) {
+  ChannelCounters.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       joined = json['joined'];
       members = json['members'];
@@ -50,7 +50,7 @@ class ChannelCounters {
     }
 
     if (unreadsFrom != null) {
-      map['unreadsFrom'] = unreadsFrom.toIso8601String();
+      map['unreadsFrom'] = unreadsFrom!.toIso8601String();
     }
 
     if (msgs != null) {
@@ -58,7 +58,7 @@ class ChannelCounters {
     }
 
     if (latest != null) {
-      map['latest'] = latest.toIso8601String();
+      map['latest'] = latest!.toIso8601String();
     }
 
     if (userMentions != null) {

@@ -1,10 +1,10 @@
 import 'package:rocket_chat_connector_flutter/models/message.dart';
 
 class MessageNewResponse {
-  int ts;
-  String channel;
-  Message message;
-  bool success;
+  int? ts;
+  String? channel;
+  Message? message;
+  bool? success;
 
   MessageNewResponse({
     this.ts,
@@ -13,7 +13,7 @@ class MessageNewResponse {
     this.success = false,
   });
 
-  MessageNewResponse.fromMap(Map<String, dynamic> json) {
+  MessageNewResponse.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       ts = json['ts'];
       channel = json['channel'];
@@ -26,7 +26,7 @@ class MessageNewResponse {
   Map<String, dynamic> toMap() => {
         'ts': ts,
         'channel': channel,
-        'message': message != null ? message.toMap() : null,
+        'message': message != null ? message!.toMap() : null,
         'success': success,
       };
 

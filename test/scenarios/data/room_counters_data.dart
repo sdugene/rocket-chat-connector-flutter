@@ -14,7 +14,7 @@ class RoomCountersData {
     }
   };
 
-  static Map<String, dynamic> getMapById(int roomCountersId) {
+  static Map<String, dynamic>? getMapById(int roomCountersId) {
     return RoomCountersData.roomCountersList[roomCountersId];
   }
 

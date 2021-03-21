@@ -3,43 +3,54 @@ import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/filter.dart';
 
 class HttpService {
-  String _apiUrl;
+  Uri? _apiUrl;
 
-  HttpService(String apiUrl) {
+  HttpService(Uri apiUrl) {
     _apiUrl = apiUrl;
   }
 
   Future<http.Response> getWithFilter(
           String uri, Filter filter, Authentication authentication) async =>
-      await http.get(_apiUrl + uri + '?' + _urlEncode(filter.toMap()),
-          headers: await _getHeaders(authentication));
+      await http.get(
+          Uri.parse(
+              _apiUrl.toString() + uri + '?' + _urlEncode(filter.toMap())),
+          headers: await (_getHeaders(authentication)
+              as Future<Map<String, String>?>));
 
   Future<http.Response> get(String uri, Authentication authentication) async =>
-      await http.get(_apiUrl + uri, headers: await _getHeaders(authentication));
+      await http.get(Uri.parse(_apiUrl.toString() + uri),
+          headers: await (_getHeaders(authentication)
+              as Future<Map<String, String>?>));
 
   Future<http.Response> post(
-          String uri, String body, Authentication authentication) async =>
-      await http.post(_apiUrl + uri,
-          headers: await _getHeaders(authentication), body: body);
+          String uri, String body, Authentication? authentication) async =>
+      await http.post(Uri.parse(_apiUrl.toString() + uri),
+          headers: await (_getHeaders(authentication)
+              as Future<Map<String, String>?>),
+          body: body);
 
   Future<http.Response> put(
           String uri, String body, Authentication authentication) async =>
-      await http.put(_apiUrl + uri,
-          headers: await _getHeaders(authentication), body: body);
+      await http.put(Uri.parse(_apiUrl.toString() + uri),
+          headers: await (_getHeaders(authentication)
+              as Future<Map<String, String>?>),
+          body: body);
 
   Future<http.Response> delete(
           String uri, Authentication authentication) async =>
-      await http.delete(_apiUrl + uri,
-          headers: await _getHeaders(authentication));
+      await http.delete(Uri.parse(_apiUrl.toString() + uri),
+          headers: await (_getHeaders(authentication)
+              as Future<Map<String, String>?>));
 
-  Future<Map<String, String>> _getHeaders(Authentication authentication) async {
-    Map<String, String> header = {
+  Future<Map<String, String?>> _getHeaders(
+      Authentication? authentication) async {
+    Map<String, String?> header = {
       'Content-type': 'application/json',
     };
 
     if (authentication?.status == "success") {
-      header['X-Auth-Token'] = authentication.data.authToken;
-      header['X-User-Id'] = authentication.data.userId;
+      header['X-Auth-Token'] = authentication!.data!.authToken;
+      header['X-User-Id'] = authentication.data!.userId;
     }
 
     return header;
@@ -49,7 +60,7 @@ class HttpService {
 String _urlEncode(Map object) {
   int index = 0;
   String url = object.keys.map((key) {
-    if (object[key]?.toString()?.isNotEmpty == true) {
+    if (object[key]?.toString().isNotEmpty == true) {
       String value = "";
       if (index != 0) {
         value = "&";

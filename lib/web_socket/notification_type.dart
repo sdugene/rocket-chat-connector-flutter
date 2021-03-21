@@ -1,6 +1,6 @@
 enum NotificationType { CONNECTED, RESULT, UPDATED, CHANGED, PING, UNKNOWN }
 
-NotificationType notificationTypeFromString(String notificationType) {
+NotificationType notificationTypeFromString(String? notificationType) {
   if (notificationType == 'connected') {
     return NotificationType.CONNECTED;
   } else if (notificationType == 'result') {

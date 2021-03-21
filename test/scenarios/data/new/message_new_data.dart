@@ -44,7 +44,7 @@ class MessageNewData {
     },
   };
 
-  static Map<String, dynamic> getMapById(int messageNewId) {
+  static Map<String, dynamic>? getMapById(int messageNewId) {
     return MessageNewData.messageNewList[messageNewId];
   }
 

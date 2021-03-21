@@ -4,11 +4,11 @@ import 'package:collection/collection.dart';
 import 'package:rocket_chat_connector_flutter/models/message.dart';
 
 class RoomMessages {
-  List<Message> messages;
-  int count;
-  int offset;
-  int total;
-  bool success;
+  List<Message>? messages;
+  int? count;
+  int? offset;
+  int? total;
+  bool? success;
 
   RoomMessages({
     this.messages,
@@ -18,7 +18,7 @@ class RoomMessages {
     this.success = false,
   });
 
-  RoomMessages.fromMap(Map<String, dynamic> json) {
+  RoomMessages.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       if (json['messages'] != null) {
         List<dynamic> jsonList = json['messages'].runtimeType == String //

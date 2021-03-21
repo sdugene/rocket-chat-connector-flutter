@@ -107,7 +107,7 @@ class ChannelMessagesData {
     }
   };
 
-  static Map<String, dynamic> getMapById(int channelMessagesId) {
+  static Map<String, dynamic>? getMapById(int channelMessagesId) {
     return ChannelMessagesData.channelMessagesList[channelMessagesId];
   }
 
