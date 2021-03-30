@@ -1,11 +1,11 @@
 class Bot {
-  String i;
+  String? i;
 
   Bot({
     this.i,
   });
 
-  Bot.fromMap(Map<String, dynamic> json) {
+  Bot.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       i = json['i'];
     }

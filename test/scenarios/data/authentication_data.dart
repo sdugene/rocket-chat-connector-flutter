@@ -26,7 +26,7 @@ class AuthenticationData {
     },
   };
 
-  static Map<String, dynamic> getMapById(int authenticationId) {
+  static Map<String, dynamic>? getMapById(int authenticationId) {
     return AuthenticationData.authenticationList[authenticationId];
   }
 

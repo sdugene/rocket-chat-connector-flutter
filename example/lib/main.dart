@@ -23,7 +23,7 @@ final String password = "myPassword";
 final Channel channel = Channel(id: "myChannelId");
 final Room room = Room(id: "myRoomId");
 final rocket_http_service.HttpService rocketHttpService =
-    rocket_http_service.HttpService(serverUrl);
+    rocket_http_service.HttpService(Uri.parse(serverUrl));
 
 class MyApp extends StatelessWidget {
   @override

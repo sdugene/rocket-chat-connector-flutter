@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/room_counters_filter.dart';
@@ -23,25 +24,25 @@ import '../scenarios/data/room_counters_data.dart';
 import '../scenarios/data/room_data.dart';
 import '../scenarios/data/room_messages_data.dart';
 import '../scenarios/data/user_data.dart';
+import 'room_service_test.mocks.dart';
 
-class HttpServiceMock extends Mock implements HttpService {}
-
+@GenerateMocks([HttpService])
 void main() {
-  HttpService httpServiceMock;
-  RoomService roomService;
+  HttpService? httpServiceMock;
+  late RoomService roomService;
   Authentication authenticationMock = new Authentication();
 
   RoomNew roomNew = RoomNewData.getById(1);
 
   setUp(() async {
-    httpServiceMock = HttpServiceMock();
-    roomService = RoomService(httpServiceMock);
+    httpServiceMock = MockHttpService();
+    roomService = RoomService(httpServiceMock!);
   });
 
   test('create room', () async {
     http.Response response =
         http.Response(jsonEncode(RoomNewResponseData.getMapById(1)), 200);
-    when(httpServiceMock.post(
+    when(httpServiceMock!.post(
       "/api/v1/im.create",
       jsonEncode(roomNew.toMap()),
       authenticationMock,
@@ -58,7 +59,7 @@ void main() {
 
     http.Response response =
         http.Response(jsonEncode(RoomMessagesData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter(
+    when(httpServiceMock!.getWithFilter(
       "/api/v1/im.messages",
       filter,
       authenticationMock,
@@ -71,11 +72,11 @@ void main() {
 
   test('room markAsRead', () async {
     Room room = RoomData.getById("ByehQjC44FwMeiLbX");
-    Map<String, String> body = {"rid": room.id};
+    Map<String, String?> body = {"rid": room.id};
 
     http.Response response =
         http.Response(jsonEncode(Response(success: true).toMap()), 200);
-    when(httpServiceMock.post(
+    when(httpServiceMock!.post(
       "/api/v1/subscriptions.read",
       jsonEncode(body),
       authenticationMock,
@@ -91,7 +92,7 @@ void main() {
 
     http.Response response =
         http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter(
+    when(httpServiceMock!.getWithFilter(
       "/api/v1/im.counters",
       filter,
       authenticationMock,
@@ -109,7 +110,7 @@ void main() {
 
     http.Response response =
         http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter(
+    when(httpServiceMock!.getWithFilter(
       "/api/v1/im.counters",
       filter,
       authenticationMock,
@@ -126,7 +127,7 @@ void main() {
 
     http.Response response =
         http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter(
+    when(httpServiceMock!.getWithFilter(
       "/api/v1/im.history",
       filter,
       authenticationMock,
@@ -143,7 +144,7 @@ void main() {
 
     http.Response response =
         http.Response(jsonEncode(RoomCountersData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter(
+    when(httpServiceMock!.getWithFilter(
       "/api/v1/im.history",
       filter,
       authenticationMock,

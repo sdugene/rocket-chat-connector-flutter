@@ -4,22 +4,22 @@ import 'package:collection/collection.dart';
 import 'package:rocket_chat_connector_flutter/models/message_attachment_field.dart';
 
 class MessageAttachment {
-  String audioUrl;
-  String authorIcon;
-  String authorLink;
-  String authorName;
-  bool collapsed;
-  String color;
-  List<MessageAttachmentField> fields;
-  String imageUrl;
-  String messageLink;
-  String text;
-  String thumbUrl;
-  String title;
-  String titleLink;
-  bool titleLinkDownload;
-  DateTime ts;
-  String videoUrl;
+  String? audioUrl;
+  String? authorIcon;
+  String? authorLink;
+  String? authorName;
+  bool? collapsed;
+  String? color;
+  List<MessageAttachmentField>? fields;
+  String? imageUrl;
+  String? messageLink;
+  String? text;
+  String? thumbUrl;
+  String? title;
+  String? titleLink;
+  bool? titleLinkDownload;
+  DateTime? ts;
+  String? videoUrl;
 
   MessageAttachment({
     this.audioUrl,
@@ -92,7 +92,7 @@ class MessageAttachment {
         'title': title,
         'title_link': titleLink,
         'title_link_download': titleLinkDownload,
-        'ts': ts != null ? ts.toIso8601String() : null,
+        'ts': ts != null ? ts!.toIso8601String() : null,
         'video_url': videoUrl,
       };
 

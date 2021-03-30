@@ -2,12 +2,12 @@ import 'package:rocket_chat_connector_flutter/models/filters/room_filter.dart';
 import 'package:rocket_chat_connector_flutter/models/room.dart';
 
 class RoomHistoryFilter extends RoomFilter {
-  DateTime latest;
-  DateTime oldest;
-  bool inclusive;
-  int offset;
-  int count;
-  bool unreads;
+  DateTime? latest;
+  DateTime? oldest;
+  bool? inclusive;
+  int? offset;
+  int? count;
+  bool? unreads;
 
   RoomHistoryFilter(
     Room room, {
@@ -21,8 +21,8 @@ class RoomHistoryFilter extends RoomFilter {
 
   Map<String, dynamic> toMap() => {
         'roomId': room.id,
-        'latest': latest != null ? latest.toIso8601String() : null,
-        'oldest': oldest != null ? oldest.toIso8601String() : null,
+        'latest': latest != null ? latest!.toIso8601String() : null,
+        'oldest': oldest != null ? oldest!.toIso8601String() : null,
         'inclusive': inclusive,
         'offset': offset,
         'count': count,

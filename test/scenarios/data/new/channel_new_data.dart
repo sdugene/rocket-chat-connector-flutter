@@ -5,7 +5,7 @@ class ChannelNewData {
     1: {"name": "channelname"}
   };
 
-  static Map<String, dynamic> getMapById(int channelNewId) {
+  static Map<String, dynamic>? getMapById(int channelNewId) {
     return ChannelNewData.channelNewList[channelNewId];
   }
 

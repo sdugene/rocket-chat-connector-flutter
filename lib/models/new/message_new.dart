@@ -4,13 +4,13 @@ import 'package:collection/collection.dart';
 import 'package:rocket_chat_connector_flutter/models/message_attachment.dart';
 
 class MessageNew {
-  String alias;
-  String avatar;
-  String channel;
-  String emoji;
-  String roomId;
-  String text;
-  List<MessageAttachment> attachments;
+  String? alias;
+  String? avatar;
+  String? channel;
+  String? emoji;
+  String? roomId;
+  String? text;
+  List<MessageAttachment>? attachments;
 
   MessageNew({
     this.alias,
@@ -22,7 +22,7 @@ class MessageNew {
     this.attachments,
   });
 
-  MessageNew.fromMap(Map<String, dynamic> json) {
+  MessageNew.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       alias = json['alias'];
       avatar = json['avatar'];

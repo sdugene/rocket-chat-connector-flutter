@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 
 class Reaction {
-  List<String> usernames;
+  List<String>? usernames;
 
   Reaction({
     this.usernames,

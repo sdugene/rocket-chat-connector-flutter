@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/channel.dart';
@@ -23,25 +24,25 @@ import '../scenarios/data/channel_messages_data.dart';
 import '../scenarios/data/new/channel_new_data.dart';
 import '../scenarios/data/response/channel_new_response_data.dart';
 import '../scenarios/data/user_data.dart';
+import 'channel_service_test.mocks.dart';
 
-class HttpServiceMock extends Mock implements HttpService {}
-
+@GenerateMocks([HttpService])
 void main() {
-  HttpService httpServiceMock;
-  ChannelService channelService;
+  HttpService? httpServiceMock;
+  late ChannelService channelService;
   Authentication authenticationMock = new Authentication();
 
   ChannelNew channelNew = ChannelNewData.getById(1);
 
   setUp(() async {
-    httpServiceMock = HttpServiceMock();
-    channelService = ChannelService(httpServiceMock);
+    httpServiceMock = MockHttpService();
+    channelService = ChannelService(httpServiceMock!);
   });
 
   test('create channel', () async {
     http.Response response =
         http.Response(jsonEncode(ChannelNewResponseData.getMapById(1)), 200);
-    when(httpServiceMock.post(
+    when(httpServiceMock!.post(
       "/api/v1/channels.create",
       jsonEncode(channelNew.toMap()),
       authenticationMock,
@@ -58,7 +59,7 @@ void main() {
 
     http.Response response =
         http.Response(jsonEncode(ChannelMessagesData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter(
+    when(httpServiceMock!.getWithFilter(
       "/api/v1/channels.messages",
       filter,
       authenticationMock,
@@ -71,11 +72,11 @@ void main() {
 
   test('channel markAsRead', () async {
     Channel channel = ChannelData.getById("ByehQjC44FwMeiLbX");
-    Map<String, String> body = {"rid": channel.id};
+    Map<String, String?> body = {"rid": channel.id};
 
     http.Response response =
         http.Response(jsonEncode(Response(success: true).toMap()), 200);
-    when(httpServiceMock.post(
+    when(httpServiceMock!.post(
       "/api/v1/subscriptions.read",
       jsonEncode(body),
       authenticationMock,
@@ -91,7 +92,7 @@ void main() {
 
     http.Response response =
         http.Response(jsonEncode(ChannelCountersData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter(
+    when(httpServiceMock!.getWithFilter(
       "/api/v1/channels.counters",
       filter,
       authenticationMock,
@@ -109,7 +110,7 @@ void main() {
 
     http.Response response =
         http.Response(jsonEncode(ChannelCountersData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter(
+    when(httpServiceMock!.getWithFilter(
       "/api/v1/channels.counters",
       filter,
       authenticationMock,
@@ -126,7 +127,7 @@ void main() {
 
     http.Response response =
         http.Response(jsonEncode(ChannelCountersData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter(
+    when(httpServiceMock!.getWithFilter(
       "/api/v1/channels.history",
       filter,
       authenticationMock,
@@ -144,7 +145,7 @@ void main() {
 
     http.Response response =
         http.Response(jsonEncode(ChannelCountersData.getMapById(1)), 200);
-    when(httpServiceMock.getWithFilter(
+    when(httpServiceMock!.getWithFilter(
       "/api/v1/channels.history",
       filter,
       authenticationMock,

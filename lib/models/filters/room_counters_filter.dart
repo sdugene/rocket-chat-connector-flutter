@@ -4,13 +4,13 @@ import 'package:rocket_chat_connector_flutter/models/room.dart';
 import '../user.dart';
 
 class RoomCountersFilter extends RoomFilter {
-  User user;
+  User? user;
 
   RoomCountersFilter(Room room, {this.user}) : super(room);
 
   Map<String, dynamic> toMap() => {
         'roomId': room.id,
-        'userId': user != null ? user.id : null,
+        'userId': user != null ? user!.id : null,
       };
 
   @override

@@ -1,6 +1,6 @@
 class Email {
-  String address;
-  bool verified;
+  String? address;
+  bool? verified;
 
   Email.fromMap(Map<String, dynamic> json) {
     if (json != null) {

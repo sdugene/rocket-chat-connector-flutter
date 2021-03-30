@@ -2,11 +2,11 @@ import 'package:rocket_chat_connector_flutter/web_socket/notification_message.da
 import 'package:rocket_chat_connector_flutter/web_socket/notification_user.dart';
 
 class NotificationPayload {
-  String id;
-  String rid;
-  NotificationUser sender;
-  String type;
-  NotificationMessage message;
+  String? id;
+  String? rid;
+  NotificationUser? sender;
+  String? type;
+  NotificationMessage? message;
 
   NotificationPayload({
     this.id,
@@ -16,7 +16,7 @@ class NotificationPayload {
     this.message,
   });
 
-  NotificationPayload.fromMap(Map<String, dynamic> json) {
+  NotificationPayload.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       id = json['_id'];
       rid = json['rid'];

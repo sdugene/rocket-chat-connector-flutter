@@ -1,7 +1,7 @@
 class Mention {
-  String id;
-  String name;
-  String username;
+  String? id;
+  String? name;
+  String? username;
 
   Mention({
     this.id,

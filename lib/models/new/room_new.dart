@@ -1,11 +1,11 @@
 class RoomNew {
-  String username;
+  String? username;
 
   RoomNew({
     this.username,
   });
 
-  RoomNew.fromMap(Map<String, dynamic> json) {
+  RoomNew.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       username = json['username'];
     }

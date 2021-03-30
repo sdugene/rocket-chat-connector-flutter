@@ -1,15 +1,15 @@
 import 'package:collection/collection.dart';
 
 class Room {
-  String id;
-  DateTime updatedAt;
-  String t;
-  int msgs;
-  DateTime ts;
-  DateTime lm;
-  String topic;
-  String rid;
-  List<String> usernames;
+  String? id;
+  DateTime? updatedAt;
+  String? t;
+  int? msgs;
+  DateTime? ts;
+  DateTime? lm;
+  String? topic;
+  String? rid;
+  List<String>? usernames;
 
   Room({
     this.id,
@@ -23,7 +23,7 @@ class Room {
     this.usernames,
   });
 
-  Room.fromMap(Map<String, dynamic> json) {
+  Room.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       id = json['_id'];
       rid = json['rid'];
@@ -49,7 +49,7 @@ class Room {
       map['rid'] = rid;
     }
     if (updatedAt != null) {
-      map['_updatedAt'] = updatedAt.toIso8601String();
+      map['_updatedAt'] = updatedAt!.toIso8601String();
     }
     if (t != null) {
       map['t'] = t;
@@ -58,10 +58,10 @@ class Room {
       map['msgs'] = msgs;
     }
     if (ts != null) {
-      map['ts'] = ts.toIso8601String();
+      map['ts'] = ts!.toIso8601String();
     }
     if (lm != null) {
-      map['lm'] = lm.toIso8601String();
+      map['lm'] = lm!.toIso8601String();
     }
 
     if (topic != null) {

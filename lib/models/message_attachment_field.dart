@@ -1,7 +1,7 @@
 class MessageAttachmentField {
-  bool short;
-  String title;
-  String value;
+  bool? short;
+  String? title;
+  String? value;
 
   MessageAttachmentField({
     this.short,

@@ -1,10 +1,10 @@
 import 'package:rocket_chat_connector_flutter/web_socket/notification_payload.dart';
 
 class NotificationArgs {
-  String title;
-  String text;
-  DateTime ts;
-  NotificationPayload payload;
+  String? title;
+  String? text;
+  DateTime? ts;
+  NotificationPayload? payload;
 
   NotificationArgs({
     this.title,

@@ -1,11 +1,11 @@
 class ChannelNew {
-  String name;
+  String? name;
 
   ChannelNew({
     this.name,
   });
 
-  ChannelNew.fromMap(Map<String, dynamic> json) {
+  ChannelNew.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       name = json['name'];
     }

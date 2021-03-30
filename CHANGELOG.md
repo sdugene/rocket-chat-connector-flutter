@@ -1,3 +1,7 @@
+## 0.1.0
+
+* Add null safety
+
 ## 0.0.18
 
 * Mention class for channel messages
