@@ -1,11 +1,11 @@
 class NotificationMessage {
-  String msg;
+  String? msg;
 
   NotificationMessage(
     this.msg,
   );
 
-  NotificationMessage.fromMap(Map<String, dynamic> json) {
+  NotificationMessage.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       msg = json['msg'];
     }

@@ -4,13 +4,13 @@ import 'package:rocket_chat_connector_flutter/models/filters/channel_filter.dart
 import '../user.dart';
 
 class ChannelCountersFilter extends ChannelFilter {
-  User user;
+  User? user;
 
   ChannelCountersFilter(Channel channel, {this.user}) : super(channel);
 
   Map<String, dynamic> toMap() => {
         'roomId': channel.id,
-        'userId': user != null ? user.id : null,
+        'userId': user != null ? user!.id : null,
       };
 
   @override

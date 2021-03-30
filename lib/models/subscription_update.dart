@@ -3,21 +3,21 @@ import 'dart:convert';
 import 'package:rocket_chat_connector_flutter/models/user.dart';
 
 class SubscriptionUpdate {
-  String id;
-  bool open;
-  bool alert;
-  int unread;
-  int userMentions;
-  int groupMentions;
-  DateTime ts;
-  String rid;
-  String name;
-  String fName;
-  String t;
-  User u;
-  DateTime ls;
-  DateTime updatedAt;
-  List<String> roles;
+  String? id;
+  bool? open;
+  bool? alert;
+  int? unread;
+  int? userMentions;
+  int? groupMentions;
+  DateTime? ts;
+  String? rid;
+  String? name;
+  String? fName;
+  String? t;
+  User? u;
+  DateTime? ls;
+  DateTime? updatedAt;
+  List<String>? roles;
 
   SubscriptionUpdate({
     this.id,

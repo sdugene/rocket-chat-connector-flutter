@@ -1,12 +1,12 @@
 import 'package:rocket_chat_connector_flutter/models/user.dart';
 
 class Authentication {
-  String status;
-  _Data data;
+  String? status;
+  _Data? data;
 
   Authentication({this.status, this.data});
 
-  Authentication.fromMap(Map<String, dynamic> json) {
+  Authentication.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       status = json['status'];
       data = json['data'] != null ? _Data.fromMap(json['data']) : null;
@@ -15,7 +15,7 @@ class Authentication {
 
   Map<String, dynamic> toMap() => {
         'status': status,
-        'data': data != null ? data.toMap() : null,
+        'data': data != null ? data!.toMap() : null,
       };
 
   @override
@@ -35,9 +35,9 @@ class Authentication {
 }
 
 class _Data {
-  String authToken;
-  String userId;
-  User me;
+  String? authToken;
+  String? userId;
+  User? me;
 
   _Data({
     this.authToken,
@@ -45,7 +45,7 @@ class _Data {
     this.me,
   });
 
-  _Data.fromMap(Map<String, dynamic> json) {
+  _Data.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       authToken = json['authToken'];
       userId = json['userId'];
@@ -56,7 +56,7 @@ class _Data {
   Map<String, dynamic> toMap() => {
         'authToken': authToken,
         'userId': userId,
-        'me': me != null ? me.toMap() : null,
+        'me': me != null ? me!.toMap() : null,
       };
 
   @override

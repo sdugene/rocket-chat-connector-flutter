@@ -1,15 +1,15 @@
 import 'package:rocket_chat_connector_flutter/models/channel.dart';
 
 class ChannelNewResponse {
-  Channel channel;
-  bool success;
+  Channel? channel;
+  bool? success;
 
   ChannelNewResponse({
     this.channel,
     this.success = false,
   });
 
-  ChannelNewResponse.fromMap(Map<String, dynamic> json) {
+  ChannelNewResponse.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       channel =
           json['channel'] != null ? Channel.fromMap(json['channel']) : null;
@@ -18,7 +18,7 @@ class ChannelNewResponse {
   }
 
   Map<String, dynamic> toMap() => {
-        'channel': channel != null ? channel.toMap() : null,
+        'channel': channel != null ? channel!.toMap() : null,
         'success': success,
       };
 

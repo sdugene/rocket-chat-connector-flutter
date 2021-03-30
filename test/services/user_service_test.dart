@@ -15,21 +15,21 @@ import '../scenarios/data/user_data.dart';
 class HttpServiceMock extends Mock implements HttpService {}
 
 void main() {
-  HttpService httpServiceMock;
-  UserService userService;
+  HttpService? httpServiceMock;
+  late UserService userService;
   Authentication authenticationMock = new Authentication();
 
   UserNew userNew = UserNewData.getById(1);
 
   setUp(() async {
     httpServiceMock = HttpServiceMock();
-    userService = UserService(httpServiceMock);
+    userService = UserService(httpServiceMock!);
   });
 
   test('create user', () async {
     Response response =
         Response(jsonEncode(UserData.getMapById("BsNr28znDkG8aeo7W")), 200);
-    when(httpServiceMock.post(
+    when(httpServiceMock!.post(
       "/api/v1/users.create",
       jsonEncode(userNew.toMap()),
       authenticationMock,

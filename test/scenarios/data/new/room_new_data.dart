@@ -5,7 +5,7 @@ class RoomNewData {
     1: {"username": "rocket.cat"}
   };
 
-  static Map<String, dynamic> getMapById(int roomNewId) {
+  static Map<String, dynamic>? getMapById(int roomNewId) {
     return RoomNewData.roomNewList[roomNewId];
   }
 

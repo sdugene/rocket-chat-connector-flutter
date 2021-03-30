@@ -12,7 +12,7 @@ class RoomNewResponseData {
     },
   };
 
-  static Map<String, dynamic> getMapById(int roomNewResponseId) {
+  static Map<String, dynamic>? getMapById(int roomNewResponseId) {
     return RoomNewResponseData.roomNewResponseList[roomNewResponseId];
   }
 

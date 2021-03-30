@@ -1,7 +1,7 @@
 class NotificationUser {
-  String id;
-  String username;
-  String name;
+  String? id;
+  String? username;
+  String? name;
 
   NotificationUser({
     this.id,
@@ -9,7 +9,7 @@ class NotificationUser {
     this.name,
   });
 
-  NotificationUser.fromMap(Map<String, dynamic> json) {
+  NotificationUser.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       id = json['_id'];
       username = json['username'];

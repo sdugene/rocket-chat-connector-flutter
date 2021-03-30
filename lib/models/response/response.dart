@@ -1,11 +1,11 @@
 class Response {
-  bool success;
+  bool? success;
 
   Response({
     this.success = false,
   });
 
-  Response.fromMap(Map<String, dynamic> json) {
+  Response.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       success = json['success'];
     }

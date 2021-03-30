@@ -17,13 +17,13 @@ class SubscriptionService {
       authentication,
     );
 
-    if (response?.statusCode == 200) {
-      if (response?.body?.isNotEmpty == true) {
+    if (response.statusCode == 200) {
+      if (response.body.isNotEmpty == true) {
         return Subscription.fromMap(jsonDecode(response.body));
       } else {
         return Subscription();
       }
     }
-    throw RocketChatException(response?.body);
+    throw RocketChatException(response.body);
   }
 }

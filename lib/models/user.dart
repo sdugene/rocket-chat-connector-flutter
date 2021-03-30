@@ -5,19 +5,19 @@ import 'package:rocket_chat_connector_flutter/models/email.dart';
 import 'package:rocket_chat_connector_flutter/models/preferences.dart';
 
 class User {
-  String id;
-  String name;
-  List<Email> emails;
-  String status;
-  String statusConnection;
-  String username;
-  int utcOffset;
-  bool active;
-  List<String> roles;
-  Map<String, Preferences> settings;
-  String avatarUrl;
-  Map<String, String> customFields;
-  bool success;
+  String? id;
+  String? name;
+  List<Email>? emails;
+  String? status;
+  String? statusConnection;
+  String? username;
+  int? utcOffset;
+  bool? active;
+  List<String>? roles;
+  Map<String, Preferences>? settings;
+  String? avatarUrl;
+  Map<String, String>? customFields;
+  bool? success;
 
   User({
     this.id,
@@ -35,7 +35,7 @@ class User {
     this.success = false,
   });
 
-  User.fromMap(Map<String, dynamic> json) {
+  User.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       id = json['_id'];
       name = json['name'];
@@ -127,8 +127,8 @@ class User {
     }
     if (settings != null) {
       map['settings'] = settings != null
-          ? (settings['preferences'] != null
-              ? {'preferences': settings['preferences'].toMap()}
+          ? (settings!['preferences'] != null
+              ? {'preferences': settings!['preferences']!.toMap()}
               : {'preferences': {}})
           : null;
     }

@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:rocket_chat_connector_flutter/models/subscription_update.dart';
 
 class Subscription {
-  List<SubscriptionUpdate> update;
-  Object remove;
-  bool success;
+  List<SubscriptionUpdate>? update;
+  Object? remove;
+  bool? success;
 
   Subscription({
     this.update,
@@ -13,7 +13,7 @@ class Subscription {
     this.success,
   });
 
-  Subscription.fromMap(Map<String, dynamic> json) {
+  Subscription.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       if (json['update'] != null) {
         List<dynamic> jsonList = json['update'].runtimeType == String //

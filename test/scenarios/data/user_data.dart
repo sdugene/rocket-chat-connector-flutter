@@ -78,7 +78,7 @@ class UserData {
     }
   };
 
-  static Map<String, dynamic> getMapById(String userId) {
+  static Map<String, dynamic>? getMapById(String userId) {
     return UserData.userList[userId];
   }
 

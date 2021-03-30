@@ -30,7 +30,7 @@ class RoomData {
     }
   };
 
-  static Map<String, dynamic> getMapById(String roomId) {
+  static Map<String, dynamic>? getMapById(String roomId) {
     return RoomData.roomList[roomId];
   }
 

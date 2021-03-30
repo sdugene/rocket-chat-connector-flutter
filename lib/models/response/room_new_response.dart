@@ -1,15 +1,15 @@
 import 'package:rocket_chat_connector_flutter/models/room.dart';
 
 class RoomNewResponse {
-  Room room;
-  bool success;
+  Room? room;
+  bool? success;
 
   RoomNewResponse({
     this.room,
     this.success = false,
   });
 
-  RoomNewResponse.fromMap(Map<String, dynamic> json) {
+  RoomNewResponse.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       room = json['room'] != null ? Room.fromMap(json['channel']) : null;
       success = json['success'];
@@ -17,7 +17,7 @@ class RoomNewResponse {
   }
 
   Map<String, dynamic> toMap() => {
-        'room': room != null ? room.toMap() : null,
+        'room': room != null ? room!.toMap() : null,
         'success': success,
       };
 

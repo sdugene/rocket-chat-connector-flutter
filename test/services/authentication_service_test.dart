@@ -15,8 +15,8 @@ import '../scenarios/data/user_data.dart';
 class HttpServiceMock extends Mock implements HttpService {}
 
 void main() {
-  HttpService httpServiceMock;
-  AuthenticationService authenticationService;
+  HttpService? httpServiceMock;
+  late AuthenticationService authenticationService;
   Authentication authenticationMock = new Authentication();
 
   String user = 'user';
@@ -25,7 +25,7 @@ void main() {
 
   setUp(() async {
     httpServiceMock = HttpServiceMock();
-    authenticationService = AuthenticationService(httpServiceMock);
+    authenticationService = AuthenticationService(httpServiceMock!);
   });
 
   test('authentication success', () async {
@@ -33,7 +33,7 @@ void main() {
 
     Response response =
         Response(jsonEncode(AuthenticationData.getMapById(1)), 200);
-    when(httpServiceMock.post("/api/v1/login", jsonEncode(mappedBody), null))
+    when(httpServiceMock!.post("/api/v1/login", jsonEncode(mappedBody), null))
         .thenAnswer((_) => Future(() => response));
 
     Authentication authentication =
@@ -46,7 +46,7 @@ void main() {
 
     Response response =
         Response(jsonEncode(AuthenticationData.getMapById(1)), 200);
-    when(httpServiceMock.post(
+    when(httpServiceMock!.post(
             "/api/v1/user/login", jsonEncode(mappedBody), authenticationMock))
         .thenAnswer((_) => Future(() => response));
 
@@ -57,7 +57,7 @@ void main() {
   test('me', () async {
     Response response =
         Response(jsonEncode(UserData.getMapById("aobEdbYhXfu5hkeqG")), 200);
-    when(httpServiceMock.get("/api/v1/me", authenticationMock))
+    when(httpServiceMock!.get("/api/v1/me", authenticationMock))
         .thenAnswer((_) => Future(() => response));
 
     User me = await authenticationService.me(authenticationMock);

@@ -16,7 +16,7 @@ class ChannelNewResponseData {
     },
   };
 
-  static Map<String, dynamic> getMapById(int channelNewResponseId) {
+  static Map<String, dynamic>? getMapById(int channelNewResponseId) {
     return ChannelNewResponseData.channelNewResponseList[channelNewResponseId];
   }
 

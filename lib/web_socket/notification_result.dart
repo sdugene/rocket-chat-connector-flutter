@@ -1,17 +1,17 @@
 import 'package:rocket_chat_connector_flutter/web_socket/notification_user.dart';
 
 class NotificationResult {
-  String id;
-  String token;
-  DateTime tokenExpires;
-  String type;
-  String rid;
-  String msg;
-  DateTime ts;
-  NotificationUser user;
-  DateTime updatedAt;
-  List<String> mentions;
-  List<String> channels;
+  String? id;
+  String? token;
+  DateTime? tokenExpires;
+  String? type;
+  String? rid;
+  String? msg;
+  DateTime? ts;
+  NotificationUser? user;
+  DateTime? updatedAt;
+  List<String>? mentions;
+  List<String>? channels;
 
   NotificationResult({
     this.id,
@@ -27,7 +27,7 @@ class NotificationResult {
     this.channels,
   });
 
-  NotificationResult.fromMap(Map<String, dynamic> json) {
+  NotificationResult.fromMap(Map<String, dynamic>? json) {
     if (json != null) {
       id = json['_id'] != null ? json['_id'] : json['id'];
       token = json['token'];
