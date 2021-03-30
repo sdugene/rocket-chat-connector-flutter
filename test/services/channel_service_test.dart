@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/channel.dart';
@@ -23,9 +24,9 @@ import '../scenarios/data/channel_messages_data.dart';
 import '../scenarios/data/new/channel_new_data.dart';
 import '../scenarios/data/response/channel_new_response_data.dart';
 import '../scenarios/data/user_data.dart';
+import 'channel_service_test.mocks.dart';
 
-class HttpServiceMock extends Mock implements HttpService {}
-
+@GenerateMocks([HttpService])
 void main() {
   HttpService? httpServiceMock;
   late ChannelService channelService;
@@ -34,7 +35,7 @@ void main() {
   ChannelNew channelNew = ChannelNewData.getById(1);
 
   setUp(() async {
-    httpServiceMock = HttpServiceMock();
+    httpServiceMock = MockHttpService();
     channelService = ChannelService(httpServiceMock!);
   });
 

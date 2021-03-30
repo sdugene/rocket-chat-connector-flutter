@@ -1,7 +1,7 @@
 name: rocket_chat_connector_flutter
 description: Flutter Rocket.chat connector. This library is developed to allow the use of a Rocket.chat server as a messaging system.
 homepage: https://github.com/sdugene/rocket-chat-connector-flutter
-version: 0.1.00
+version: 0.1.0
 
 environment:
   flutter: ">=2.0.2 <3.0.0"
@@ -20,7 +20,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.0.2
+  mockito: ^5.0.3
+  build_runner: ^1.10.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rocket_chat_connector_flutter/models/authentication.dart';
 import 'package:rocket_chat_connector_flutter/models/filters/room_counters_filter.dart';
@@ -23,9 +24,9 @@ import '../scenarios/data/room_counters_data.dart';
 import '../scenarios/data/room_data.dart';
 import '../scenarios/data/room_messages_data.dart';
 import '../scenarios/data/user_data.dart';
+import 'room_service_test.mocks.dart';
 
-class HttpServiceMock extends Mock implements HttpService {}
-
+@GenerateMocks([HttpService])
 void main() {
   HttpService? httpServiceMock;
   late RoomService roomService;
@@ -34,7 +35,7 @@ void main() {
   RoomNew roomNew = RoomNewData.getById(1);
 
   setUp(() async {
-    httpServiceMock = HttpServiceMock();
+    httpServiceMock = MockHttpService();
     roomService = RoomService(httpServiceMock!);
   });
 

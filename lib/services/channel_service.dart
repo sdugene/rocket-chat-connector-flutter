@@ -21,7 +21,7 @@ class ChannelService {
 
   Future<ChannelNewResponse> create(
       ChannelNew channelNew, Authentication authentication) async {
-    http.Response response = await _httpService!.post(
+    http.Response response = await _httpService.post(
       '/api/v1/channels.create',
       jsonEncode(channelNew.toMap()),
       authentication,
@@ -39,7 +39,7 @@ class ChannelService {
 
   Future<ChannelMessages> messages(
       Channel channel, Authentication authentication) async {
-    http.Response response = await _httpService!.getWithFilter(
+    http.Response response = await _httpService.getWithFilter(
       '/api/v1/channels.messages',
       ChannelFilter(channel),
       authentication,
@@ -59,7 +59,7 @@ class ChannelService {
       Channel channel, Authentication authentication) async {
     Map<String, String?> body = {"rid": channel.id};
 
-    http.Response response = await _httpService!.post(
+    http.Response response = await _httpService.post(
       '/api/v1/subscriptions.read',
       jsonEncode(body),
       authentication,
@@ -77,7 +77,7 @@ class ChannelService {
 
   Future<ChannelMessages> history(
       ChannelHistoryFilter filter, Authentication authentication) async {
-    http.Response response = await _httpService!.getWithFilter(
+    http.Response response = await _httpService.getWithFilter(
       '/api/v1/channels.history',
       filter,
       authentication,
