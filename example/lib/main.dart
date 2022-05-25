@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   final String title;
 
-  MyHomePage({Key key, @required this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -50,9 +50,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _controller = TextEditingController();
-  WebSocketChannel webSocketChannel;
+  late WebSocketChannel webSocketChannel;
   WebSocketService webSocketService = WebSocketService();
-  User user;
+  User? user;
 
   @override
   Widget build(BuildContext context) {
@@ -60,10 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
         future: getAuthentication(),
         builder: (context, AsyncSnapshot<Authentication> snapshot) {
           if (snapshot.hasData) {
-            user = snapshot.data.data.me;
+            user = snapshot.data!.data!.me;
             webSocketChannel = webSocketService.connectToWebSocket(
-                webSocketUrl, snapshot.data);
-            webSocketService.streamNotifyUserSubscribe(webSocketChannel, user);
+                webSocketUrl, snapshot.data!);
+            webSocketService.streamNotifyUserSubscribe(webSocketChannel, user!);
             return _getScaffold();
           } else {
             return Center(child: CircularProgressIndicator());
@@ -91,13 +91,13 @@ class _MyHomePageState extends State<MyHomePage> {
               stream: webSocketChannel.stream,
               builder: (context, snapshot) {
                 print(snapshot.data);
-                rocket_notification.Notification notification = snapshot.hasData
+                rocket_notification.Notification? notification = snapshot.hasData
                     ? rocket_notification.Notification.fromMap(
                         jsonDecode(snapshot.data))
                     : null;
                 print(notification);
                 webSocketService.streamNotifyUserSubscribe(
-                    webSocketChannel, user);
+                    webSocketChannel, user!);
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24.0),
                   child: Text(
