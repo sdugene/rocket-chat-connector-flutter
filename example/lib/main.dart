@@ -91,10 +91,11 @@ class _MyHomePageState extends State<MyHomePage> {
               stream: webSocketChannel.stream,
               builder: (context, snapshot) {
                 print(snapshot.data);
-                rocket_notification.Notification? notification = snapshot.hasData
-                    ? rocket_notification.Notification.fromMap(
-                        jsonDecode(snapshot.data))
-                    : null;
+                rocket_notification.Notification? notification =
+                    snapshot.hasData
+                        ? rocket_notification.Notification.fromMap(
+                            jsonDecode(snapshot.data as String))
+                        : null;
                 print(notification);
                 webSocketService.streamNotifyUserSubscribe(
                     webSocketChannel, user!);
