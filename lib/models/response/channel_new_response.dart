@@ -1,4 +1,4 @@
-import 'package:rocket_chat_connector_flutter/models/channel.dart';
+import 'package:rocket_chat_flutter_connector/models/channel.dart';
 
 class ChannelNewResponse {
   Channel? channel;

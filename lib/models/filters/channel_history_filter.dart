@@ -1,5 +1,5 @@
-import 'package:rocket_chat_connector_flutter/models/channel.dart';
-import 'package:rocket_chat_connector_flutter/models/filters/channel_filter.dart';
+import 'package:rocket_chat_flutter_connector/models/channel.dart';
+import 'package:rocket_chat_flutter_connector/models/filters/channel_filter.dart';
 
 class ChannelHistoryFilter extends ChannelFilter {
   DateTime? latest;

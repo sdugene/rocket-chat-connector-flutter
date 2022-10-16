@@ -1,4 +1,4 @@
-import 'package:rocket_chat_connector_flutter/models/response/room_new_response.dart';
+import 'package:rocket_chat_flutter_connector/models/response/room_new_response.dart';
 
 class RoomNewResponseData {
   static final Map<int, Map<String, dynamic>> roomNewResponseList = {

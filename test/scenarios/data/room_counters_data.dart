@@ -1,4 +1,4 @@
-import 'package:rocket_chat_connector_flutter/models/room_counters.dart';
+import 'package:rocket_chat_flutter_connector/models/room_counters.dart';
 
 class RoomCountersData {
   static final Map<int, Map<String, dynamic>> roomCountersList = {

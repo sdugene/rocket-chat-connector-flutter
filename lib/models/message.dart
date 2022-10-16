@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:rocket_chat_connector_flutter/models/bot.dart';
-import 'package:rocket_chat_connector_flutter/models/mention.dart';
-import 'package:rocket_chat_connector_flutter/models/message_attachment.dart';
-import 'package:rocket_chat_connector_flutter/models/reaction.dart';
-import 'package:rocket_chat_connector_flutter/models/user.dart';
+import 'package:rocket_chat_flutter_connector/models/bot.dart';
+import 'package:rocket_chat_flutter_connector/models/mention.dart';
+import 'package:rocket_chat_flutter_connector/models/message_attachment.dart';
+import 'package:rocket_chat_flutter_connector/models/reaction.dart';
+import 'package:rocket_chat_flutter_connector/models/user.dart';
 
 class Message {
   String? id;

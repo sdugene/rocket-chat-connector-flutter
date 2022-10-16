@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:rocket_chat_connector_flutter/models/message.dart';
+import 'package:rocket_chat_flutter_connector/models/message.dart';
 
 class ChannelMessages {
   List<Message>? messages;

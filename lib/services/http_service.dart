@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
-import 'package:rocket_chat_connector_flutter/models/authentication.dart';
-import 'package:rocket_chat_connector_flutter/models/filters/filter.dart';
+import 'package:rocket_chat_flutter_connector/models/authentication.dart';
+import 'package:rocket_chat_flutter_connector/models/filters/filter.dart';
 
 class HttpService {
   Uri? _apiUrl;

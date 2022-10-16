@@ -1,5 +1,5 @@
-import 'package:rocket_chat_connector_flutter/models/filters/filter.dart';
-import 'package:rocket_chat_connector_flutter/models/room.dart';
+import 'package:rocket_chat_flutter_connector/models/filters/filter.dart';
+import 'package:rocket_chat_flutter_connector/models/room.dart';
 
 class RoomFilter extends Filter {
   Room room;

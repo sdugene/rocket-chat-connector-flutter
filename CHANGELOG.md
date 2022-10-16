@@ -1,3 +1,10 @@
+
+## 0.1.3
+* Added stream-notify-user 
+
+## 0.1.2
+* Added room subscription for getting realtime messages
+
 ## 0.1.0
 
 * Add null safety

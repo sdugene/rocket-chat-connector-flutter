@@ -1,4 +1,4 @@
-import 'package:rocket_chat_connector_flutter/models/authentication.dart';
+import 'package:rocket_chat_flutter_connector/models/authentication.dart';
 
 class AuthenticationData {
   static final Map<int, Map<String, dynamic>> authenticationList = {

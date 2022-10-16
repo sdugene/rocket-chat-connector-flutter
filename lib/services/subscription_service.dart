@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:rocket_chat_connector_flutter/exceptions/exception.dart';
-import 'package:rocket_chat_connector_flutter/models/authentication.dart';
-import 'package:rocket_chat_connector_flutter/models/subscription.dart';
-import 'package:rocket_chat_connector_flutter/services/http_service.dart';
+import 'package:rocket_chat_flutter_connector/exceptions/exception.dart';
+import 'package:rocket_chat_flutter_connector/models/authentication.dart';
+import 'package:rocket_chat_flutter_connector/models/subscription.dart';
+import 'package:rocket_chat_flutter_connector/services/http_service.dart';
 
 class SubscriptionService {
   HttpService _httpService;

@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   #https://pub.dev/packages/web_socket_channel/changelog-tab-
-  rocket_chat_connector_flutter:
+  rocket_chat_flutter_connector:
     path: ../
 
 

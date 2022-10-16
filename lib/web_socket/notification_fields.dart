@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:rocket_chat_connector_flutter/web_socket/notification_args.dart';
+import 'package:rocket_chat_flutter_connector/web_socket/notification_args.dart';
 
 class NotificationFields {
   String? eventName;

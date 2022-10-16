@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rocket_chat_connector_flutter/models/channel_counters.dart';
+import 'package:rocket_chat_flutter_connector/models/channel_counters.dart';
 
 import '../scenarios/data/channel_counters_data.dart';
 

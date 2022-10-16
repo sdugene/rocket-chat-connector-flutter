@@ -1,8 +1,9 @@
-import 'package:rocket_chat_connector_flutter/web_socket/notification_payload.dart';
+import 'package:rocket_chat_flutter_connector/web_socket/notification_payload.dart';
 
 class NotificationArgs {
   String? title;
   String? text;
+  String? msg;
   DateTime? ts;
   NotificationPayload? payload;
 
@@ -16,6 +17,7 @@ class NotificationArgs {
     if (json != null) {
       title = json['title'];
       text = json['text'];
+      msg = json['msg'];
       ts = DateTime.now();
       payload = json['payload'] != null
           ? NotificationPayload.fromMap(json['payload'])
@@ -25,6 +27,6 @@ class NotificationArgs {
 
   @override
   String toString() {
-    return 'NotificationArgs{title: $title, text: $text, ts: $ts, payload: $payload}';
+    return 'NotificationArgs{title: $title, text: $text, msg: $msg, ts: $ts, payload: $payload}';
   }
 }

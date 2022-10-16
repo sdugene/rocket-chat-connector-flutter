@@ -1,4 +1,4 @@
-import 'package:rocket_chat_connector_flutter/models/response/channel_new_response.dart';
+import 'package:rocket_chat_flutter_connector/models/response/channel_new_response.dart';
 
 class ChannelNewResponseData {
   static final Map<int, Map<String, dynamic>> channelNewResponseList = {

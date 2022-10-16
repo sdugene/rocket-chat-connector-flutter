@@ -1,4 +1,4 @@
-import 'package:rocket_chat_connector_flutter/models/channel_counters.dart';
+import 'package:rocket_chat_flutter_connector/models/channel_counters.dart';
 
 class ChannelCountersData {
   static final Map<int, Map<String, dynamic>> channelCountersList = {

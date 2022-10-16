@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:rocket_chat_connector_flutter/models/subscription_update.dart';
+import 'package:rocket_chat_flutter_connector/models/subscription_update.dart';
 
 class Subscription {
   List<SubscriptionUpdate>? update;

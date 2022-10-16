@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:rocket_chat_connector_flutter/web_socket/notification_fields.dart';
-import 'package:rocket_chat_connector_flutter/web_socket/notification_result.dart';
-import 'package:rocket_chat_connector_flutter/web_socket/notification_type.dart';
+import 'package:rocket_chat_flutter_connector/web_socket/notification_fields.dart';
+import 'package:rocket_chat_flutter_connector/web_socket/notification_result.dart';
+import 'package:rocket_chat_flutter_connector/web_socket/notification_type.dart';
 
 class Notification {
   NotificationType? msg;

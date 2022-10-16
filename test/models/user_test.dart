@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rocket_chat_connector_flutter/models/user.dart';
+import 'package:rocket_chat_flutter_connector/models/user.dart';
 
 import '../scenarios/data/user_data.dart';
 

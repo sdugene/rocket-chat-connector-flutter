@@ -1,18 +1,18 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:rocket_chat_connector_flutter/exceptions/exception.dart';
-import 'package:rocket_chat_connector_flutter/models/authentication.dart';
-import 'package:rocket_chat_connector_flutter/models/channel.dart';
-import 'package:rocket_chat_connector_flutter/models/channel_counters.dart';
-import 'package:rocket_chat_connector_flutter/models/channel_messages.dart';
-import 'package:rocket_chat_connector_flutter/models/filters/channel_counters_filter.dart';
-import 'package:rocket_chat_connector_flutter/models/filters/channel_filter.dart';
-import 'package:rocket_chat_connector_flutter/models/filters/channel_history_filter.dart';
-import 'package:rocket_chat_connector_flutter/models/new/channel_new.dart';
-import 'package:rocket_chat_connector_flutter/models/response/channel_new_response.dart';
-import 'package:rocket_chat_connector_flutter/models/response/response.dart';
-import 'package:rocket_chat_connector_flutter/services/http_service.dart';
+import 'package:rocket_chat_flutter_connector/exceptions/exception.dart';
+import 'package:rocket_chat_flutter_connector/models/authentication.dart';
+import 'package:rocket_chat_flutter_connector/models/channel.dart';
+import 'package:rocket_chat_flutter_connector/models/channel_counters.dart';
+import 'package:rocket_chat_flutter_connector/models/channel_messages.dart';
+import 'package:rocket_chat_flutter_connector/models/filters/channel_counters_filter.dart';
+import 'package:rocket_chat_flutter_connector/models/filters/channel_filter.dart';
+import 'package:rocket_chat_flutter_connector/models/filters/channel_history_filter.dart';
+import 'package:rocket_chat_flutter_connector/models/new/channel_new.dart';
+import 'package:rocket_chat_flutter_connector/models/response/channel_new_response.dart';
+import 'package:rocket_chat_flutter_connector/models/response/response.dart';
+import 'package:rocket_chat_flutter_connector/services/http_service.dart';
 
 class ChannelService {
   HttpService _httpService;

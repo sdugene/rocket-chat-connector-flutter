@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:rocket_chat_connector_flutter/models/email.dart';
-import 'package:rocket_chat_connector_flutter/models/preferences.dart';
+import 'package:rocket_chat_flutter_connector/models/email.dart';
+import 'package:rocket_chat_flutter_connector/models/preferences.dart';
 
 class User {
   String? id;
@@ -11,7 +11,7 @@ class User {
   String? status;
   String? statusConnection;
   String? username;
-  int? utcOffset;
+  double? utcOffset;
   bool? active;
   List<String>? roles;
   Map<String, Preferences>? settings;

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:rocket_chat_connector_flutter/models/user.dart';
+import 'package:rocket_chat_flutter_connector/models/user.dart';
 
 class SubscriptionUpdate {
   String? id;

@@ -1,4 +1,4 @@
-import 'package:rocket_chat_connector_flutter/models/response/response.dart';
+import 'package:rocket_chat_flutter_connector/models/response/response.dart';
 
 class ResponseData {
   static final Map<int, Map<String, dynamic>> responseList = {

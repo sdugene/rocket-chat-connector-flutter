@@ -1,4 +1,4 @@
-import 'package:rocket_chat_connector_flutter/models/message.dart';
+import 'package:rocket_chat_flutter_connector/models/message.dart';
 
 class MessageData {
   static final Map<String, Map<String, dynamic>> messageList = {

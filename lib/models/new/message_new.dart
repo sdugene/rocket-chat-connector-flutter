@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:rocket_chat_connector_flutter/models/message_attachment.dart';
+import 'package:rocket_chat_flutter_connector/models/message_attachment.dart';
 
 class MessageNew {
   String? alias;

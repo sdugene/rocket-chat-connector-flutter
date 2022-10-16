@@ -4,11 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:rocket_chat_connector_flutter/models/authentication.dart';
-import 'package:rocket_chat_connector_flutter/models/new/message_new.dart';
-import 'package:rocket_chat_connector_flutter/models/response/message_new_response.dart';
-import 'package:rocket_chat_connector_flutter/services/http_service.dart';
-import 'package:rocket_chat_connector_flutter/services/message_service.dart';
+import 'package:rocket_chat_flutter_connector/models/authentication.dart';
+import 'package:rocket_chat_flutter_connector/models/new/message_new.dart';
+import 'package:rocket_chat_flutter_connector/models/response/message_new_response.dart';
+import 'package:rocket_chat_flutter_connector/services/http_service.dart';
+import 'package:rocket_chat_flutter_connector/services/message_service.dart';
 
 import '../scenarios/data/response/message_new_response_data.dart';
 import 'message_service_test.mocks.dart';

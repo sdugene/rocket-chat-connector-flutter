@@ -1,4 +1,4 @@
-import 'package:rocket_chat_connector_flutter/web_socket/notification_user.dart';
+import 'package:rocket_chat_flutter_connector/web_socket/notification_user.dart';
 
 class NotificationResult {
   String? id;
