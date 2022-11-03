@@ -196,9 +196,7 @@ class WebSocketService {
       "name": "stream-user-presence",
       "params": [
         "",
-        {
-          "added": userId
-        }
+        {"added": userId}
       ]
     }));
   }
