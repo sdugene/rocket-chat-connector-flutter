@@ -49,10 +49,7 @@ class WebSocketService {
       "name": "stream-notify-user",
       "params": [
         user.id! + "/notification",
-        {
-          "useCollection": false,
-          "args": []
-        }
+        {"useCollection": false, "args": []}
       ]
     };
 
@@ -101,11 +98,7 @@ class WebSocketService {
       "name": "stream-room-messages",
       "params": [
         room.id,
-        {
-          "useCollection": false,
-          "args": [
-          ]
-        }
+        {"useCollection": false, "args": []}
       ]
     };
     logInfo('🚀🚀  streamRoomMessagesSubscribe $msg');
@@ -175,13 +168,38 @@ class WebSocketService {
     webSocketChannel.sink.add(jsonEncode(msg));
   }
 
-  void sendUserPresence(WebSocketChannel webSocketChannel) {
+  sendUserPresence(WebSocketChannel webSocketChannel, String status) {
     Map msg = {
       "msg": "method",
       "method": "UserPresence:setDefaultStatus",
-      "id": "42",
-      "params": ["online"]
+      "id": "101",
+      "params": [status]
     };
+    return webSocketChannel.sink.add(jsonEncode(msg));
+  }
+
+  void sendUserPresenceOnline(WebSocketChannel webSocketChannel) {
+    Map msg = {"msg": "method", "method": "UserPresence:online", "id": "42"};
     webSocketChannel.sink.add(jsonEncode(msg));
+  }
+
+  void sendUserPresenceAway(WebSocketChannel webSocketChannel) {
+    Map msg = {"msg": "method", "method": "UserPresence:away", "id": "42"};
+    webSocketChannel.sink.add(jsonEncode(msg));
+  }
+
+  void streamUserPresence(
+      WebSocketChannel webSocketChannel, List<String> userId) {
+    webSocketChannel.sink.add(jsonEncode({
+      "msg": "sub",
+      "id": userId[0],
+      "name": "stream-user-presence",
+      "params": [
+        "",
+        {
+          "added": userId
+        }
+      ]
+    }));
   }
 }
