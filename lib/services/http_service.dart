@@ -14,43 +14,36 @@ class HttpService {
       await http.get(
           Uri.parse(
               _apiUrl.toString() + uri + '?' + _urlEncode(filter.toMap())),
-          headers: await (_getHeaders(authentication)
-              as Future<Map<String, String>?>));
+          headers: await (_getHeaders(authentication)));
 
   Future<http.Response> get(String uri, Authentication authentication) async =>
       await http.get(Uri.parse(_apiUrl.toString() + uri),
-          headers: await (_getHeaders(authentication)
-              as Future<Map<String, String>?>));
+          headers: await (_getHeaders(authentication)));
 
   Future<http.Response> post(
           String uri, String body, Authentication? authentication) async =>
       await http.post(Uri.parse(_apiUrl.toString() + uri),
-          headers: await (_getHeaders(authentication)
-              as Future<Map<String, String>?>),
-          body: body);
+          headers: await (_getHeaders(authentication)), body: body);
 
   Future<http.Response> put(
           String uri, String body, Authentication authentication) async =>
       await http.put(Uri.parse(_apiUrl.toString() + uri),
-          headers: await (_getHeaders(authentication)
-              as Future<Map<String, String>?>),
-          body: body);
+          headers: await (_getHeaders(authentication)), body: body);
 
   Future<http.Response> delete(
           String uri, Authentication authentication) async =>
       await http.delete(Uri.parse(_apiUrl.toString() + uri),
-          headers: await (_getHeaders(authentication)
-              as Future<Map<String, String>?>));
+          headers: await (_getHeaders(authentication)));
 
-  Future<Map<String, String?>> _getHeaders(
+  Future<Map<String, String>?> _getHeaders(
       Authentication? authentication) async {
-    Map<String, String?> header = {
+    Map<String, String>? header = {
       'Content-type': 'application/json',
     };
 
     if (authentication?.status == "success") {
-      header['X-Auth-Token'] = authentication!.data!.authToken;
-      header['X-User-Id'] = authentication.data!.userId;
+      header['X-Auth-Token'] = authentication!.data!.authToken as String;
+      header['X-User-Id'] = authentication.data!.userId as String;
     }
 
     return header;
