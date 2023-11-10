@@ -32,7 +32,7 @@ class MessageNewResponse {
 
   @override
   String toString() {
-    return 'MessageResponse{ts: $ts, channel: $channel, message: $message, success: $success}';
+    return 'MessageNewResponse{ts: $ts, channel: $channel, message: $message, success: $success}';
   }
 
   @override

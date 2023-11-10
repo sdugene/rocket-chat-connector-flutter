@@ -24,7 +24,7 @@ class ChannelNewResponse {
 
   @override
   String toString() {
-    return 'MessageResponse{channel: $channel, success: $success}';
+    return 'ChannelNewResponse{channel: $channel, success: $success}';
   }
 
   @override
