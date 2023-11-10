@@ -1,3 +1,7 @@
+## 0.1.2
+
+* Add push token service
+
 ## 0.1.0
 
 * Add null safety
