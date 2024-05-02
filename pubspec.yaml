@@ -4,24 +4,24 @@ homepage: https://github.com/sdugene/rocket-chat-connector-flutter
 version: 0.1.2
 
 environment:
-  flutter: ">=2.0.2 <3.0.0"
-  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=2.0.2"
+  sdk: '>=3.2.3 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   #https://pub.dev/packages/collection#-changelog-tab-
-  collection: ^1.15.0
+  collection: ^1.18.0
   #https://pub.dev/packages/http#-changelog-tab-
-  http: ^0.13.1
+  http: ^1.2.1
   #https://pub.dev/packages/web_socket_channel/changelog-tab-
-  web_socket_channel: ^2.0.0
+  web_socket_channel: ^2.4.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.0.3
-  build_runner: ^1.10.0
+  mockito: ^5.4.4
+  build_runner: ^2.4.9
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

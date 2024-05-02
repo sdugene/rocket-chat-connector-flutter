@@ -37,7 +37,7 @@ Future main(List<String> args) async {
   Subscription subscription =
       await subscriptionService.getSubscriptions(authentication);
   List<SubscriptionUpdate> updates =
-      subscription.update.where((e) => e.alert).toList();
+      subscription.update!.where((e) => e.alert!).toList();
 
   for (SubscriptionUpdate subscriptionUpdate in updates) {
     print(
@@ -56,7 +56,7 @@ Future main(List<String> args) async {
   ChannelMessages channelMessages =
       await channelService.history(channelHistoryFilter, authentication);
   print(
-      "Last message : ${channelMessages.messages.first.ts} : ${channelMessages.messages.first.msg}");
+      "Last message : ${channelMessages.messages!.first.ts} : ${channelMessages.messages!.first.msg}");
 
   // send message
   MessageNew messageNew = MessageNew(roomId: channel.id, text: "my message");
